@@ -403,6 +403,15 @@ const matchBucket = function(url, hostname, bucket, start) {
             vAPI.browserSettings.set({ 'webrtcIPAddress': !value });
         }
         break;
+    case 'topicReportingDisabled':
+        vAPI.browserSettings.set( { topicReportingDisabled: !!value });
+        break;
+    case 'advertisementReportingDisabled':
+        vAPI.browserSettings.set( { advertisementReportingDisabled: !!value });
+        break;
+    case 'advertisementAuctionsDisabled':
+        vAPI.browserSettings.set( { advertisementAuctionsDisabled: !!value });
+        break;
     default:
         break;
     }

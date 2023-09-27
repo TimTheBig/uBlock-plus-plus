@@ -269,10 +269,18 @@ const onUserSettingsReceived = function(details) {
         });
     }
 
-    if ( details.canLeakLocalIPAddresses === true ) {
-        qs$('[data-setting-name="webrtcIPAddressHidden"]')
-            .closest('div.li')
-            .style.display = '';
+    const settings = [
+        [ 'canLeakLocalIPAddresses', 'webrtcIPAddressHidden' ],
+        [ 'supportsTopicReporting', 'topicReportingDisabled' ],
+        [ 'supportsAdvertisementReporting', 'advertisementReportingDisabled' ],
+        [ 'supportsAdvertisementAuctions', 'advertisementAuctionsDisabled' ],
+    ];
+    for ( const [ key, query ] of settings ) {
+        if ( details[key] === true ) {
+            qs$(`[data-setting-name="${query}"]`)
+                .closest('div.li')
+                .style.display = '';
+        }
     }
 
     qsa$('[data-setting-type="value"]').forEach(function(elem) {

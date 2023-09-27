@@ -112,20 +112,36 @@ const webext = {
 
 // browser.privacy entries
 {
+    const noop = function() {
+    };
     const settings = [
         // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/privacy/network
         [ 'network', 'networkPredictionEnabled' ],
         [ 'network', 'webRTCIPHandlingPolicy' ],
         // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/privacy/websites
         [ 'websites', 'hyperlinkAuditingEnabled' ],
+        // https://developer.chrome.com/docs/extensions/reference/privacy/#property-websites
+        [ 'websites', 'adMeasurementEnabled' ],
+        [ 'websites', 'fledgeEnabled' ],
+        [ 'websites', 'topicsEnabled' ],
     ];
     for ( const [ category, setting ] of settings ) {
         let categoryEntry = webext.privacy[category];
         if ( categoryEntry instanceof Object === false ) {
             categoryEntry = webext.privacy[category] = {};
         }
-        const settingEntry = categoryEntry[setting] = {};
         const thisArg = chrome.privacy[category][setting];
+        if ( thisArg instanceof Object === false ) {
+            categoryEntry[setting] = {
+                clear: noop,
+                get: () => {
+                    return {};
+                },
+                set: noop,
+            }
+            continue;
+        }
+        const settingEntry = categoryEntry[setting] = {};
         settingEntry.clear = promisifyNoFail(thisArg, 'clear');
         settingEntry.get = promisifyNoFail(thisArg, 'get');
         settingEntry.set = promisifyNoFail(thisArg, 'set');
