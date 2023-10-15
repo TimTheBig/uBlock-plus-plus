@@ -216,6 +216,14 @@
 		],
 		"supportURL": "https://easylist.to/"
 	},
+	"piperun-iplogger": {
+		"content": "filters",
+		"group": "EasyPrivacy",
+		"title": "Piperun's IPlogger blocklist",
+		"tags": "privacy",
+		"contentURL": "https://raw.githubusercontent.com/piperun/iploggerfilter/master/filterlist",
+		"supportURL": "https://github.com/piperun/iploggerfilter"
+	},
 	"urlhaus-1": {
 		"content": "filters",
 		"group": "malware",
