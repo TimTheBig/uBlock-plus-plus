@@ -218,7 +218,7 @@
 	},
 	"piperun-iplogger": {
 		"content": "filters",
-		"group": "iplogger",
+		"group": "privacy",
 		"title": "Piperun's IPlogger blocklist",
 		"tags": "privacy",
 		"contentURL": [
