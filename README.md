@@ -91,7 +91,7 @@ uBO [works best][Works Best] on Firefox and is available for desktop and Android
 
 #### Thunderbird
 
-[Thunderbird Add-ons][Thunderbird] does not affect emails, just feeds. 
+[Thunderbird Add-ons][Thunderbird]
 
 #### Chromium
 
