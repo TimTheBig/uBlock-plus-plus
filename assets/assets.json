@@ -256,7 +256,7 @@
 		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
 		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
 	},
-		"piperun-iplogger": {
+	"piperun-iplogger": {
 		"content": "filters",
 		"group": "iplogger",
 		"off": true,
