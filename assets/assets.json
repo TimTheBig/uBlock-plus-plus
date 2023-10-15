@@ -215,6 +215,7 @@
 			"https://easylist.to/easylist/easyprivacy.txt"
 		],
 		"supportURL": "https://easylist.to/"
+		
 	},
 	"urlhaus-1": {
 		"content": "filters",
@@ -254,6 +255,14 @@
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/4.txt",
 		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
 		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+	},
+		"piperun-iplogger": {
+		"content": "filters",
+		"group": "iplogger",
+		"off": true,
+		"title": "Piperun's IPlogger blocklist",
+		"contentURL": "https://raw.githubusercontent.com/piperun/iploggerfilter/master/filterlist",
+		"supportURL": "https://github.com/piperun/iploggerfilter"
 	},
 	"adguard-cookies": {
 		"content": "filters",
