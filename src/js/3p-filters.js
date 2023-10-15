@@ -223,6 +223,7 @@ const renderFilterLists = ( ) => {
             'malware',
             'multipurpose',
             'annoyances',
+            'iplogger',
             'regions',
             'custom'
         ];
