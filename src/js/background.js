@@ -105,7 +105,7 @@ const userSettingsDefault = {
     hyperlinkAuditingDisabled: true,
     ignoreGenericCosmeticFilters: vAPI.webextFlavor.soup.has('mobile'),
     importedLists: [],
-    largeMediaSize: 50,
+    largeMediaSize: 100,
     parseAllABPHideFilters: true,
     popupPanelSections: 0b111,
     prefetchingDisabled: true,
