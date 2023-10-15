@@ -258,9 +258,9 @@
 	},
 	"piperun-iplogger": {
 		"content": "filters",
-		"group": "iplogger",
-		"off": true,
+		"group": "privacy",
 		"title": "Piperun's IPlogger blocklist",
+		"tags": "privacy",
 		"contentURL": "https://raw.githubusercontent.com/piperun/iploggerfilter/master/filterlist",
 		"supportURL": "https://github.com/piperun/iploggerfilter"
 	},
