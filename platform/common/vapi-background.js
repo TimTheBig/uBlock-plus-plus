@@ -144,11 +144,16 @@ vAPI.browserSettings = (( ) => {
             vAPI.webextFlavor.soup.has('firefox') &&
             vAPI.webextFlavor.soup.has('mobile'),
 
+        // Google "Privacy" "sandbox"
+        supportsTopicReporting: bp.websites instanceof Object && 'topicsEnabled' in bp.websites,
+        supportsAdvertisementReporting: bp.websites instanceof Object && 'adMeasurementEnabled' in bp.websites,
+        supportsAdvertisementAuctions: bp.websites instanceof Object && 'fledgeEnabled' in bp.websites,
+
         set: function(details) {
             for ( const setting in details ) {
                 if ( details.hasOwnProperty(setting) === false ) { continue; }
                 switch ( setting ) {
-                case 'prefetching':
+                case 'prefetching': {
                     const enabled = !!details[setting];
                     if ( enabled ) {
                         bp.network.networkPredictionEnabled.clear({
@@ -164,6 +169,7 @@ vAPI.browserSettings = (( ) => {
                         vAPI.prefetching(enabled);
                     }
                     break;
+                }
 
                 case 'hyperlinkAuditing':
                     if ( !!details[setting] ) {
@@ -208,6 +214,55 @@ vAPI.browserSettings = (( ) => {
                     }
                     break;
                 }
+
+                // Chrome "Privacy" "sandbox" Browsig Topics API
+                case 'topicReportingDisabled': {
+                    const enabled = !details[setting];
+                    if ( enabled ) {
+                        bp.websites.topicsEnabled.clear({
+                            scope: 'regular',
+                        });
+                    } else {
+                        bp.websites.topicsEnabled.set({
+                            value: false,
+                            scope: 'regular',
+                        });
+                    }
+                    break;
+                }
+
+                // Chrome "Privacy" "sandbox" Browsig Topics API
+                case 'advertisementReportingDisabled': {
+                    const enabled = !details[setting];
+                    if ( enabled ) {
+                        bp.websites.adMeasurementEnabled.clear({
+                            scope: 'regular',
+                        });
+                    } else {
+                        bp.websites.adMeasurementEnabled.set({
+                            value: false,
+                            scope: 'regular',
+                        });
+                    }
+                    break;
+                }
+
+                // Chrome "Privacy" "sandbox" Protected Audience API
+                case 'advertisementAuctionsDisabled': {
+                    const enabled = !details[setting];
+                    if ( enabled ) {
+                        bp.websites.fledgeEnabled.clear({
+                            scope: 'regular',
+                        });
+                    } else {
+                        bp.websites.fledgeEnabled.set({
+                            value: false,
+                            scope: 'regular',
+                        });
+                    }
+                    break;
+                }
+
                 default:
                     break;
                 }

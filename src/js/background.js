@@ -114,6 +114,9 @@ const userSettingsDefault = {
     suspendUntilListsAreLoaded: vAPI.Net.canSuspend(),
     tooltipsDisabled: false,
     webrtcIPAddressHidden: false,
+    topicReportingDisabled: true,
+    advertisementReportingDisabled: true,
+    advertisementAuctionsDisabled: true,
 };
 
 const dynamicFilteringDefault = [
