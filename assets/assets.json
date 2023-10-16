@@ -522,6 +522,7 @@
 	"bypass-paywalls-clean-filters": {
 		"content": "filters",
 		"group": "annoyances",
+		"updateAfter": 13,
 		"title": "bypass-paywalls-clean-filters",
 		"tags": "annoyances",
 		"contentURL": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters/-/raw/main/bpc-paywall-filter.txt",
