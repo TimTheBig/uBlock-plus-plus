@@ -367,6 +367,18 @@
     "message": "Prevent WebRTC from leaking local IP addresses",
     "description": "English: "
   },
+  "settingsTopicReportingDisabledPrompt": {
+    "message": "Disable Browsing Topics API which discloses to websites information derived from your browsing history",
+    "description": ""
+  },
+  "settingsAdvertisementReportingDisabledPrompt": {
+    "message": "Disable reporting of advertisement campaigns to advertisement agencies",
+    "description": ""
+  },
+  "settingsAdvertisementAuctionsDisabledPrompt": {
+    "message": "Disable advertisement auction system embedded directly into your browser",
+    "description": ""
+  },
   "settingPerSiteSwitchGroup": {
     "message": "Default behavior",
     "description": ""

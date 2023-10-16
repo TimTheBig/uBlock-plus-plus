@@ -368,6 +368,12 @@ const onMessage = function(request, sender, callback) {
             }
             response.canLeakLocalIPAddresses =
                 vAPI.browserSettings.canLeakLocalIPAddresses === true;
+            response.supportsTopicReporting =
+                vAPI.browserSettings.supportsTopicReporting === true;
+            response.supportsAdvertisementReporting =
+                vAPI.browserSettings.supportsAdvertisementReporting === true;
+            response.supportsAdvertisementAuctions =
+                vAPI.browserSettings.supportsAdvertisementAuctions === true;
         }
         break;
 

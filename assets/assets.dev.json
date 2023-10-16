@@ -3,7 +3,7 @@
 		"content": "internal",
 		"updateAfter": 13,
 		"contentURL": [
-			"https://raw.githubusercontent.com/gorhill/uBlock/master/assets/assets.dev.json",
+			"https://raw.githubusercontent.com/TimTheBig/uBlock-plus/my-best-Ubo/assets/assets.json",
 			"assets/assets.dev.json"
 		],
 		"cdnURLs": [
@@ -170,8 +170,8 @@
 		"off": true,
 		"title": "AdGuard URL Tracking Protection",
 		"tags": "privacy",
-		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/17.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
+		"contentURL": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt",
+		"supportURL": "https://github.com/DandelionSprout/adfilt/blob/master/LegitimateURLShortener.txt",
 		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
 	},
 	"adguard-spyware": {
@@ -215,6 +215,18 @@
 			"https://easylist.to/easylist/easyprivacy.txt"
 		],
 		"supportURL": "https://easylist.to/"
+	},
+	"piperun-iplogger": {
+		"content": "filters",
+		"group": "privacy",
+		"title": "Piperun's IPlogger blocklist",
+		"tags": "privacy",
+		"contentURL": [
+			"https://raw.githubusercontent.com/piperun/iploggerfilter/master/filterlist"
+		],
+		"supportURL": [
+			"https://github.com/piperun/iploggerfilter"
+		]
 	},
 	"urlhaus-1": {
 		"content": "filters",
@@ -334,6 +346,24 @@
 		"tags": "privacy",
 		"contentURL": "https://secure.fanboy.co.nz/fanboy-antifacebook.txt",
 		"supportURL": "https://github.com/ryanbr/fanboy-adblock/issues"
+	},
+	"click2load": {
+		"content": "filters",
+		"group": "annoyances",
+		"off": true,
+		"title": "click2load",
+		"tags": "annoyances",
+		"contentURL": "https://raw.githubusercontent.com/TimTheBig/filterlists_for_Ubo_plus/main/click2load.txt",
+		"supportURL": "https://github.com/yokoffing/filterlists/blob/main/click2load.txt"
+	},
+	"BrowseWithoutLoggingIn": {
+		"content": "filters",
+		"group": "annoyances",
+		"off": true,
+		"title": "NoLoggingIn",
+		"tags": "annoyances",
+		"contentURL": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt",
+		"supportURL": "https://github.com/DandelionSprout/adfilt/blob/master/BrowseWebsitesWithoutLoggingIn.txt"
 	},
 	"easylist-annoyances": {
 		"content": "filters",
@@ -496,6 +526,30 @@
 			"assets/thirdparties/pgl.yoyo.org/as/serverlist"
 		],
 		"supportURL": "https://pgl.yoyo.org/adservers/"
+	},
+	"oisd-big": {
+		"content": "filters",
+		"group": "multipurpose",
+		"updateAfter": 13,
+		"title": "oisd big list",
+		"tags": "ads privacy security",
+		"contentURL": [
+			"https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_big.txt",
+			"https://abp.oisd.nl/"
+		],
+		"supportURL": "https://github.com/sjhgvr/oisd"
+	},
+	"pi-hole_tv": {
+		"content": "filters",
+		"group": "multipurpose",
+		"updateAfter": 13,
+		"off": true,
+		"title": "TimTheBig_pi-hole_tv (experimental)",
+		"tags": "ads privacy",
+		"contentURL": [
+			"https://raw.githubusercontent.com/TimTheBig/tv_block_list_for_pi-hole/main/TV_block_pi-hole.txt"
+		],
+		"supportURL": "https://github.com/TimTheBig/tv_block_list_for_pi-hole"
 	},
 	"ALB-0": {
 		"content": "filters",
