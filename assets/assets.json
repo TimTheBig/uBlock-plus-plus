@@ -513,6 +513,7 @@
 		"content": "filters",
 		"group": "multipurpose",
 		"updateAfter": 13,
+		"off": true,
 		"title": "oisd big list",
 		"tags": "ads privacy security",
 		"contentURL": [
