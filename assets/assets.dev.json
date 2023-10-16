@@ -524,6 +524,7 @@
 		"content": "filters",
 		"group": "multipurpose",
 		"updateAfter": 13,
+		"off": true,
 		"title": "TimTheBig_pi-hole_tv",
 		"tags": "ads privacy",
 		"contentURL": [
