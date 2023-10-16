@@ -362,7 +362,10 @@
 		"off": true,
 		"title": "NoLoggingIn",
 		"tags": "annoyances",
-		"contentURL": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt",
+		"contentURL": [
+		"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt",
+		"https://gitlab.com/DandelionSprout/adfilt/-/raw/master/BrowseWebsitesWithoutLoggingIn.txt"
+		],
 		"supportURL": "https://github.com/DandelionSprout/adfilt/blob/master/BrowseWebsitesWithoutLoggingIn.txt"
 	},
 	"easylist-annoyances": {
@@ -432,6 +435,18 @@
 			"https://cdn.statically.io/gh/uBlockOrigin/uAssetsCDN/main/filters/annoyances-cookies.txt"
 		],
 		"supportURL": "https://github.com/uBlockOrigin/uAssets"
+	},
+	"VeryThoroughWebsiteCleaner": {
+		"content": "filters",
+		"group": "annoyances",
+		"off": true,
+		"title": "VeryThoroughWebsiteCleaner",
+		"tags": "annoyances",
+		"contentURL": [
+		"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/VeryThoroughWebsiteCleaner.txt",
+		"https://gitlab.com/DandelionSprout/adfilt/-/raw/master/VeryThoroughWebsiteCleaner.txt"
+		],
+		"supportURL": "https://github.com/DandelionSprout/adfilt/blob/master/Wiki/General-info.md#-english"
 	},
 	"easylist-newsletters": {
 		"content": "filters",
