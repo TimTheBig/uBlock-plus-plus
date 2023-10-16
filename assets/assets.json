@@ -517,7 +517,8 @@
 		"title": "oisd big list",
 		"tags": "ads privacy security",
 		"contentURL": [
-			"https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_big.txt"
+			"https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_big.txt",
+			"https://abp.oisd.nl/"
 		],
 		"supportURL": "https://github.com/sjhgvr/oisd"
 	},
