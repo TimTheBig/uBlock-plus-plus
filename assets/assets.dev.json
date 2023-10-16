@@ -436,6 +436,18 @@
 		],
 		"supportURL": "https://github.com/uBlockOrigin/uAssets"
 	},
+	"VeryThoroughWebsiteCleaner": {
+		"content": "filters",
+		"group": "annoyances",
+		"off": true,
+		"title": "VeryThoroughWebsiteCleaner",
+		"tags": "annoyances",
+		"contentURL": [
+		"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/VeryThoroughWebsiteCleaner.txt",
+		"https://gitlab.com/DandelionSprout/adfilt/-/raw/master/VeryThoroughWebsiteCleaner.txt"
+		],
+		"supportURL": "https://github.com/uBlockOrigin/uAssets"
+	},
 	"easylist-newsletters": {
 		"content": "filters",
 		"group": "annoyances",
