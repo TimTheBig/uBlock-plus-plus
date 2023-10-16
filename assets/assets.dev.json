@@ -360,7 +360,7 @@
 		"content": "filters",
 		"group": "annoyances",
 		"off": true,
-		"title": "NoLoggingIn",
+		"title": "Browse With No Logging In",
 		"tags": "annoyances",
 		"contentURL": [
 			"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt",
@@ -436,7 +436,7 @@
 		],
 		"supportURL": "https://github.com/uBlockOrigin/uAssets"
 	},
-	"VeryThoroughWebsiteCleaner": {
+	"Very_Thorough_Website_Cleaner": {
 		"content": "filters",
 		"group": "annoyances",
 		"off": true,
