@@ -509,6 +509,17 @@
 		],
 		"supportURL": "https://pgl.yoyo.org/adservers/"
 	},
+	"oisd-big": {
+		"content": "filters",
+		"group": "multipurpose",
+		"updateAfter": 13,
+		"title": "oisd big list",
+		"tags": "ads privacy security",
+		"contentURL": [
+			"https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_big.txt"
+		],
+		"supportURL": "https://github.com/sjhgvr/oisd"
+	},
 	"ALB-0": {
 		"content": "filters",
 		"group": "regions",
