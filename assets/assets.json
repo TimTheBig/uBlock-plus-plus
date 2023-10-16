@@ -519,6 +519,14 @@
 		],
 		"supportURL": "https://github.com/uBlockOrigin/uAssets"
 	},
+	"bypass-paywalls-clean-filters": {
+		"content": "filters",
+		"group": "annoyances",
+		"title": "bypass-paywalls-clean-filters",
+		"tags": "annoyances",
+		"contentURL": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters/-/raw/main/bpc-paywall-filter.txt",
+		"supportURL": "https://gitlab.com/magnolia1234/bypass-paywalls-clean-filters/-/blob/main/bpc-paywall-filter.txt"
+	},
 	"dpollock-0": {
 		"content": "filters",
 		"group": "multipurpose",
