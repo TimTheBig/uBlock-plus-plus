@@ -48,7 +48,7 @@ const hiddenSettingsDefault = {
     allowGenericProceduralFilters: false,
     assetFetchTimeout: 30,
     autoCommentFilterTemplate: '{{date}} {{origin}}',
-    autoUpdateAssetFetchPeriod: 60,
+    autoUpdateAssetFetchPeriod: 65,
     autoUpdateDelayAfterLaunch: 105,
     autoUpdatePeriod: 2,
     benchmarkDatasetURL: 'unset',
@@ -89,7 +89,7 @@ const hiddenSettingsDefault = {
 };
 
 const userSettingsDefault = {
-    advancedUserEnabled: false,
+    advancedUserEnabled: true,
     alwaysDetachLogger: true,
     autoUpdate: true,
     cloudStorageEnabled: false,
@@ -105,7 +105,7 @@ const userSettingsDefault = {
     hyperlinkAuditingDisabled: true,
     ignoreGenericCosmeticFilters: vAPI.webextFlavor.soup.has('mobile'),
     importedLists: [],
-    largeMediaSize: 100,
+    largeMediaSize: 150,
     parseAllABPHideFilters: true,
     popupPanelSections: 0b111,
     prefetchingDisabled: true,
