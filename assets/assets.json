@@ -446,7 +446,7 @@
 		"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/VeryThoroughWebsiteCleaner.txt",
 		"https://gitlab.com/DandelionSprout/adfilt/-/raw/master/VeryThoroughWebsiteCleaner.txt"
 		],
-		"supportURL": "https://github.com/uBlockOrigin/uAssets"
+		"supportURL": "https://github.com/DandelionSprout/adfilt/blob/master/Wiki/General-info.md#-english"
 	},
 	"easylist-newsletters": {
 		"content": "filters",
