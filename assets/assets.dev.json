@@ -170,8 +170,8 @@
 		"off": true,
 		"title": "AdGuard URL Tracking Protection",
 		"tags": "privacy",
-		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/17.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
+		"contentURL": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt",
+		"supportURL": "https://github.com/DandelionSprout/adfilt/blob/master/LegitimateURLShortener.txt",
 		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
 	},
 	"adguard-spyware": {
