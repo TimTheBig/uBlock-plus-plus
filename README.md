@@ -99,8 +99,6 @@ In Thunderbird, uBlock Origin does not affect emails, just feeds.
 
 [Chrome Web Store][Chrome]
 
-[Microsoft Edge Add-ons][Edge] (Published by: [Nicole Rolls][Nicole Rolls])
-
 [Opera Add-ons][Opera]
 
 [Development Builds][Chrome Dev]
