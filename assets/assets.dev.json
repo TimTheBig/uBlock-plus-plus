@@ -3,7 +3,7 @@
 		"content": "internal",
 		"updateAfter": 13,
 		"contentURL": [
-			"https://raw.githubusercontent.com/TimTheBig/uBlock-plus/my-best-Ubo/assets/assets.json",
+			"https://raw.githubusercontent.com/TimTheBig/uBlock-plus/master/assets/assets.json",
 			"assets/assets.dev.json"
 		],
 		"cdnURLs": [
