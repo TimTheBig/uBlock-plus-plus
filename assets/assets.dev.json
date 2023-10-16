@@ -356,6 +356,15 @@
 		"contentURL": "https://raw.githubusercontent.com/TimTheBig/filterlists_for_Ubo_plus/main/click2load.txt",
 		"supportURL": "https://github.com/yokoffing/filterlists/blob/main/click2load.txt"
 	},
+	"BrowseWithoutLoggingIn": {
+		"content": "filters",
+		"group": "annoyances",
+		"off": true,
+		"title": "NoLoggingIn",
+		"tags": "annoyances",
+		"contentURL": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt",
+		"supportURL": "https://github.com/DandelionSprout/adfilt/blob/master/BrowseWebsitesWithoutLoggingIn.txt"
+	},
 	"easylist-annoyances": {
 		"content": "filters",
 		"group": "annoyances",
