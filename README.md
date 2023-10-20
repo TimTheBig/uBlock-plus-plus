@@ -12,7 +12,7 @@
 <sub>
 <img src="https://github.com/gorhill/uBlock/blob/master/src/img/ublock.svg" height="38" width="38">
 </sub>
-uBlock Plus Plus (uBO++)
+uBlock Plus Plus (uB++)
 </h1>
 <p align="center">
 <sub><a href="https://github.com/gorhill/uBlock/wiki/uBlock-Origin-is-completely-unrelated-to-the-web-site-ublock.org"><b>BEWARE!</b> uBO is (and has always been) COMPLETELY UNRELATED to the website <code>ublock.org</code></a>.</sub>
