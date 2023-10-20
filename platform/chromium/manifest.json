@@ -9,7 +9,7 @@
       "32": "img/icon_32.png",
       "64": "img/icon_64.png"
     },
-    "default_title": "uBlock Origin",
+    "default_title": "uBlock Plus Plus",
     "default_popup": "popup-fenix.html"
   },
   "commands": {
@@ -88,7 +88,7 @@
   "incognito": "split",
   "manifest_version": 2,
   "minimum_chrome_version": "73.0",
-  "name": "uBlock Origin",
+  "name": "uBlock Plus Plus",
   "options_ui": {
     "page": "dashboard.html",
     "open_in_tab": true
