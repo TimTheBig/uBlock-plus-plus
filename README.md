@@ -66,7 +66,7 @@ Ads, "unintrusive" or not, are just the visible portion of the privacy-invading 
         </tr>
         <tr>
             <td align="center" valign="top"><a href="https://github.com/gorhill/uBlock/wiki/Quick-guide:-popup-user-interface"><img src="https://user-images.githubusercontent.com/132001783/276980969-98f6ec0c-7312-41a9-bef6-c57a427ea261.png"/></a></td>
-            <td align="center" valign="top"><a href="https://github.com/gorhill/uBlock/wiki/Dynamic-filtering:-quick-guide"><img src="https://user-images.githubusercontent.com/132001783/276980638-f50718fe-444d-445d-9dd7-22d090b273b8.png"/></a></td>
+            <td align="center" valign="top"><a href="https://github.com/gorhill/uBlock/wiki/Dynamic-filtering:-quick-guide"><img src="https://user-images.githubusercontent.com/132001783/276982989-a77bb385-3448-495f-9c6d-57122f905322.png"/></a></td>
         </tr>
     </tbody>
 </table>
