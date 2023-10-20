@@ -83,8 +83,6 @@ For support, questions, or help, visit [/r/uBlockOrigin][Reddit].
 
 [Firefox Add-ons][Mozilla]
 
-[Development Builds][Beta]
-
 uBO [works best][Works Best] on Firefox and is available for desktop and Android versions.
 
 #### Thunderbird
@@ -143,19 +141,16 @@ If you ever want to contribute something, think about the people working hard to
 [Thunderbird]: https://addons.thunderbird.net/thunderbird/addon/ublock-origin/
 [Chrome Dev]: https://chrome.google.com/webstore/detail/ublock-origin-development/cgbcahbpdhpcegmbfconppldiemgcoii
 [EasyList]: https://easylist.to/#easylist
-[Mozilla]: https://addons.mozilla.org/addon/ublock-origin/
+[Mozilla]: https://addons.mozilla.org/addon/ublock-plus-plus/
 [Crowdin]: https://crowdin.com/project/ublock
 [Chrome]: https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 [Reddit]: https://www.reddit.com/r/uBlockOrigin/
 [Theft]: https://twitter.com/LeaVerou/status/518154828166725632
 [Opera]: https://addons.opera.com/extensions/details/ublock/
-[Edge]: https://microsoftedge.microsoft.com/addons/detail/ublock-origin/odfafepnkmbhccpbejgmiehpchacaeak
 [NPM]: https://www.npmjs.com/package/@gorhill/ubo-core
 
 [Manifesto]: MANIFESTO.md
 [License]: LICENSE.txt
-
-[Nicole Rolls]: https://github.com/nicole-ashley
 
 
 <!---------------------------------[ Internal ]-------------------------------->
