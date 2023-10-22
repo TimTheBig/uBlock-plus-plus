@@ -243,7 +243,7 @@ import {
         if ( typeof hs[key] !== typeof hsDefault[key] ) { continue; }
         this.hiddenSettings[key] = hs[key];
     }
-    this.fireDOMEvent('hiddenSettingsChanged');
+    this.fireEvent('hiddenSettingsChanged');
 };
 
 // Note: Save only the settings which values differ from the default ones.
@@ -259,7 +259,7 @@ import {
     });
 };
 
-self.addEventListener('hiddenSettingsChanged', ( ) => {
+µb.onEvent('hiddenSettingsChanged', ( ) => {
     const µbhs = µb.hiddenSettings;
     ubologSet(µbhs.consoleLogLevel === 'info');
     vAPI.net.setOptions({
@@ -364,15 +364,37 @@ self.addEventListener('hiddenSettingsChanged', ( ) => {
         netWhitelist: this.arrayFromWhitelist(this.netWhitelist)
     });
     this.netWhitelistModifyTime = Date.now();
+    µb.filteringBehaviorChanged();
 };
 
 /******************************************************************************/
 
 µb.isTrustedList = function(assetKey) {
-    if ( assetKey.startsWith('ublock-') ) { return true; }
-    if ( assetKey === this.userFiltersPath ) { return true; }
+    if ( this.parsedTrustedListPrefixes.length === 0 ) {
+        this.parsedTrustedListPrefixes =
+            µb.hiddenSettings.trustedListPrefixes.split(/ +/).map(prefix => {
+                if ( prefix === '' ) { return; }
+                if ( prefix.startsWith('http://') ) { return; }
+                if ( prefix.startsWith('file:///') ) { return prefix; }
+                if ( prefix.startsWith('https://') === false ) {
+                    return prefix.includes('://') ? undefined : prefix;
+                }
+                try {
+                    const url = new URL(prefix);
+                    if ( url.hostname.length > 0 ) { return url.href; }
+                } catch(_) {
+                }
+            }).filter(prefix => prefix !== undefined);
+    }
+    for ( const prefix of this.parsedTrustedListPrefixes ) {
+        if ( assetKey.startsWith(prefix) ) { return true; }
+    }
     return false;
 };
+
+µb.onEvent('hiddenSettingsChanged', ( ) => {
+    µb.parsedTrustedListPrefixes = [];
+});
 
 /******************************************************************************/
 
@@ -593,7 +615,7 @@ self.addEventListener('hiddenSettingsChanged', ( ) => {
 
     // https://www.reddit.com/r/uBlockOrigin/comments/cj7g7m/
     // https://www.reddit.com/r/uBlockOrigin/comments/cnq0bi/
-    vAPI.net.handlerBehaviorChanged();
+    µb.filteringBehaviorChanged();
 
     vAPI.messaging.broadcast({ what: 'userFiltersUpdated' });
 };
@@ -830,7 +852,7 @@ self.addEventListener('hiddenSettingsChanged', ( ) => {
         staticExtFilteringEngine.freeze();
         redirectEngine.freeze();
         vAPI.net.unsuspend();
-        vAPI.net.handlerBehaviorChanged();
+        µb.filteringBehaviorChanged();
 
         vAPI.storage.set({ 'availableFilterLists': µb.availableFilterLists });
 
@@ -1047,11 +1069,7 @@ self.addEventListener('hiddenSettingsChanged', ( ) => {
         writer.properties.set('trustedSource', trustedSource);
     }
     const assetName = details.assetKey ? details.assetKey : '?';
-    const expertMode =
-        details.assetKey !== this.userFiltersPath ||
-        this.hiddenSettings.filterAuthorMode !== false;
     const parser = new sfp.AstFilterParser({
-        expertMode,
         trustedSource,
         maxTokenLength: staticNetFilteringEngine.MAX_TOKEN_LENGTH,
         nativeCssHas: vAPI.webextFlavor.env.includes('native_css_has'),
