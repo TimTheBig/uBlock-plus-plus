@@ -352,7 +352,7 @@
     "description": ""
   },
   "settingsAdvancedUserPrompt": {
-    "message": "Jeg er en erfarne bruger",
+    "message": "Jeg er en erfaren bruger",
     "description": "Checkbox to let user access advanced, technical features"
   },
   "settingsPrefetchingDisabledPrompt": {
@@ -530,6 +530,10 @@
   "1pFormatHint": {
     "message": "Ét filter pr. linje. Et filter kan være et almindeligt værtsnavn eller et EasyList-kompatibelt filter. Linjer startende med <code>!</code> ignoreres.",
     "description": "Short information about how to create custom filters"
+  },
+  "1pTrustWarning": {
+    "message": "Do not add filters from untrusted sources.",
+    "description": "Warning against copy-pasting filters from random sources"
   },
   "1pImport": {
     "message": "Importér og tilføj",

@@ -531,6 +531,10 @@
     "message": "Satu filter per baris. Filter dapat berupa nama hos, atau filter yang kompatibel dengan EasyList. Baris yang diawali dengan <code>!</code> akan diabaikan.",
     "description": "Short information about how to create custom filters"
   },
+  "1pTrustWarning": {
+    "message": "Do not add filters from untrusted sources.",
+    "description": "Warning against copy-pasting filters from random sources"
+  },
   "1pImport": {
     "message": "Impor dan tambahkan",
     "description": "English: Import and append"
@@ -1276,7 +1280,7 @@
     "description": "Summary of number of errors as reported by the linter "
   },
   "unprocessedRequestTooltip": {
-    "message": "Filter tidak bekerja dengan baik saat peramban dimulai.\nMuat ulang halaman agar filter dapat bekerja dengan baik.",
+    "message": "Filter tidak dapat bekerja dengan baik saat peramban dimulai.\nMuat ulang halaman agar filter dapat bekerja dengan baik.",
     "description": "A warning which will appear in the popup panel if needed"
   },
   "dummy": {

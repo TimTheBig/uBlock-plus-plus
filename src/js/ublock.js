@@ -187,10 +187,6 @@ const matchBucket = function(url, hostname, bucket, start) {
         }
     }
     this.saveWhitelist();
-
-    // Flush memory cache
-    vAPI.net.handlerBehaviorChanged();
-
     return true;
 };
 
@@ -434,7 +430,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         redirectEngine.invalidateResourcesSelfie(io);
         this.loadRedirectResources();
     }
-    this.fireDOMEvent('hiddenSettingsChanged');
+    this.fireEvent('hiddenSettingsChanged');
 };
 
 /******************************************************************************/
@@ -535,9 +531,7 @@ const matchBucket = function(url, hostname, bucket, start) {
     cosmeticFilteringEngine.removeFromSelectorCache(srcHostname, 'net');
 
     // Flush memory cache
-    if ( action === 1 ) {
-        vAPI.net.handlerBehaviorChanged();
-    }
+    µb.filteringBehaviorChanged();
 
     if ( details.tabId === undefined ) { return; }
 
@@ -623,7 +617,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         switch ( details.name ) {
             case 'no-scripting':
             case 'no-remote-fonts':
-                vAPI.net.handlerBehaviorChanged();
+                µb.filteringBehaviorChanged();
                 break;
             default:
                 break;
@@ -684,7 +678,7 @@ const matchBucket = function(url, hostname, bucket, start) {
 
     parse();
 
-    self.addEventListener('hiddenSettingsChanged', ( ) => { parse(); });
+    µb.onEvent('hiddenSettingsChanged', ( ) => { parse(); });
 }
 
 /******************************************************************************/
