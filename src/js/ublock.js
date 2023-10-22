@@ -147,6 +147,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         }
         bucket.push(directive);
         this.saveWhitelist();
+        µb.filteringBehaviorChanged({ hostname: targetHostname });
         return true;
     }
 
@@ -187,6 +188,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         }
     }
     this.saveWhitelist();
+    µb.filteringBehaviorChanged({ direction: 1 });
     return true;
 };
 
@@ -474,7 +476,8 @@ const matchBucket = function(url, hostname, bucket, start) {
 // (but not really) redundant rules led to this issue.
 
 µb.toggleFirewallRule = function(details) {
-    let { srcHostname, desHostname, requestType, action } = details;
+    const { desHostname, requestType, action } = details;
+    let { srcHostname } = details;
 
     if ( action !== 0 ) {
         sessionFirewall.setCell(
@@ -504,8 +507,7 @@ const matchBucket = function(url, hostname, bucket, start) {
             permanentFirewall.unsetCell(
                 srcHostname,
                 desHostname,
-                requestType,
-                action
+                requestType
             );
         }
         this.savePermanentFirewallRules();
@@ -530,8 +532,11 @@ const matchBucket = function(url, hostname, bucket, start) {
     // https://github.com/chrisaljoudi/uBlock/issues/420
     cosmeticFilteringEngine.removeFromSelectorCache(srcHostname, 'net');
 
-    // Flush memory cache
-    µb.filteringBehaviorChanged();
+    // Flush caches
+    µb.filteringBehaviorChanged({
+        direction: action === 1 ? 1 : 0,
+        hostname: srcHostname,
+    });
 
     if ( details.tabId === undefined ) { return; }
 
@@ -612,12 +617,15 @@ const matchBucket = function(url, hostname, bucket, start) {
             break;
     }
 
-    // Flush memory cache if needed
+    // Flush caches if needed
     if ( newState ) {
         switch ( details.name ) {
             case 'no-scripting':
             case 'no-remote-fonts':
-                µb.filteringBehaviorChanged();
+                µb.filteringBehaviorChanged({
+                    direction: details.state ? 1 : 0,
+                    hostname: details.hostname,
+                });
                 break;
             default:
                 break;
