@@ -15,7 +15,7 @@
       "16": "img/icon_16.png",
       "32": "img/icon_32.png"
     },
-    "default_title": "uBlock Origin",
+    "default_title": "uBlock++",
     "default_popup": "popup-fenix.html"
   },
   "content_scripts": [
@@ -71,7 +71,7 @@
     "96": "img/ublock.svg"
   },
   "manifest_version": 2,
-  "name": "uBlock Origin",
+  "name": "uBlock++",
   "options_ui": {
     "page": "dashboard.html",
     "browser_style": false,
@@ -86,7 +86,7 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "uBlock₀",
+  "short_name": "uBlock++",
   "version": "1.9.15.101",
   "web_accessible_resources": [
     "/web_accessible_resources/*"

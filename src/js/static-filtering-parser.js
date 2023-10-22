@@ -598,26 +598,23 @@ const exCharCodeAt = (s, i) => {
 /******************************************************************************/
 
 class argListParser {
-    constructor(separator = 0x2C /* , */, mustQuote = false) {
-        this.separatorCode = separator.charCodeAt(0);
+    constructor(separatorChar = ',', mustQuote = false) {
+        this.separatorChar = this.actualSeparatorChar = separatorChar;
+        this.separatorCode = this.actualSeparatorCode = separatorChar.charCodeAt(0);
         this.mustQuote = mustQuote;
-        this.quoteBeg = 0;
-        this.argBeg = 0;
-        this.argEnd = 0;
-        this.quoteEnd = 0;
-        this.actualSeparatorCode = 0x2C /* , */;
-        this.actualSeparatorChar = ',';
-        this.separatorBeg = 0;
-        this.separatorEnd = 0;
+        this.quoteBeg = 0; this.quoteEnd = 0;
+        this.argBeg = 0; this.argEnd = 0;
+        this.separatorBeg = 0; this.separatorEnd = 0;
         this.transform = false;
         this.failed = false;
         this.reWhitespaceStart = /^\s+/;
         this.reWhitespaceEnd = /\s+$/;
         this.reOddTrailingEscape = /(?:^|[^\\])(?:\\\\)*\\$/;
-        this.reUnescapeDoubleQuotes = /((?:^|[^\\])(?:\\\\)*)\\"/g;
-        this.reUnescapeSingleQuotes = /((?:^|[^\\])(?:\\\\)*)\\'/g;
-        this.reUnescapeBackticks = /((?:^|[^\\])(?:\\\\)*)\\`/g;
-        this.reUnescapeCommas = /((?:^|[^\\])(?:\\\\)*)\\,/g;
+        this.reEscapedDoubleQuote = /((?:^|[^\\])(?:\\\\)*)\\"/g;
+        this.reEscapedSingleQuote = /((?:^|[^\\])(?:\\\\)*)\\'/g;
+        this.reEscapedBacktick = /((?:^|[^\\])(?:\\\\)*)\\`/g;
+        this.reEscapedSeparator = new RegExp(`((?:^|[^\\\\])(?:\\\\\\\\)*)\\\\${this.separatorChar}`, 'g');
+        this.unescapedSeparator = `$1${this.separatorChar}`;
     }
     nextArg(pattern, beg = 0) {
         const len = pattern.length;
@@ -653,18 +650,18 @@ class argListParser {
         switch ( this.actualSeparatorCode ) {
         case 0x22 /* " */:
             if ( s.includes('"') === false ) { return; }
-            return s.replace(this.reUnescapeDoubleQuotes, '$1"');
+            return s.replace(this.reEscapedDoubleQuote, '$1"');
         case 0x27 /* ' */:
             if ( s.includes("'") === false ) { return; }
-            return s.replace(this.reUnescapeSingleQuotes, "$1'");
+            return s.replace(this.reEscapedSingleQuote, "$1'");
         case 0x60 /* ` */:
             if ( s.includes('`') === false ) { return; }
-            return s.replace(this.reUnescapeBackticks, '$1`');
+            return s.replace(this.reEscapedBacktick, '$1`');
         default:
             break;
         }
-        if ( s.includes(',') === false ) { return; }
-        return s.replace(this.reUnescapeCommas, '$1,');
+        if ( s.includes(this.separatorChar) === false ) { return; }
+        return s.replace(this.reEscapedSeparator, this.unescapedSeparator);
     }
     leftWhitespaceCount(s) {
         const match = this.reWhitespaceStart.exec(s);

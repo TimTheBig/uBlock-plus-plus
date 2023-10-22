@@ -5,7 +5,6 @@
 [![Badge NPM]][NPM]
 [![Badge Mozilla]][Mozilla]
 [![Badge Chrome]][Chrome]
-[![Badge Edge]][Edge]
 
 ***
 
@@ -13,7 +12,7 @@
 <sub>
 <img src="https://github.com/gorhill/uBlock/blob/master/src/img/ublock.svg" height="38" width="38">
 </sub>
-uBlock Plus (uBO++)
+uBlock Plus Plus (uB++)
 </h1>
 <p align="center">
 <sub><a href="https://github.com/gorhill/uBlock/wiki/uBlock-Origin-is-completely-unrelated-to-the-web-site-ublock.org"><b>BEWARE!</b> uBO is (and has always been) COMPLETELY UNRELATED to the website <code>ublock.org</code></a>.</sub>
@@ -22,7 +21,7 @@ uBlock Plus (uBO++)
 ***
 
 <p align="center">
-<a href="https://addons.mozilla.org/addon/ublock-origin/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get uBlock Origin for Firefox"></a>
+<a href="https://addons.mozilla.org/addon/ublock-plus-plus/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get uBlock++ for Firefox"></a>
 <a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm"><img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get uBlock Origin for Chromium"></a>
 <a href="https://addons.opera.com/extensions/details/ublock/"><img src="https://user-images.githubusercontent.com/585534/107280692-ac7b5f00-6a26-11eb-85c7-088926504452.png" alt="Get uBlock Origin for Opera"></a>
 <a href="https://addons.thunderbird.net/thunderbird/addon/ublock-origin/"><img src="https://user-images.githubusercontent.com/124740436/235314672-73243149-3683-4407-a2d5-ad0f2b08bc17.png" alt="Get uBlock Origin for Thunderbird"></a>
@@ -30,9 +29,9 @@ uBlock Plus (uBO++)
 
 ***
 
-uBlock Plus (uBO++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uBO uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
+uBlock Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uBO uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
 
-You may easily unselect any preselected filter lists if you think uBO++ blocks too much. For reference, Adblock Plus installs with only EasyList, ABP filters, and Acceptable Ads enabled by default.
+You may easily unselect any preselected filter lists if you think uB++ blocks too much. For reference, Adblock Plus installs with only EasyList, ABP filters, and Acceptable Ads enabled by default.
 
 It is important to note that using a blocker is **NOT** [theft]. Do not fall for this creepy idea. The _ultimate_ logical consequence of `blocking = theft` is the criminalization of the inalienable right to privacy.
 
@@ -66,8 +65,8 @@ Ads, "unintrusive" or not, are just the visible portion of the privacy-invading 
             <td>The <a href="https://github.com/gorhill/uBlock/wiki/Dynamic-filtering:-quick-guide">advanced popup user interface</a> includes a point-and-click firewall that is configurable on a per-site basis.</td>
         </tr>
         <tr>
-            <td align="center" valign="top"><a href="https://github.com/gorhill/uBlock/wiki/Quick-guide:-popup-user-interface"><img src="https://user-images.githubusercontent.com/585534/232531044-c4ac4dd5-0b60-4c1e-aabb-914be04b846c.png"/></a></td>
-            <td align="center" valign="top"><a href="https://github.com/gorhill/uBlock/wiki/Dynamic-filtering:-quick-guide"><img src="https://user-images.githubusercontent.com/585534/232531439-a8f81cc3-6622-45c4-8b32-7348cecf6e98.png"/></a></td>
+            <td align="center" valign="top"><a href="https://github.com/gorhill/uBlock/wiki/Quick-guide:-popup-user-interface"><img src="https://user-images.githubusercontent.com/132001783/276980969-98f6ec0c-7312-41a9-bef6-c57a427ea261.png"/></a></td>
+            <td align="center" valign="top"><a href="https://github.com/gorhill/uBlock/wiki/Dynamic-filtering:-quick-guide"><img src="https://user-images.githubusercontent.com/132001783/276982989-a77bb385-3448-495f-9c6d-57122f905322.png"/></a></td>
         </tr>
     </tbody>
 </table>
@@ -83,8 +82,6 @@ For support, questions, or help, visit [/r/uBlockOrigin][Reddit].
 #### Firefox
 
 [Firefox Add-ons][Mozilla]
-
-[Development Builds][Beta]
 
 uBO [works best][Works Best] on Firefox and is available for desktop and Android versions.
 
@@ -144,19 +141,16 @@ If you ever want to contribute something, think about the people working hard to
 [Thunderbird]: https://addons.thunderbird.net/thunderbird/addon/ublock-origin/
 [Chrome Dev]: https://chrome.google.com/webstore/detail/ublock-origin-development/cgbcahbpdhpcegmbfconppldiemgcoii
 [EasyList]: https://easylist.to/#easylist
-[Mozilla]: https://addons.mozilla.org/addon/ublock-origin/
+[Mozilla]: https://addons.mozilla.org/addon/ublock-plus-plus/
 [Crowdin]: https://crowdin.com/project/ublock
 [Chrome]: https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 [Reddit]: https://www.reddit.com/r/uBlockOrigin/
 [Theft]: https://twitter.com/LeaVerou/status/518154828166725632
 [Opera]: https://addons.opera.com/extensions/details/ublock/
-[Edge]: https://microsoftedge.microsoft.com/addons/detail/ublock-origin/odfafepnkmbhccpbejgmiehpchacaeak
 [NPM]: https://www.npmjs.com/package/@gorhill/ubo-core
 
 [Manifesto]: MANIFESTO.md
 [License]: LICENSE.txt
-
-[Nicole Rolls]: https://github.com/nicole-ashley
 
 
 <!---------------------------------[ Internal ]-------------------------------->
