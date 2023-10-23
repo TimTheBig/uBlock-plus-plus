@@ -10,8 +10,8 @@
 </sub>
 uBlock Plus Plus (uB++)
 </h1>
-<h2 align="center">
-<sub>This is uBo but up to date to the latest commit.
+<h3 align="center">
+This is uBo but up to date to the latest commit.
 <h4 align="center">
 <sub>(more up to date than the firefox dev build)
 </h4>
@@ -19,12 +19,12 @@ uBlock Plus Plus (uB++)
 ***
 
 <p align="center">
-<a href="https://addons.mozilla.org/addon/ublock-plus-plus/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get uBlock++ for Firefox"></a>
+<a href="https://addons.mozilla.org/addon/ublock-plus-plus/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get uBlock++ for Firefox">
 </p>
 
 ***
 
-uBlock Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uBO uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
+uBlock Plus Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uBO uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
 
 You may easily unselect any preselected filter lists if you think uB++ blocks too much. For reference, Adblock Plus installs with only EasyList, ABP filters, and Acceptable Ads enabled by default.
 
