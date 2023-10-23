@@ -10,10 +10,12 @@
 </sub>
 uBlock Plus Plus (uB++)
 </h1>
-<p align="center">
+<h2 align="center">
 <sub>This is uBo but up to date to the latest commit.
-</p>
-
+<h4 align="center">
+<sub>(more up to date than the firefox dev build)
+</h4>
+ 
 ***
 
 <p align="center">
