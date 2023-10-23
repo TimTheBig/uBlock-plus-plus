@@ -1,646 +1,646 @@
 {
   "extName": {
-    "message": "uBlock₀",
+    "message": "uBlock Origin",
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "이 부가 기능은 효율적인 차단기입니다. CPU와 메모리에 주는 부담이 적습니다.",
+    "message": "Erfin, ur stanker saotradurioù efedus hag a zouj d'ho reizhiad korvoiñ ha d'ho memor.",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
-    "message": "uBlock₀ — 대시보드",
+    "message": "uBlock₀ — Taolenn-vourzh",
     "description": "English: uBlock₀ — Dashboard"
   },
   "dashboardUnsavedWarning": {
-    "message": "경고! 저장되지 않은 변경 사항이 있습니다",
+    "message": "Diwallit! Kemmoù zo ha n'ho peus enrollet anezho",
     "description": "A warning in the dashboard when navigating away from unsaved changes"
   },
   "dashboardUnsavedWarningStay": {
-    "message": "취소",
+    "message": "Chom",
     "description": "Label for button to prevent navigating away from unsaved changes"
   },
   "dashboardUnsavedWarningIgnore": {
-    "message": "무시",
+    "message": "Tremen e-bioù",
     "description": "Label for button to ignore unsaved changes"
   },
   "settingsPageName": {
-    "message": "설정",
+    "message": "Arventennoù",
     "description": "appears as tab name in dashboard"
   },
   "3pPageName": {
-    "message": "필터 목록",
+    "message": "Roll ar siloù",
     "description": "appears as tab name in dashboard"
   },
   "1pPageName": {
-    "message": "내 필터",
+    "message": "Ma siloù",
     "description": "appears as tab name in dashboard"
   },
   "rulesPageName": {
-    "message": "내 규칙",
+    "message": "Ma reolennoù",
     "description": "appears as tab name in dashboard"
   },
   "whitelistPageName": {
-    "message": "제외 목록",
+    "message": "Lec'hiennoù sur",
     "description": "appears as tab name in dashboard"
   },
   "shortcutsPageName": {
-    "message": "단축키",
+    "message": "Berradennoù",
     "description": "appears as tab name in dashboard"
   },
   "statsPageName": {
-    "message": "uBlock₀ — 로그",
+    "message": "uBlock₀ — Deizlevr ar rekedoù",
     "description": "Title for the logger window"
   },
   "aboutPageName": {
-    "message": "정보",
+    "message": "Diwar-benn",
     "description": "appears as tab name in dashboard"
   },
   "supportPageName": {
-    "message": "지원",
+    "message": "Skoazell",
     "description": "appears as tab name in dashboard"
   },
   "assetViewerPageName": {
-    "message": "uBlock₀ — Asset 뷰어",
+    "message": "uBlock₀ — Enseller elfennoù",
     "description": "Title for the asset viewer page"
   },
   "advancedSettingsPageName": {
-    "message": "고급 설정",
+    "message": "Arventennoù araokaet",
     "description": "Title for the advanced settings page"
   },
   "popupPowerSwitchInfo": {
-    "message": "클릭: 이 사이트에서 uBlock₀을 켜고 끕니다.\n\nCtrl+클릭: 이 페이지에서 uBlock₀을 끕니다.",
+    "message": "Klikit: lazhañ/enaouiñ uBlock₀ el lec'hienn-mañ.\n\nReol+klik: lazhañ uBlock₀ el lec'hienn-mañ nemetken.",
     "description": "English: Click: disable/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
   },
   "popupPowerSwitchInfo1": {
-    "message": "클릭: 이 사이트에서 uBlock₀을 끕니다.\n\nCtrl+클릭: 이 페이지에서만 uBlock₀을 끕니다.",
+    "message": "Klikit evit lazhañ uBlock₀ el lec'hienn-mañ.\n\nReol+klik evit lazhañ uBlock₀ el lec'hienn-mañ.",
     "description": "Message to be read by screen readers"
   },
   "popupPowerSwitchInfo2": {
-    "message": "클릭하여 이 사이트에서 uBlock₀ 을 켭니다.",
+    "message": "Klikit evit enaouiñ uBlock₀ el lec'hienn-mañ.",
     "description": "Message to be read by screen readers"
   },
   "popupBlockedRequestPrompt": {
-    "message": "요청 차단됨",
+    "message": "Rekedoù stanket",
     "description": "English: requests blocked"
   },
   "popupBlockedOnThisPagePrompt": {
-    "message": "이 페이지에서",
+    "message": "er bajenn-mañ",
     "description": "English: on this page"
   },
   "popupBlockedStats": {
-    "message": "{{count}}개 / {{percent}}%",
+    "message": "{{count}} pe {{percent}}%",
     "description": "Example: 15 (13%)"
   },
   "popupBlockedSinceInstallPrompt": {
-    "message": "설치된 이후",
+    "message": "abaoe ar staliadur",
     "description": "English: since install"
   },
   "popupOr": {
-    "message": "/",
+    "message": "pe",
     "description": "English: or"
   },
   "popupBlockedOnThisPage_v2": {
-    "message": "이 페이지에서 차단됨",
+    "message": "Stanket er bajenn-mañ",
     "description": "For the new mobile-friendly popup design"
   },
   "popupBlockedSinceInstall_v2": {
-    "message": "설치 후 차단됨",
+    "message": "Stanket abaoe ar staliadur",
     "description": "For the new mobile-friendly popup design"
   },
   "popupDomainsConnected_v2": {
-    "message": "도메인 연결됨",
+    "message": "Domanioù kennasket",
     "description": "For the new mobile-friendly popup design"
   },
   "popupTipDashboard": {
-    "message": "클릭하여 대시보드 열기",
+    "message": "Digeriñ an daolenn-vourzh",
     "description": "English: Click to open the dashboard"
   },
   "popupTipZapper": {
-    "message": "구성 요소 선택기 모드로 진입",
+    "message": "Mont e mod lemel elfennoù",
     "description": "Tooltip for the element-zapper icon in the popup panel"
   },
   "popupTipPicker": {
-    "message": "구성 요소 선택기 모드로 진입",
+    "message": "Mont e mod diuzer elfennoù",
     "description": "English: Enter element picker mode"
   },
   "popupTipLog": {
-    "message": "로그로 이동",
+    "message": "Digeriñ deizlevr ar rekedoù",
     "description": "Tooltip used for the logger icon in the panel"
   },
   "popupTipReport": {
-    "message": "이 사이트의 이슈 신고",
+    "message": "Danevelliñ ur gudenn el lec'hienn-mañ",
     "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
-    "message": "이 사이트에서 팝업 차단 토글",
+    "message": "Lazhañ/enaouiñ evit stankañ an holl brenestroù pop-up el lec'hienn-mañ",
     "description": "Tooltip for the no-popups per-site switch"
   },
   "popupTipNoPopups1": {
-    "message": "클릭하여 이 사이트에서 모든 팝업을 차단합니다.",
+    "message": "Klikit evit stankañ an holl brenestroù pop-up el lec'hienn-mañ",
     "description": "Tooltip for the no-popups per-site switch"
   },
   "popupTipNoPopups2": {
-    "message": "클릭하여 이 사이트에서 모든 팝업 차단을 해제합니다.",
+    "message": "Klikit evit aotren an holl brenestroù pop-up el lec'hienn-mañ",
     "description": "Tooltip for the no-popups per-site switch"
   },
   "popupTipNoLargeMedia": {
-    "message": "이 사이트에서만 적용되는 대형 미디어 구성요소 차단 기능을 켜고 끕니다.",
+    "message": "Stankañ/aotren kargadur an elfennoù media pounner el lec'hienn-mañ",
     "description": "Tooltip for the no-large-media per-site switch"
   },
   "popupTipNoLargeMedia1": {
-    "message": "클릭하여 이 사이트에서 대용량의 미디어를 차단합니다.",
+    "message": "Klikit evit stankañ an elfennoù media pounner el lec'hienn-mañ",
     "description": "Tooltip for the no-large-media per-site switch"
   },
   "popupTipNoLargeMedia2": {
-    "message": "클릭하여 이 사이트에서 대용량의 미디어 차단을 해제합니다.",
+    "message": "Klikit evit aotren an elfennoù media pounner en-dro el lec'hienn-mañ",
     "description": "Tooltip for the no-large-media per-site switch"
   },
   "popupTipNoCosmeticFiltering": {
-    "message": "이 사이트에서 시각적 필터링 토글",
+    "message": "Lazhañ/enaouiñ ar silañ kenedel el lec'hienn-mañ",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering1": {
-    "message": "클릭하여 이 사이트에서 시각적 필터링을 끕니다.",
+    "message": "Klikit evit lazhañ ar silañ kenedel el lec'hienn-mañ",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering2": {
-    "message": "클릭하여 이 사이트에서 시각적 필터링을 켭니다.",
+    "message": "Klikit evit enaouiñ ar silañ kenedel el lec'hienn-mañ",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoRemoteFonts": {
-    "message": "이 사이트에서 글꼴조정 차단 토글",
+    "message": "Lazhañ/enaouiñ evit stankañ an nodrezhioù diavaez el lec'hienn-mañ",
     "description": "Tooltip for the no-remote-fonts per-site switch"
   },
   "popupTipNoRemoteFonts1": {
-    "message": "클릭하여 이 사이트에서 외부 폰트를 차단합니다.",
+    "message": "Klikit evit stankañ an nodrezhioù diavaez el lec'hienn-mañ",
     "description": "Tooltip for the no-remote-fonts per-site switch"
   },
   "popupTipNoRemoteFonts2": {
-    "message": "클릭하여 이 사이트에서 더 이상 외부 폰트를 차단하지 않습니다.",
+    "message": "Klikit evit aotren an nodrezhioù diavaez el lec'hienn-mañ",
     "description": "Tooltip for the no-remote-fonts per-site switch"
   },
   "popupTipNoScripting1": {
-    "message": "클릭하여 이 사이트에서 JavaScript 비활성화",
+    "message": "Klikit evit diweredekaat JavaScript el lec'hienn-mañ",
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupTipNoScripting2": {
-    "message": "클릭하여 이 사이트에서 JavaScript 활성화",
+    "message": "Klikit evit gweredekaat JavaScript el lec'hienn-mañ en-dro",
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupNoPopups_v2": {
-    "message": "팝업 창",
+    "message": "Prenestroù pop-up",
     "description": "Caption for the no-popups per-site switch"
   },
   "popupNoLargeMedia_v2": {
-    "message": "큰 미디어 요소",
+    "message": "Elfennoù media pounner",
     "description": "Caption for the no-large-media per-site switch"
   },
   "popupNoCosmeticFiltering_v2": {
-    "message": "표면 필터링",
+    "message": "Silañ kenedel",
     "description": "Caption for the no-cosmetic-filtering per-site switch"
   },
   "popupNoRemoteFonts_v2": {
-    "message": "외부 폰트",
+    "message": "Nodrezhioù diavaez",
     "description": "Caption for the no-remote-fonts per-site switch"
   },
   "popupNoScripting_v2": {
-    "message": "자바스크립트",
+    "message": "JavaScript",
     "description": "Caption for the no-scripting per-site switch"
   },
   "popupMoreButton_v2": {
-    "message": "더보기",
+    "message": "Muioc'h",
     "description": "Label to be used to show popup panel sections"
   },
   "popupLessButton_v2": {
-    "message": "간단히",
+    "message": "Nebeutoc'h",
     "description": "Label to be used to hide popup panel sections"
   },
   "popupTipGlobalRules": {
-    "message": "공용 규칙: 이 열은 모든 사이트에 적용되는 규칙 열 입니다.",
+    "message": "Reolennoù hollek: er bann-mañ e vez lakaet ar reolennoù a dalvez da gement lec'hienn.",
     "description": "Tooltip when hovering the top-most cell of the global-rules column."
   },
   "popupTipLocalRules": {
-    "message": "로컬 규칙: 이 열은 현재 사이트만 적용되는 규칙 열 입니다.\n로컬 규칙은 공용 규칙보다 우선권을 가지고 있습니다.",
+    "message": "Reolennoù lec'hel: er bann-mañ e vez lakaet ar reolennoù ne dalvezont nemet d'al lec'hienn m'emaoc'h.\nAr reolennoù lec'hel a ya a-raok ar reolennoù hollek.",
     "description": "Tooltip when hovering the top-most cell of the local-rules column."
   },
   "popupTipSaveRules": {
-    "message": "클릭하여 변경사항을 저장합니다.",
+    "message": "Klikit evit lakaat ho kemmoù da badout.",
     "description": "Tooltip when hovering over the padlock in the dynamic filtering pane."
   },
   "popupTipRevertRules": {
-    "message": "클릭하여 변경사항 적용을 되돌립니다.",
+    "message": "Klikit evit nullañ ar c'hemmoù ho peus graet.",
     "description": "Tooltip when hovering over the eraser in the dynamic filtering pane."
   },
   "popupAnyRulePrompt": {
-    "message": "전체",
+    "message": "Pep tra",
     "description": ""
   },
   "popupImageRulePrompt": {
-    "message": "이미지",
+    "message": "Skeudennoù",
     "description": ""
   },
   "popup3pAnyRulePrompt": {
-    "message": "보조 필터",
+    "message": "Kevelerien diavaez",
     "description": ""
   },
   "popup3pPassiveRulePrompt": {
-    "message": "보조 CSS/이미지",
+    "message": "CSS/skeudennoù kevelerien diavaez",
     "description": ""
   },
   "popupInlineScriptRulePrompt": {
-    "message": "인라인 스크립트",
+    "message": "skriptoù enlakaet",
     "description": ""
   },
   "popup1pScriptRulePrompt": {
-    "message": "주 스크립트",
+    "message": "Skriptoù domani ar bajenn",
     "description": ""
   },
   "popup3pScriptRulePrompt": {
-    "message": "보조 스크립트",
+    "message": "Skriptoù kevelerien diavaez",
     "description": ""
   },
   "popup3pFrameRulePrompt": {
-    "message": "보조 프레임",
+    "message": "Frammoù kevelerien diavaez",
     "description": ""
   },
   "popupHitDomainCountPrompt": {
-    "message": "도메인 연결됨",
+    "message": "domanioù kennasket",
     "description": "appears in popup"
   },
   "popupHitDomainCount": {
-    "message": "{{total}}개 중 {{count}}개",
+    "message": "{{count}} diwar {{total}}",
     "description": "appears in popup"
   },
   "popupVersion": {
-    "message": "버전",
+    "message": "Handelv",
     "description": "Example of use: Version 1.26.4"
   },
   "popup3pScriptFilter": {
-    "message": "스크립트",
+    "message": "skript",
     "description": "Appears as an option to filter out firewall rows"
   },
   "popup3pFrameFilter": {
-    "message": "프레임",
+    "message": "framm",
     "description": "Appears as an option to filter out firewall rows"
   },
   "pickerCreate": {
-    "message": "생성",
+    "message": "Krouiñ",
     "description": "English: Create"
   },
   "pickerPick": {
-    "message": "선택",
+    "message": "Dibab",
     "description": "English: Pick"
   },
   "pickerQuit": {
-    "message": "종료",
+    "message": "Kuitaat",
     "description": "English: Quit"
   },
   "pickerPreview": {
-    "message": "미리보기",
+    "message": "Rakwel",
     "description": "Element picker preview mode: will cause the elements matching the current filter to be removed from the page"
   },
   "pickerNetFilters": {
-    "message": "넷 필터",
+    "message": "Siloù rouedad",
     "description": "English: header for a type of filter in the element picker dialog"
   },
   "pickerCosmeticFilters": {
-    "message": "표면 필터",
+    "message": "Siloù kened",
     "description": "English: Cosmetic filters"
   },
   "pickerCosmeticFiltersHint": {
-    "message": "클릭, Ctrl-클릭",
+    "message": "Klik, Reol.-klik",
     "description": "English: Click, Ctrl-click"
   },
   "pickerContextMenuEntry": {
-    "message": "구성 요소 차단",
+    "message": "Stankañ an elfenn…",
     "description": "An entry in the browser's contextual menu"
   },
   "settingsCollapseBlockedPrompt": {
-    "message": "차단된 구성 요소의 자리 감추기",
+    "message": "Hide placeholders of blocked elements",
     "description": "English: Hide placeholders of blocked elements"
   },
   "settingsIconBadgePrompt": {
-    "message": "차단된 요청 개수를 아이콘에 표시",
+    "message": "Show the number of blocked requests on the icon",
     "description": "English: Show the number of blocked requests on the icon"
   },
   "settingsTooltipsPrompt": {
-    "message": "툴팁 비활성화",
+    "message": "Diweredekaat an tunioù",
     "description": "A checkbox in the Settings pane"
   },
   "settingsContextMenuPrompt": {
-    "message": "컨텍스트 메뉴를 상황에 맞게 사용",
+    "message": "Make use of context menu where appropriate",
     "description": "English: Make use of context menu where appropriate"
   },
   "settingsColorBlindPrompt": {
-    "message": "색맹 최적화",
+    "message": "Mod daltonek",
     "description": "English: Color-blind friendly"
   },
   "settingsAppearance": {
-    "message": "표시",
+    "message": "Neuz",
     "description": "Section for controlling user interface appearance"
   },
   "settingsThemeLabel": {
-    "message": "테마",
+    "message": "Tem",
     "description": "Label for checkbox to enable a custom dark theme"
   },
   "settingsThemeAccent0Label": {
-    "message": "사용자 지정 강조 색상",
+    "message": "Liv splannañ personelaet",
     "description": "Label for checkbox to pick an accent color"
   },
   "settingsCloudStorageEnabledPrompt": {
-    "message": "클라우드 저장소 활성화",
+    "message": "Enable cloud storage support",
     "description": ""
   },
   "settingsAdvancedUserPrompt": {
-    "message": "고급 사용자 모드 (<a href='https://github.com/gorhill/uBlock/wiki/Advanced-user-features'>필수로 읽어보세요.</a>)",
+    "message": "Me zo un implijer araokaet",
     "description": "Checkbox to let user access advanced, technical features"
   },
   "settingsPrefetchingDisabledPrompt": {
-    "message": "프리-페칭 비활성화 (차단된 네트워크 요청에 대해 모든 접속요청 방지)",
+    "message": "Disable pre-fetching (to prevent any connection for blocked network requests)",
     "description": "English: "
   },
   "settingsHyperlinkAuditingDisabledPrompt": {
-    "message": "하이퍼링크 검사 비활성화",
+    "message": "Disable hyperlink auditing",
     "description": "English: "
   },
   "settingsWebRTCIPAddressHiddenPrompt": {
-    "message": "WebRTC로부터 로컬 IP 주소 유출을 방지",
+    "message": "Prevent WebRTC from leaking local IP addresses",
     "description": "English: "
   },
   "settingPerSiteSwitchGroup": {
-    "message": "기본 동작",
+    "message": "Emzalc'h dre ziouer",
     "description": ""
   },
   "settingPerSiteSwitchGroupSynopsis": {
-    "message": "이 기본 동작들은 사이트 별로 정의 할 수 있습니다.",
+    "message": "These default behaviors can be overridden on a per-site basis",
     "description": ""
   },
   "settingsNoCosmeticFilteringPrompt": {
-    "message": "표면 필터 비활성화",
+    "message": "Lazhañ ar silañ kenedel",
     "description": ""
   },
   "settingsNoLargeMediaPrompt": {
-    "message": "{{input:number}} KB 보다 큰 미디어 구성요소 차단",
+    "message": "Block media elements larger than {{input}} KB",
     "description": ""
   },
   "settingsNoRemoteFontsPrompt": {
-    "message": "글꼴 조종 차단",
+    "message": "Stankañ an nodrezhioù diavaez",
     "description": ""
   },
   "settingsNoScriptingPrompt": {
-    "message": "JavaScript 비활성화",
+    "message": "Diweredekaat JavaScript",
     "description": "The default state for the per-site no-scripting switch"
   },
   "settingsNoCSPReportsPrompt": {
-    "message": "CSP 보고서 차단",
+    "message": "Stankañ an danevelloù CSP",
     "description": "background information: https://github.com/gorhill/uBlock/issues/3150"
   },
   "settingsUncloakCnamePrompt": {
-    "message": "표준 이름 잠금 해제",
+    "message": "Uncloak canonical names",
     "description": "background information: https://github.com/uBlockOrigin/uBlock-issues/issues/1513"
   },
   "settingsAdvanced": {
-    "message": "고급",
+    "message": "Araokaet",
     "description": "Section for controlling advanced-user settings"
   },
   "settingsAdvancedSynopsis": {
-    "message": "전문적인 사용자에게만 권장되는 설정입니다.",
+    "message": "Features suitable only for technical users",
     "description": "Description of section controlling advanced-user settings"
   },
   "settingsAdvancedUserSettings": {
-    "message": "고급 설정",
+    "message": "arventennoù araokaet",
     "description": "For the tooltip of a link which gives access to advanced settings"
   },
   "settingsLastRestorePrompt": {
-    "message": "최근 복원:",
+    "message": "Adsavet da ziwezhañ:",
     "description": "English: Last restore:"
   },
   "settingsLastBackupPrompt": {
-    "message": "최근 백업:",
+    "message": "Gwaredet da ziwezhañ:",
     "description": "English: Last backup:"
   },
   "3pListsOfBlockedHostsPrompt": {
-    "message": "{{netFilterCount}} 네트워크 필터 ＋ {{cosmeticFilterCount}} 표면 필터:",
+    "message": "{{netFilterCount}} sil rouedad + {{cosmeticFilterCount}} sil kened diouzh:",
     "description": "Appears at the top of the _3rd-party filters_ pane"
   },
   "3pListsOfBlockedHostsPerListStats": {
-    "message": "{{total}}개 중 {{used}}개 사용 중",
+    "message": "{{used}} diouto implijet diwar {{total}}",
     "description": "Appears aside each filter list in the _3rd-party filters_ pane"
   },
   "3pAutoUpdatePrompt1": {
-    "message": "필터 목록 자동 업데이트",
+    "message": "Hizivaat ent-emgefreek rolloù ar siloù",
     "description": "A checkbox in the _3rd-party filters_ pane"
   },
   "3pUpdateNow": {
-    "message": "지금 업데이트",
+    "message": "Hizivaat diouzhtu",
     "description": "A button in the in the _3rd-party filters_ pane"
   },
   "3pPurgeAll": {
-    "message": "모든 캐시 제거",
+    "message": "Purge all caches",
     "description": "A button in the in the _3rd-party filters_ pane"
   },
   "3pParseAllABPHideFiltersPrompt1": {
-    "message": "표면 필터 분석 및 적용",
+    "message": "Parse and enforce cosmetic filters",
     "description": "English: Parse and enforce Adblock+ element hiding filters."
   },
   "3pParseAllABPHideFiltersInfo": {
-    "message": "<p>이 옵션은 <a href=\"https://adblockplus.org/en/faq_internal#elemhide\">애드블록 플러스-호환 &ldquo;구성 요소 감추기&rdquo; 필터</a>를 분석하고 적용하는 것을 활성화합니다. 이 필터는 기본적으로 웹 페이지에서 시각적 방해 요소들을 숨기는 역할을 하며, 네트워크 요청에 기반한 필터링 엔진에서 차단될 수 없습니다.</p><p>이 기능을 활성화하면 <i>uBlock₀</i>의 메모리 사용량이 증가합니다.</p>",
+    "message": "Cosmetic filters serve to hide elements in a web page which are deemed to be a visual nuisance, and which can't be blocked by the network request-based filtering engines.",
     "description": "Describes the purpose of the 'Parse and enforce cosmetic filters' feature."
   },
   "3pIgnoreGenericCosmeticFilters": {
-    "message": "전체적 표면 필터 무시",
+    "message": "Ober fae ouzh ar siloù kened hollek",
     "description": "This will cause uBO to ignore all generic cosmetic filters."
   },
   "3pIgnoreGenericCosmeticFiltersInfo": {
-    "message": "<p>전체적 표면 필터들은 방문하는 모든 사이트에 적용하는 표면 필터입니다. <p>uBlock₀는 이를 효율적으로 적용하지만, 전체적 표면 필터들은 사이트의 크기와 유지시간에 따라 확연할 정도의 메모리 및 CPU 오버헤드를 줄 수 있습니다. <p>이 옵션을 활성화하면 전체적 표면 필터 적용으로 메모리 및 CPU 오버헤드를 제거하고, uBlock₀ 자체의 메모리 사용량도 줄입니다. <p>저전력 기기에 사용하는 것을 권장합니다.",
+    "message": "Generic cosmetic filters are those cosmetic filters which are meant to apply on all web sites. Enabling this option will eliminate the memory and CPU overhead added to web pages as a result of handling generic cosmetic filters.\n\nIt is recommended to enable this option on less powerful devices.",
     "description": "Describes the purpose of the 'Ignore generic cosmetic filters' feature."
   },
   "3pSuspendUntilListsAreLoaded": {
-    "message": "모든 필터 목록을 불러올 때까지 네트워크 일시 중단",
+    "message": "Suspend network activity until all filter lists are loaded",
     "description": "A checkbox in the 'Filter lists' pane"
   },
   "3pListsOfBlockedHostsHeader": {
-    "message": "차단된 호스트 목록",
+    "message": "Lists of blocked hosts",
     "description": "English: Lists of blocked hosts"
   },
   "3pApplyChanges": {
-    "message": "변경사항 적용",
+    "message": "Lakaat e pleustr",
     "description": "English: Apply changes"
   },
   "3pGroupDefault": {
-    "message": "Ublock₀ 제공",
+    "message": "Enframmet",
     "description": "Filter lists section name"
   },
   "3pGroupAds": {
-    "message": "광고",
+    "message": "Bruderezh",
     "description": "Filter lists section name"
   },
   "3pGroupPrivacy": {
-    "message": "개인정보",
+    "message": "Prevezded",
     "description": "Filter lists section name"
   },
   "3pGroupMalware": {
-    "message": "멀웨어 도메인",
+    "message": "Malware protection, security",
     "description": "Filter lists section name"
   },
   "3pGroupAnnoyances": {
-    "message": "골칫거리",
+    "message": "Saotradurioù",
     "description": "Filter lists section name"
   },
   "3pGroupMultipurpose": {
-    "message": "다목적",
+    "message": "Implijoù a bep seurt",
     "description": "Filter lists section name"
   },
   "3pGroupRegions": {
-    "message": "지역, 언어",
+    "message": "Rannvroioù, broioù",
     "description": "Filter lists section name"
   },
   "3pGroupCustom": {
-    "message": "사용자 지정",
+    "message": "Personelaet",
     "description": "Filter lists section name"
   },
   "3pImport": {
-    "message": "불러오기..",
+    "message": "Enporzhiañ",
     "description": "The label for the checkbox used to import external filter lists"
   },
   "3pExternalListsHint": {
-    "message": "한 줄에 한 개의 URL을 입력하세요. 시작 부분이 &lsquo;!&rsquo; 로 시작되면 무시됩니다. 존재하지 않는 URL은 자동으로 무시됩니다.",
+    "message": "One URL per line. Invalid URLs will be silently ignored.",
     "description": "Short information about how to use the textarea to import external filter lists by URL"
   },
   "3pExternalListObsolete": {
-    "message": "구버전",
+    "message": "Diamzeriet.",
     "description": "used as a tooltip for the out-of-date icon beside a list"
   },
   "3pViewContent": {
-    "message": "내용 보기",
+    "message": "gwelet an danvezioù",
     "description": "used as a tooltip for eye icon beside a list"
   },
   "3pLastUpdate": {
-    "message": "마지막 업데이트: {{ago}}\n업데이트하려면 여기를 클릭하세요.",
+    "message": "Last update: {{ago}}.\nClick to force an update.",
     "description": "used as a tooltip for the clock icon beside a list"
   },
   "3pUpdating": {
-    "message": "업데이트 중...",
+    "message": "Oc'h hizivaat…",
     "description": "used as a tooltip for the spinner icon beside a list"
   },
   "3pNetworkError": {
-    "message": "네트워크 오류로 인해 리소스가 업데이트되지 못했습니다.",
+    "message": "Ur fazi rouedad en deus miret an danvez da vezañ hizivaet.",
     "description": "used as a tooltip for error icon beside a list"
   },
   "1pFormatHint": {
-    "message": "한 줄에 한 개의 필터를 입력하세요. 필터는 순수 호스트이름, 혹은 Adblock Plus-호환 필터가 될 수 있습니다. 시작 부분이 &lsquo;!&rsquo; 로 시작되면 무시됩니다.",
+    "message": "One filter per line. A filter can be a plain hostname, or an EasyList-compatible filter. Lines prefixed with <code>!</code> will be ignored.",
     "description": "Short information about how to create custom filters"
   },
   "1pTrustWarning": {
-    "message": "신뢰할 수 없는 출처의 필터를 추가하지 마십시오.",
+    "message": "Arabat ouzhpennañ siloù a zeu diouzh mammennoù douetus.",
     "description": "Warning against copy-pasting filters from random sources"
   },
   "1pImport": {
-    "message": "가져오기 및 추가하기",
+    "message": "Enporzhiañ hag ouzhpennañ",
     "description": "English: Import and append"
   },
   "1pExport": {
-    "message": "내보내기",
+    "message": "Ezporzhiañ",
     "description": "English: Export"
   },
   "1pExportFilename": {
-    "message": "ublock-고정필터_{{datetime}}.txt",
+    "message": "ma-siloù-statek-ublock_{{datetime}}.txt",
     "description": "English: my-ublock-static-filters_{{datetime}}.txt"
   },
   "1pApplyChanges": {
-    "message": "변경사항 적용",
+    "message": "Lakaat e pleustr",
     "description": "English: Apply changes"
   },
   "rulesPermanentHeader": {
-    "message": "영구 규칙",
+    "message": "Reolennoù da badout",
     "description": "header"
   },
   "rulesTemporaryHeader": {
-    "message": "임시 규칙",
+    "message": "Reolennoù berrbad",
     "description": "header"
   },
   "rulesRevert": {
-    "message": "되돌리기",
+    "message": "Nullañ",
     "description": "This will remove all temporary rules"
   },
   "rulesCommit": {
-    "message": "제출",
+    "message": "Lakaat da dalvezout",
     "description": "This will persist temporary rules"
   },
   "rulesEdit": {
-    "message": "편집",
+    "message": "Kemmañ",
     "description": "Will enable manual-edit mode (textarea)"
   },
   "rulesEditSave": {
-    "message": "저장",
+    "message": "Enrollañ",
     "description": "Will save manually-edited content and exit manual-edit mode"
   },
   "rulesEditDiscard": {
-    "message": "취소",
+    "message": "Nullañ",
     "description": "Will discard manually-edited content and exit manual-edit mode"
   },
   "rulesImport": {
-    "message": "파일로부터 불러오기...",
+    "message": "Enporzhiañ diouzh ur restr…",
     "description": ""
   },
   "rulesExport": {
-    "message": "파일로 내보내기...",
+    "message": "Ezporzhiañ etrezek ur restr",
     "description": ""
   },
   "rulesDefaultFileName": {
-    "message": "ublock-동적규칙_{{datetime}}.txt",
+    "message": "my-ublock-dynamic-rules_{{datetime}}.txt",
     "description": "default file name to use"
   },
   "rulesHint": {
-    "message": "동적 필터링 규칙 목록입니다.",
+    "message": "List of your dynamic filtering rules.",
     "description": "English: List of your dynamic filtering rules."
   },
   "rulesFormatHint": {
-    "message": "규칙 문법: <code>소스 페이지, 필터링 대상, 필터링할 타입, 적용할 조치</code> (<a href='https://github.com/gorhill/uBlock/wiki/Dynamic-filtering:-rule-syntax'>전체 설명서</a>).",
+    "message": "Reolenn ereadurezh: <code>mammenn pal seurt ober</code> (<a href='https://github.com/gorhill/uBlock/wiki/Dynamic-filtering:-rule-syntax'>Teuliadur klok e saozneg</a>).",
     "description": "English: dynamic rule syntax and full documentation."
   },
   "rulesSort": {
-    "message": "분류:",
+    "message": "Rummañ:",
     "description": "English: label for sort option."
   },
   "rulesSortByType": {
-    "message": "규칙 유형",
+    "message": "Seurt reolenn",
     "description": "English: a sort option for list of rules."
   },
   "rulesSortBySource": {
-    "message": "소스",
+    "message": "Mammenn",
     "description": "English: a sort option for list of rules."
   },
   "rulesSortByDestination": {
-    "message": "목표",
+    "message": "Pal",
     "description": "English: a sort option for list of rules."
   },
   "whitelistPrompt": {
-    "message": "목록에 있는 호스트들은 uBlock₀에서 비활성화됩니다. 한 줄에 한 개씩 입력하세요. 존재하지 않는 호스트는 자동으로 무시됩니다.",
+    "message": "The trusted site directives dictate on which web pages uBlock Origin should be disabled. One entry per line.",
     "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
-    "message": "가져오기 및 추가하기",
+    "message": "Enporzhiañ hag ouzhpennañ",
     "description": "English: Import and append"
   },
   "whitelistExport": {
-    "message": "내보내기",
+    "message": "Ezporzhiañ",
     "description": "English: Export"
   },
   "whitelistExportFilename": {
-    "message": "ublock-제외목록_{{datetime}}.txt",
+    "message": "ma-lec'hiennoù-fizius-ublock_{{datetime}}.txt",
     "description": "The default filename to use for import/export purpose"
   },
   "whitelistApply": {
-    "message": "변경사항 적용",
+    "message": "Lakaat e pleustr",
     "description": "English: Apply changes"
   },
   "logRequestsHeaderType": {
-    "message": "유형",
+    "message": "Seurt",
     "description": "English: Type"
   },
   "logRequestsHeaderDomain": {
-    "message": "도메인",
+    "message": "Domani",
     "description": "English: Domain"
   },
   "logRequestsHeaderURL": {
@@ -648,63 +648,63 @@
     "description": "English: URL"
   },
   "logRequestsHeaderFilter": {
-    "message": "필터",
+    "message": "Sil",
     "description": "English: Filter"
   },
   "logAll": {
-    "message": "전체",
+    "message": "Pep tra",
     "description": "Appears in the logger's tab selector"
   },
   "logBehindTheScene": {
-    "message": "숨겨진 구성 요소",
+    "message": "Tabless",
     "description": "Pretty name for behind-the-scene network requests"
   },
   "loggerCurrentTab": {
-    "message": "현재 탭",
+    "message": "Ivinell a-vremañ",
     "description": "Appears in the logger's tab selector"
   },
   "loggerReloadTip": {
-    "message": "탭 내용 새로고침",
+    "message": "Reload the tab content",
     "description": "Tooltip for the reload button in the logger page"
   },
   "loggerDomInspectorTip": {
-    "message": "DOM 속성 검사기 토글",
+    "message": "Toggle the DOM inspector",
     "description": "Tooltip for the DOM inspector button in the logger page"
   },
   "loggerPopupPanelTip": {
-    "message": "팝업 패널 토글",
+    "message": "Toggle the popup panel",
     "description": "Tooltip for the popup panel button in the logger page"
   },
   "loggerInfoTip": {
-    "message": "uBlock Origin 위키: 로거",
+    "message": "uBlock Origin wiki: The logger",
     "description": "Tooltip for the top-right info label in the logger page"
   },
   "loggerClearTip": {
-    "message": "로거 초기화",
+    "message": "Skarzhañ an deizlevr",
     "description": "Tooltip for the eraser in the logger page; used to blank the content of the logger"
   },
   "loggerPauseTip": {
-    "message": "로거 일시중지 (들어오는 모든 데이터 무시)",
+    "message": "Pause logger (discard all incoming data)",
     "description": "Tooltip for the pause button in the logger page"
   },
   "loggerUnpauseTip": {
-    "message": "로거 일시중지 해제",
+    "message": "Unpause logger",
     "description": "Tooltip for the play button in the logger page"
   },
   "loggerRowFiltererButtonTip": {
-    "message": "로거 필터링 토글",
+    "message": "Toggle logger filtering",
     "description": "Tooltip for the row filterer button in the logger page"
   },
   "logFilterPrompt": {
-    "message": "필터 로그 항목",
+    "message": "filter logger content",
     "description": "Placeholder string for logger output filtering input field"
   },
   "loggerRowFiltererBuiltinTip": {
-    "message": "로거 필터링 옵션",
+    "message": "Logger filtering options",
     "description": "Tooltip for the button to bring up logger output filtering options"
   },
   "loggerRowFiltererBuiltinNot": {
-    "message": "제외",
+    "message": "Pas",
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerRowFiltererBuiltinEventful": {
@@ -712,55 +712,55 @@
     "description": "A keyword in the built-in row filtering expression: all items corresponding to uBO doing something (blocked, allowed, redirected, etc.)"
   },
   "loggerRowFiltererBuiltinBlocked": {
-    "message": "차단됨",
+    "message": "stanket",
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerRowFiltererBuiltinAllowed": {
-    "message": "허용됨",
+    "message": "aotreet",
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerRowFiltererBuiltinModified": {
-    "message": "수정됨",
+    "message": "kemmet",
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerRowFiltererBuiltin1p": {
-    "message": "퍼스트 파티",
+    "message": "Domani ar bajenn",
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerRowFiltererBuiltin3p": {
-    "message": "보조",
+    "message": "Kevelerien diavaez",
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerEntryDetailsHeader": {
-    "message": "상세정보",
+    "message": "Munudoù",
     "description": "Small header to identify the 'Details' pane for a specific logger entry"
   },
   "loggerEntryDetailsFilter": {
-    "message": "필터",
+    "message": "Sil",
     "description": "Label to identify a filter field"
   },
   "loggerEntryDetailsFilterList": {
-    "message": "필터 목록",
+    "message": "Roll ar siloù",
     "description": "Label to identify a filter list field"
   },
   "loggerEntryDetailsRule": {
-    "message": "규칙",
+    "message": "Reolenn",
     "description": "Label to identify a rule field"
   },
   "loggerEntryDetailsContext": {
-    "message": "컨텍스트",
+    "message": "Kontekst",
     "description": "Label to identify a context field (typically a hostname)"
   },
   "loggerEntryDetailsRootContext": {
-    "message": "최상위 컨텍스트",
+    "message": "Root context",
     "description": "Label to identify a root context field (typically a hostname)"
   },
   "loggerEntryDetailsPartyness": {
-    "message": "파티",
+    "message": "Partyness",
     "description": "Label to identify a field providing partyness information"
   },
   "loggerEntryDetailsType": {
-    "message": "유형",
+    "message": "Seurt",
     "description": "Label to identify the type of an entry"
   },
   "loggerEntryDetailsURL": {
@@ -768,39 +768,39 @@
     "description": "Label to identify the URL of an entry"
   },
   "loggerURLFilteringHeader": {
-    "message": "동적 URL 필터링",
+    "message": "Reolenn URL",
     "description": "Small header to identify the dynamic URL filtering section"
   },
   "loggerURLFilteringContextLabel": {
-    "message": "페이지:",
+    "message": "Kontekst:",
     "description": "Label for the context selector"
   },
   "loggerURLFilteringTypeLabel": {
-    "message": "유형:",
+    "message": "Seurt:",
     "description": "Label for the type selector"
   },
   "loggerStaticFilteringHeader": {
-    "message": "고정 필터링",
+    "message": "Sil statek",
     "description": "Small header to identify the static filtering section"
   },
   "loggerStaticFilteringSentence": {
-    "message": "네트워크 요청이 {{type}} 일 경우,{{br}}URL 주소가 {{url}} 와 일치하고{{br}}{{origin}} 에서 비롯 되었을 경우 {{action}} 한다.{{br}}그리고 다음 예외 필터와 일치할 경우 {{importance}} 한다.",
+    "message": "{{action}} network requests of {{type}} {{br}}which URL address matches {{url}} {{br}}and which originates {{origin}},{{br}}{{importance}} there is a matching exception filter.",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartBlock": {
-    "message": "차단",
+    "message": "Stankañ",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartAllow": {
-    "message": "허용",
+    "message": "Aotren",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartType": {
-    "message": "\"{{type}}\" 종류",
+    "message": "seurt \"{{type}}\"",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartAnyType": {
-    "message": "모든 종류",
+    "message": "a bep seurt",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartOrigin": {
@@ -808,455 +808,455 @@
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartAnyOrigin": {
-    "message": "전체",
+    "message": "n'eus forzh pelec'h",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartNotImportant": {
-    "message": "예외 처리",
+    "message": "nemet pa",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringSentencePartImportant": {
-    "message": "비 예외 처리",
+    "message": "zoken ma",
     "description": "Used in the static filtering wizard"
   },
   "loggerStaticFilteringFinderSentence1": {
-    "message": "<code>{{filter}}</code> 에서 찾은 고정 필터:",
+    "message": "Kavet e vez ar sil statek <code>{{filter}}</code> e-barzh:",
     "description": "Below this sentence, the filter list(s) in which the filter was found"
   },
   "loggerStaticFilteringFinderSentence2": {
-    "message": "활성화된 정적 필터 목록에서 <code>{{filter}}</code>를 찾지 못했습니다",
+    "message": "N'haller ket kavout ar sil statek-mañ e-touez ar rolloù siloù oberiant",
     "description": "Message to show when a filter cannot be found in any filter lists"
   },
   "loggerSettingDiscardPrompt": {
-    "message": "아래의 세 가지 조건을 모두 충족하지 않는 항목은 자동으로 삭제됩니다.",
+    "message": "Logger entries which do not fulfill all three conditions below will be automatically discarded:",
     "description": "Logger setting: A sentence to describe the purpose of the settings below"
   },
   "loggerSettingPerEntryMaxAge": {
-    "message": "최근 {{input}} 분의 항목 유지",
+    "message": "Preserve entries from the last {{input}} minutes",
     "description": "A logger setting"
   },
   "loggerSettingPerTabMaxLoads": {
-    "message": "탭 당 최대 {{input}} 페이지로드 유지",
+    "message": "Preserve at most {{input}} page loads per tab",
     "description": "A logger setting"
   },
   "loggerSettingPerTabMaxEntries": {
-    "message": "탭 당 최대 {{input}} 항목 유지",
+    "message": "Preserve at most {{input}} entries per tab",
     "description": "A logger setting"
   },
   "loggerSettingPerEntryLineCount": {
-    "message": "수직 확장 모드에서 항목 당 {{input}} 줄 사용",
+    "message": "Use {{input}} lines per entry in vertically expanded mode",
     "description": "A logger setting"
   },
   "loggerSettingHideColumnsPrompt": {
-    "message": "숨긴 열:",
+    "message": "Kuzhat ar bannoù:",
     "description": "Logger settings: a sentence to describe the purpose of the checkboxes below"
   },
   "loggerSettingHideColumnTime": {
-    "message": "{{input}} 시간",
+    "message": "{{input}} Eur",
     "description": "A label for the time column"
   },
   "loggerSettingHideColumnFilter": {
-    "message": "{{input}} 필터/규칙",
+    "message": "{{input}} Sil/reolenn",
     "description": "A label for the filter or rule column"
   },
   "loggerSettingHideColumnContext": {
-    "message": "{{input}} 컨텍스트",
+    "message": "{{input}} Kendestenn",
     "description": "A label for the context column"
   },
   "loggerSettingHideColumnPartyness": {
-    "message": "{{input}} 파티",
+    "message": "{{input}} Partyness",
     "description": "A label for the partyness column"
   },
   "loggerExportFormatList": {
-    "message": "목록",
+    "message": "Listenn",
     "description": "Label for radio-button to pick export format"
   },
   "loggerExportFormatTable": {
-    "message": "테이블",
+    "message": "Taolenn",
     "description": "Label for radio-button to pick export format"
   },
   "loggerExportEncodePlain": {
-    "message": "일반",
+    "message": "Plaen",
     "description": "Label for radio-button to pick export text format"
   },
   "loggerExportEncodeMarkdown": {
-    "message": "마크다운",
+    "message": "Markdown",
     "description": "Label for radio-button to pick export text format"
   },
   "supportOpenButton": {
-    "message": "열기",
+    "message": "Digeriñ",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportReportSpecificButton": {
-    "message": "새 신고 생성",
+    "message": "Sevel ur rentañ-kont nevez",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportFindSpecificButton": {
-    "message": "유사한 신고 탐색",
+    "message": "Klask danevelloù koulz ha homañ",
     "description": "A clickable link in the filter issue reporter section"
   },
   "supportS1H": {
-    "message": "문서",
+    "message": "Teuliadur",
     "description": "Header of 'Documentation' section in Support pane"
   },
   "supportS1P1": {
-    "message": "<code>uBlock/wiki</code>의 문서를 읽고 uBlock Origin의 모든 기능에 대해 알아보세요.",
+    "message": "Lennit an teuliadur en <code>uBlock/wiki</code> evit gouzout hiroc'h diwar-benn pep tra a c'hall uBlock Origin ober.",
     "description": "First paragraph of 'Documentation' section in Support pane"
   },
   "supportS2H": {
-    "message": "질문 및 지원",
+    "message": "Goulennoù ha skor",
     "description": "Header of 'Questions and support' section in Support pane"
   },
   "supportS2P1": {
-    "message": "질문에 대한 답변 및 기타 도움 지원은 <code>/r/uBlockOrigin</code> 서브레딧에서 제공됩니다.",
+    "message": "Answers to questions and other kinds of help support is provided on the subreddit <code>/r/uBlockOrigin</code>.",
     "description": "First paragraph of 'Questions and support' section in Support pane"
   },
   "supportS3H": {
-    "message": "필터 문제/웹사이트가 망가짐",
+    "message": "Filter issues/website is broken",
     "description": "Header of 'Filter issues' section in Support pane"
   },
   "supportS3P1": {
-    "message": "특정 웹사이트에서 발생하는 필터 이슈는 <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> 이슈 트래커</span>에 보고해주세요. GitHub 계정이 필요합니다.",
+    "message": "Report filter issues with specific websites to the <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> issue tracker</span>. <u>Requires a GitHub account.</u>",
     "description": "First paragraph of 'Filter issues' section in Support pane"
   },
   "supportS3P2": {
-    "message": "<b>중요:</b> uBlock Origin과 유사한 목적의 다른 차단기를 함께 사용하지 마세요. 특정 웹사이트에서 필터 문제가 발생할 수 있습니다.",
+    "message": "<b>Important:</b> Avoid using other similarly-purposed blockers along with uBlock Origin, as this may cause filter issues on specific websites.",
     "description": "Second paragraph of 'Filter issues' section in Support pane"
   },
   "supportS3P3": {
-    "message": "<b>팁:</b> 필터 목록이 최신 버전인지 확인하세요. <span data-url=\"logger-ui.html#_\">로거</span>는 필터 관련 문제를 진단하는 데에 사용되는 기본적인 도구입니다.",
+    "message": "<b>Tips:</b> Be sure your filter lists are up to date. <span data-url=\"logger-ui.html#_\">The logger</span> is the primary tool to diagnose filter-related issues.",
     "description": "Third paragraph of 'Filter issues' section in Support pane"
   },
   "supportS4H": {
-    "message": "오류 신고",
+    "message": "Danevelliñ un draen",
     "description": "Header of 'Bug report' section in Support pane"
   },
   "supportS4P1": {
-    "message": "uBlock Origin 자체에 대한 이슈는 <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> 이슈 트래커</span>에 보고해주세요. GitHub 계정이 필요합니다.",
+    "message": "Report issues with uBlock Origin itself to the <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> issue tracker</span>. <u>Requires a GitHub account.</u>",
     "description": "First paragraph of 'Bug report' section in Support pane"
   },
   "supportS5H": {
-    "message": "문제 해결 정보",
+    "message": "Troubleshooting Information",
     "description": "Header of 'Troubleshooting Information' section in Support pane"
   },
   "supportS5P1": {
-    "message": "다음은 자원 봉사자들이 문제를 해결하는 데에 도움을 줄 때 유용할 수 있는 기술적인 정보입니다.",
+    "message": "Below is technical information that might be useful when volunteers are trying to help you solve a problem.",
     "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
   },
   "supportS5P2": {
-    "message": "<b>중요:</b> 잠재적으로 개인 정보이거나 민감한 정보는 기본적으로 지워집니다. 정보가 지워지면 문제 해결이 더 어려워질 수도 있습니다.",
+    "message": "<b>Important:</b> Potentially private or sensitive information is redacted by default. Redacted information may make it more difficult to solve a problem.",
     "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
   },
   "supportS6H": {
-    "message": "필터 이슈 신고",
+    "message": "Danevelliñ ur gudenn gant ur sil",
     "description": "Header of 'Report a filter issue' section in Support pane"
   },
   "supportS6P1S1": {
-    "message": "봉사자들이 중복 신고로 인해 부담을 겪지 않도록, 해당 이슈가 이미 신고되지는 않았는지 확인해주시기 바랍니다.",
+    "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6P2S1": {
-    "message": "필터 목록은 매일 갱신됩니다. 최신 필터 목록에서 문제가 이미 해결되진 않았는지 확인하세요.",
+    "message": "Filter lists are updated daily. Be sure your issue has not already been addressed in the most recent filter lists.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6P2S2": {
-    "message": "문제가 생긴 웹페이지를 새로고침해도 문제가 여전히 남아 있는지 확인하세요.",
+    "message": "Verify that the issue still exists after reloading the problematic webpage.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6URL": {
-    "message": "웹 페이지의 주소:",
+    "message": "Chomlec'h ar bajenn web:",
     "description": "Label for the URL of the page"
   },
   "supportS6Select1": {
-    "message": "웹 페이지가...",
+    "message": "Ar bajenn web-mañ…",
     "description": "Label for widget to select type of issue"
   },
   "supportS6Select1Option0": {
-    "message": "-- 주제 선택 --",
+    "message": "-- Dibab ur seurt --",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option1": {
-    "message": "광고나 광고 흔적을 보여줍니다",
+    "message": "Diskouez a ra bruderezh pa restachoù bruderezh",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option2": {
-    "message": "오버레이나 기타 성가신 요소를 보여줍니다",
+    "message": "Has overlays or other nuisances",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option3": {
-    "message": "uBlock Origin 사용을 감지합니다",
+    "message": "Diskoachañ a ra uBlock Origin",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option4": {
-    "message": "개인정보 보호 관련 이슈가 있습니다",
+    "message": "Kudennoù a-fed prevezded he deus",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option5": {
-    "message": "uBlock Origin을 켜면 깨집니다",
+    "message": "Ne ya ket mat en-dro p'eo enaouet uBlock Origin",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option6": {
-    "message": "원치 않는 탭이나 창을 엽니다",
+    "message": "Digeriñ a ra ivinelloù pe prenestroù noazus",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
-    "message": "웹페이지를 \"NSFW\"  (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)로 분류",
+    "message": "Label the web page as “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
     "description": "A checkbox to use for NSFW sites"
   },
   "supportRedact": {
-    "message": "지우기",
+    "message": "Redact",
     "description": "Text for 'Redact' button"
   },
   "supportUnredact": {
-    "message": "지우지 않기",
+    "message": "Unredact",
     "description": "Text for 'Unredact' button"
   },
   "aboutPrivacyPolicy": {
-    "message": "개인정보취급방침",
+    "message": "Politikerezh prevezded",
     "description": "Link to privacy policy on GitHub (English)"
   },
   "aboutChangelog": {
-    "message": "변경사항",
+    "message": "Deizlevr ar cheñchamantoù",
     "description": ""
   },
   "aboutCode": {
-    "message": "소스 코드 (GPLv3)",
+    "message": "Kod mammenn (GPLv3)",
     "description": "English: Source code (GPLv3)"
   },
   "aboutContributors": {
-    "message": "기여자",
+    "message": "Kenlabourerien",
     "description": "English: Contributors"
   },
   "aboutSourceCode": {
-    "message": "소스 코드",
+    "message": "Kod mammenn",
     "description": "Link text to source code repo"
   },
   "aboutTranslations": {
-    "message": "번역",
+    "message": "Troidigezhioù",
     "description": "Link text to translations repo"
   },
   "aboutFilterLists": {
-    "message": "필터 목록",
+    "message": "Rolloù ar siloù",
     "description": "Link text to uBO's own filter lists repo"
   },
   "aboutDependencies": {
-    "message": "외부 종속성 (GPLv3 호환):",
+    "message": "External dependencies (GPLv3-compatible):",
     "description": "Shown in the About pane"
   },
   "aboutCDNs": {
-    "message": "아래 <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDN</a>에서 uBO의 필터 목록을 무료로 호스팅해 줍니다:",
+    "message": "uBO's own filter lists are freely hosted on the following <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDNs</a>:",
     "description": "Shown in the About pane"
   },
   "aboutCDNsInfo": {
-    "message": "필터 목록을 업데이트할 때 무작위로 선택된 CDN이 쓰입니다.",
+    "message": "A randomly picked CDN is used when a filter list needs to be updated.",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
-    "message": "파일로 백업하기",
+    "message": "Back up to file…",
     "description": "Text for button to create a backup of all settings"
   },
   "aboutBackupFilename": {
-    "message": "ublock-백업_{{datetime}}.txt",
+    "message": "ma-roadennoù-ublock_{{datetime}}.txt",
     "description": "English: my-ublock-backup_{{datetime}}.txt"
   },
   "aboutRestoreDataButton": {
-    "message": "파일로부터 복원하기...",
+    "message": "Adsevel diwar ur restr…",
     "description": "English: Restore from file..."
   },
   "aboutResetDataButton": {
-    "message": "기본 설정으로 초기화...",
+    "message": "Adlakaat d'an arventennoù dre ziouer…",
     "description": "English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm": {
-    "message": "모든 설정은 {{time}}에 백업된 데이터에 덮어씌워지며, uBlock₀이 재시작됩니다.\n\n모든 존재하는 설정을 백업 데이터로 덮어씌우시겠습니까?",
+    "message": "All your settings will be overwritten using data backed up on {{time}}, and uBlock₀ will restart.\n\nOverwrite all existing settings using backed up data?",
     "description": "Message asking user to confirm restore"
   },
   "aboutRestoreDataError": {
-    "message": "데이터를 읽을 수 없거나 잘못되었습니다.",
+    "message": "The data could not be read or is invalid",
     "description": "Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm": {
-    "message": "모든 설정이 제거되며, uBlock₀이 재시작됩니다.\n\nuBlock₀의 설정을 처음 설정으로 초기화하시겠습니까?",
+    "message": "All your settings will be removed, and uBlock₀ will restart.\n\nReset uBlock₀ to factory settings?",
     "description": "Message asking user to confirm reset"
   },
   "errorCantConnectTo": {
-    "message": "네트워크 오류: {{msg}}",
+    "message": "Fazi rouedad: {{msg}}",
     "description": "English: Network error: {{msg}}"
   },
   "subscriberConfirm": {
-    "message": "uBlock₀: 선택한 URL을 사용자 지정 필터 목록에 추가하시겠습니까?\n\n제목: \"{{title}}\"\nURL: {{url}}",
+    "message": "Add the following URL to your custom filter lists?\n\nTitle: \"{{title}}\"\nURL: {{url}}",
     "description": "No longer used"
   },
   "subscribeButton": {
-    "message": "구독",
+    "message": "Koumanantiñ",
     "description": "For the button used to subscribe to a filter list"
   },
   "elapsedOneMinuteAgo": {
-    "message": "1 분 전",
+    "message": "ur vunutenn zo",
     "description": "English: a minute ago"
   },
   "elapsedManyMinutesAgo": {
-    "message": "{{value}} 분 전",
+    "message": "{{value}} v/munutenn zo",
     "description": "English: {{value}} minutes ago"
   },
   "elapsedOneHourAgo": {
-    "message": "1 시간 전",
+    "message": "un eurvezh zo",
     "description": "English: an hour ago"
   },
   "elapsedManyHoursAgo": {
-    "message": "{{value}} 시간 전",
+    "message": "{{value}} eur zo",
     "description": "English: {{value}} hours ago"
   },
   "elapsedOneDayAgo": {
-    "message": "1 일 전",
+    "message": "un devezh zo",
     "description": "English: a day ago"
   },
   "elapsedManyDaysAgo": {
-    "message": "{{value}} 일 전",
+    "message": "{{value}} deiz zo",
     "description": "English: {{value}} days ago"
   },
   "showDashboardButton": {
-    "message": "대쉬보드 보기",
+    "message": "Diskouez an daolenn-vourzh",
     "description": "Firefox/Fennec-specific: Show Dashboard"
   },
   "showNetworkLogButton": {
-    "message": "로그 보기",
+    "message": "Gwelet deizlevr ar rekedoù",
     "description": "Firefox/Fennec-specific: Show Logger"
   },
   "fennecMenuItemBlockingOff": {
-    "message": "끄기",
+    "message": "enaouet",
     "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
   },
   "docblockedTitle": {
-    "message": "페이지 차단됨",
+    "message": "Pajenn stanket",
     "description": "Used as a title for the document-blocked page"
   },
   "docblockedPrompt1": {
-    "message": "uBlock Origin이 다음 페이지를 로드하는것을 방지했습니다:",
+    "message": "uBlock Origin en deus miret ar bajenn-mañ da gargañ:",
     "description": "Used in the strict-blocking page"
   },
   "docblockedPrompt2": {
-    "message": "다음 필터로 인해 방지됨",
+    "message": "Stanket eo bet abalamour d'ar sil-mañ:",
     "description": "Used in the strict-blocking page"
   },
   "docblockedNoParamsPrompt": {
-    "message": "제외 매개 변수",
+    "message": "kuit a arventennoù",
     "description": "label to be used for the parameter-less URL: https://cloud.githubusercontent.com/assets/585534/9832014/bfb1b8f0-593b-11e5-8a27-fba472a5529a.png"
   },
   "docblockedFoundIn": {
-    "message": "다음 필터에서 찾음:",
+    "message": "A vez kavet e-barzh:",
     "description": "English: List of filter list names follows"
   },
   "docblockedBack": {
-    "message": "돌아가기",
+    "message": "Distreiñ",
     "description": "English: Go back"
   },
   "docblockedClose": {
-    "message": "이 창을 닫기",
+    "message": "Serriñ ar prenestr-mañ",
     "description": "English: Close this window"
   },
   "docblockedDontWarn": {
-    "message": "더 이상 이 사이트에 대해 경고 하지 않기",
+    "message": "Arabat kemenn din diwar-benn al lec'hienn-mañ en-dro",
     "description": "Label for checkbox in document-blocked page"
   },
   "docblockedProceed": {
-    "message": "{{hostname}}에서 엄격 차단기능 끄기",
+    "message": "Disable strict blocking for {{hostname}}",
     "description": "English: Disable strict blocking for {{hostname}} ..."
   },
   "docblockedDisableTemporary": {
-    "message": "이번만",
+    "message": "berrbad",
     "description": "English: Temporarily"
   },
   "docblockedDisablePermanent": {
-    "message": "항상",
+    "message": "Da badout",
     "description": "English: Permanently"
   },
   "docblockedDisable": {
-    "message": "계속",
+    "message": "Kenderc'hel",
     "description": "Button text to navigate to the blocked page"
   },
   "cloudPush": {
-    "message": "클라우드 저장소로 내보내기",
+    "message": "Export to cloud storage",
     "description": "tooltip"
   },
   "cloudPull": {
-    "message": "클라우드 저장소로부터 가져오기",
+    "message": "Import from cloud storage",
     "description": "tooltip"
   },
   "cloudPullAndMerge": {
-    "message": "클라우드 저장소의 설정 불러오기 및 현재 설정과 통합",
+    "message": "Import from cloud storage and merge with current settings",
     "description": "tooltip"
   },
   "cloudNoData": {
-    "message": "...\n...",
+    "message": "…\n…",
     "description": ""
   },
   "cloudDeviceNamePrompt": {
-    "message": "현재 기기의 이름:",
+    "message": "Anv an ardivink-mañ:",
     "description": "used as a prompt for the user to provide a custom device name"
   },
   "advancedSettingsWarning": {
-    "message": "경고! 고급 옵션을 변경하여 발생하는 문제는 사용자에게 있습니다.",
+    "message": "Diwallit! Kemmit an arventennoù araokaet-mañ nemet ma ouifec'h petra emaoc'h oc'h ober.",
     "description": "A warning to users at the top of 'Advanced settings' page"
   },
   "genericSubmit": {
-    "message": "제출",
+    "message": "Kas",
     "description": "for generic 'Submit' buttons"
   },
   "genericApplyChanges": {
-    "message": "변경사항 적용",
+    "message": "Lakaat e pleustr",
     "description": "for generic 'Apply changes' buttons"
   },
   "genericRevert": {
-    "message": "되돌리기",
+    "message": "Nullañ",
     "description": "for generic 'Revert' buttons"
   },
   "genericBytes": {
-    "message": "바이트",
+    "message": "eizhbitoù",
     "description": ""
   },
   "contextMenuBlockElementInFrame": {
-    "message": "프레임 내 구성 요소 차단",
+    "message": "Stankañ an elfenn er framm…",
     "description": "An entry in the browser's contextual menu"
   },
   "contextMenuSubscribeToList": {
-    "message": "필터 목록 구독...",
+    "message": "Koumanantiñ d'ar roll siloù…",
     "description": "An entry in the browser's contextual menu"
   },
   "contextMenuTemporarilyAllowLargeMediaElements": {
-    "message": "이번만 대형 미디어 구성요소 허용",
+    "message": "Aotren elfennoù media pounner evit ar mare",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
   },
   "contextMenuViewSource": {
-    "message": "소스 코드 보기…",
+    "message": "Diskouez ar c'hod mammenn…",
     "description": "A context menu entry, to view the source code of the target resource"
   },
   "shortcutCapturePlaceholder": {
-    "message": "단축키를 입력하세요",
+    "message": "Enankit ur verradenn",
     "description": "Placeholder string for input field used to capture a keyboard shortcut"
   },
   "genericMergeViewScrollLock": {
-    "message": "스크롤 잠금 토글",
+    "message": "Toggle locked scrolling",
     "description": "Tooltip for the button used to lock scrolling between the views in the 'My rules' pane"
   },
   "genericCopyToClipboard": {
-    "message": "클립보드에 복사",
+    "message": "Eilañ er golver",
     "description": "Label for buttons used to copy something to the clipboard"
   },
   "genericSelectAll": {
-    "message": "모두 선택",
+    "message": "Diuzañ an holl",
     "description": "Label for buttons used to select all text in editor"
   },
   "toggleCosmeticFiltering": {
-    "message": "표면 필터 토글",
+    "message": "Enaouiñ ar silañ kenedel",
     "description": "Label for keyboard shortcut used to toggle cosmetic filtering"
   },
   "relaxBlockingMode": {
-    "message": "차단 모드 완화",
+    "message": "Relax blocking mode",
     "description": "Label for keyboard shortcut used to relax blocking mode"
   },
   "storageUsed": {
-    "message": "스토리지 사용량: {{value}} {{unit}}",
+    "message": "Spas stokañ implijet: {{value}} {{unit}}",
     "description": " In Setting pane, renders as (example): Storage used: 13.2 MB"
   },
   "KB": {
@@ -1272,15 +1272,15 @@
     "description": "short for 'gigabytes'"
   },
   "clickToLoad": {
-    "message": "불러오려면 클릭하기",
+    "message": "Klikañ evit kargañ",
     "description": "Message used in frame placeholders"
   },
   "linterMainReport": {
-    "message": "오류: {{count}}",
+    "message": "Fazioù: {{count}}",
     "description": "Summary of number of errors as reported by the linter "
   },
   "unprocessedRequestTooltip": {
-    "message": "브라우저 시작 시 필터링을 제대로 수행할 수 없습니다.\n정확한 필터링을 위해 페이지를 새로고침해주세요.",
+    "message": "Ur fazi silañ zo bet en ur lañsañ ar merdeer. Adkargit ar bajenn evit ma vo silet mat.",
     "description": "A warning which will appear in the popup panel if needed"
   },
   "dummy": {

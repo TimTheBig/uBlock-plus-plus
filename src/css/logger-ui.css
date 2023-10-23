@@ -169,7 +169,7 @@ body[dir="rtl"] #netInspector #filterExprPicker {
     cursor: pointer;
     display: inline-flex;
     margin: 0 0.5em 0 0;
-    padding: 0.5em;
+    padding: 0.25em;
     white-space: nowrap;
     }
 #netInspector #filterExprPicker span[data-filtex]:last-of-type {
@@ -179,8 +179,11 @@ body[dir="rtl"] #netInspector #filterExprPicker {
     background-color: rgb(var(--primary-70) / 25%);
     border: 1px solid rgb(var(--primary-70));
     }
-#netInspector #filterExprPicker span.on[data-filtex] {
+#netInspector #filterExprPicker span.on[data-filtex],
+#filterExprButton.active {
     background-color: rgb(var(--primary-70) / 40%);
+    }
+#netInspector #filterExprPicker span.on[data-filtex] {
     border: 1px solid rgb(var(--primary-70));
     }
 
