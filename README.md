@@ -1,10 +1,6 @@
-[![Badge Commits]][Commit Rate]
-[![Badge Issues]][Issues]
 [![Badge Localization]][Crowdin]
 [![Badge License]][License]
-[![Badge NPM]][NPM]
-[![Badge Mozilla]][Mozilla]
-[![Badge Chrome]][Chrome]
+
 
 ***
 
@@ -14,22 +10,21 @@
 </sub>
 uBlock Plus Plus (uB++)
 </h1>
+<h3 align="center">
+This is uBo but up to date to the latest commit.
+<h4 align="center">
+<sub>(more up to date than the firefox dev build)
+</h4>
+ 
+***
+
 <p align="center">
-<sub><a href="https://github.com/gorhill/uBlock/wiki/uBlock-Origin-is-completely-unrelated-to-the-web-site-ublock.org"><b>BEWARE!</b> uBO is (and has always been) COMPLETELY UNRELATED to the website <code>ublock.org</code></a>.</sub>
+<a href="https://addons.mozilla.org/addon/ublock-plus-plus/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get uBlock++ for Firefox">
 </p>
 
 ***
 
-<p align="center">
-<a href="https://addons.mozilla.org/addon/ublock-plus-plus/"><img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get uBlock++ for Firefox"></a>
-<a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm"><img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get uBlock Origin for Chromium"></a>
-<a href="https://addons.opera.com/extensions/details/ublock/"><img src="https://user-images.githubusercontent.com/585534/107280692-ac7b5f00-6a26-11eb-85c7-088926504452.png" alt="Get uBlock Origin for Opera"></a>
-<a href="https://addons.thunderbird.net/thunderbird/addon/ublock-origin/"><img src="https://user-images.githubusercontent.com/124740436/235314672-73243149-3683-4407-a2d5-ad0f2b08bc17.png" alt="Get uBlock Origin for Thunderbird"></a>
-</p>
-
-***
-
-uBlock Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uBO uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
+uBlock Plus Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uBO uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
 
 You may easily unselect any preselected filter lists if you think uB++ blocks too much. For reference, Adblock Plus installs with only EasyList, ABP filters, and Acceptable Ads enabled by default.
 
@@ -42,8 +37,6 @@ Ads, "unintrusive" or not, are just the visible portion of the privacy-invading 
 * [Documentation](#documentation)
 * [Installation](#installation)
   * [Firefox](#firefox)
-  * [Thunderbird](#thunderbird)
-  * [Chromium](#chromium)
   * [All Programs](#all-programs)
   * [Enterprise Deployment](#enterprise-deployment)
 * [Release History](#release-history)
@@ -83,23 +76,8 @@ For support, questions, or help, visit [/r/uBlockOrigin][Reddit].
 
 [Firefox Add-ons][Mozilla]
 
-uBO [works best][Works Best] on Firefox and is available for desktop and Android versions.
+uBO and uB++ [works best][Works Best] on Firefox and is available for desktop and Android versions.
 
-#### Thunderbird
-
-[Thunderbird Add-ons][Thunderbird] 
-
-In Thunderbird, uBlock Origin does not affect emails, just feeds.
-
-#### Chromium
-
-[Chrome Web Store][Chrome]
-
-[Opera Add-ons][Opera]
-
-[Development Builds][Chrome Dev]
-
-uBO should be compatible with any Chromium-based browser.
 
 #### All Programs
 
