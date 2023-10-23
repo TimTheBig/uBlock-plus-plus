@@ -37,8 +37,6 @@ Ads, "unintrusive" or not, are just the visible portion of the privacy-invading 
 * [Documentation](#documentation)
 * [Installation](#installation)
   * [Firefox](#firefox)
-  * [Thunderbird](#thunderbird)
-  * [Chromium](#chromium)
   * [All Programs](#all-programs)
   * [Enterprise Deployment](#enterprise-deployment)
 * [Release History](#release-history)
@@ -78,23 +76,8 @@ For support, questions, or help, visit [/r/uBlockOrigin][Reddit].
 
 [Firefox Add-ons][Mozilla]
 
-uBO [works best][Works Best] on Firefox and is available for desktop and Android versions.
+uBO and uB++ [works best][Works Best] on Firefox and is available for desktop and Android versions.
 
-#### Thunderbird
-
-[Thunderbird Add-ons][Thunderbird] 
-
-In Thunderbird, uBlock Origin does not affect emails, just feeds.
-
-#### Chromium
-
-[Chrome Web Store][Chrome]
-
-[Opera Add-ons][Opera]
-
-[Development Builds][Chrome Dev]
-
-uBO should be compatible with any Chromium-based browser.
 
 #### All Programs
 
