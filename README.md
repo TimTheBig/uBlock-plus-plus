@@ -6,7 +6,7 @@
 
 <h1 align="center">
 <sub>
-<img src="https://github.com/gorhill/uBlock/blob/master/src/img/ublock.svg" height="38" width="38">
+<img src="https://github.com/TimTheBig/uBlock-plus-plus/blob/master/src/img/ublock.svg" height="120" width="120">
 </sub>
 uBlock Plus Plus (uB++)
 </h1>
