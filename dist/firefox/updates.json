@@ -3,9 +3,9 @@
   "uBlock0@raymondhill.net": {
    "updates": [
     {
-     "version": "1.52.3.105",
+     "version": "1.52.3.106",
      "browser_specific_settings": { "gecko": { "strict_min_version": "78.0" } },
-     "update_link": "https://github.com/TimTheBig/uBlock-plus-plus/releases/download/1.52.3rc6/firefox-1.52.3.107.xpi"
+     "update_link": "https://github.com/TimTheBig/uBlock-plus-plus/releases/download/1.52.3rc7/firefox-1.52.3.107.xpi"
     }
    ]
   }
