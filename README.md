@@ -24,7 +24,7 @@ This is uBo but up to date to the latest commit.
 
 ***
 
-uBlock Plus Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uBO uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
+uBlock Plus Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uB++ uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
 
 You may easily unselect any preselected filter lists if you think uB++ blocks too much. For reference, Adblock Plus installs with only EasyList, ABP filters, and Acceptable Ads enabled by default.
 
@@ -85,10 +85,6 @@ Do **NOT** use uB++ with any other content blocker. uB++ [performs][Performance]
 
 [Manual Installation][Manual Installation]
 
-#### Enterprise Deployment
-
-[Deploying uBO][Deployment]
-
 ## Release History
 
 [Releases Page][Releases]
@@ -142,7 +138,7 @@ If you ever want to contribute something, think about the people working hard to
 [Works Best]: https://github.com/gorhill/uBlock/wiki/uBlock-Origin-works-best-on-Firefox
 [Deployment]: https://github.com/gorhill/uBlock/wiki/Deploying-uBlock-Origin
 [Blocking]: https://github.com/gorhill/uBlock/wiki/Blocking-mode
-[Releases]: https://github.com/gorhill/uBlock/releases
+[Releases]: https://github.com/TimTheBig/uBlock-plus-plus/releases
 [Issues]: https://github.com/uBlockOrigin/uBlock-issues/issues
 [Beta]: https://github.com/gorhill/uBlock/blob/master/dist/README.md#for-beta-version
 [Wiki]: https://github.com/gorhill/uBlock/wiki
