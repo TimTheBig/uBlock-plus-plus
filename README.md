@@ -11,7 +11,7 @@
 uBlock Plus Plus (uB++)
 </h1>
 <h3 align="center">
-This is uBo but up to date to the latest commit.
+This is uBo with builds that are up to date to the latest commit.
 <h4 align="center">
 <sub>(more up to date than the firefox dev build)
 </h4>
