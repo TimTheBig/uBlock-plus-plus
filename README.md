@@ -81,7 +81,7 @@ uBO and uB++ [works best][Works Best] on Firefox and is available for desktop an
 
 #### All Programs
 
-Do **NOT** use uBO with any other content blocker. uBO [performs][Performance] as well as or better than most popular blockers. Other blockers can prevent uBO's privacy or anti-blocker-defusing features from working correctly.
+Do **NOT** use uB++ with any other content blocker. uB++ [performs][Performance] as well as or better than most popular blockers. Other blockers can prevent uBO's privacy or anti-blocker-defusing features from working correctly.
 
 [Manual Installation][Manual Installation]
 
