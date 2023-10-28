@@ -3,3 +3,7 @@
 /dist/build/
 /tmp/
 .DS_Store
+_locales/.DS_Store
+assets/.DS_Store
+img/.DS_Store
+lib/.DS_Store
