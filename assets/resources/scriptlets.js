@@ -60,8 +60,11 @@ function safeSelf() {
         'addEventListener': self.EventTarget.prototype.addEventListener,
         'removeEventListener': self.EventTarget.prototype.removeEventListener,
         'fetch': self.fetch,
-        'JSON_parse': self.JSON.parse.bind(self.JSON),
-        'JSON_stringify': self.JSON.stringify.bind(self.JSON),
+        'JSON': self.JSON,
+        'JSON_parseFn': self.JSON.parse,
+        'JSON_stringifyFn': self.JSON.stringify,
+        'JSON_parse': (...args) => safe.JSON_parseFn.call(safe.JSON, ...args),
+        'JSON_stringify': (...args) => safe.JSON_stringifyFn.call(safe.JSON, ...args),
         'log': console.log.bind(console),
         uboLog(...args) {
             if ( scriptletGlobals.has('canDebug') === false ) { return; }
@@ -3373,12 +3376,17 @@ function setCookie(
     name = encodeURIComponent(name);
 
     const validValues = [
-        'true', 'false',
-        'yes', 'y', 'no', 'n',
-        'ok',
         'accept', 'reject',
+        'accepted', 'rejected', 'notaccepted',
         'allow', 'deny',
+        'allowed', 'disallow',
+        'enable', 'disable',
+        'enabled', 'disabled',
+        'ok',
         'on', 'off',
+        'true', 'false',
+        'y', 'n',
+        'yes', 'no',
     ];
     if ( validValues.includes(value.toLowerCase()) === false ) {
         if ( /^\d+$/.test(value) === false ) { return; }
