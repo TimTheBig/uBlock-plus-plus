@@ -2078,7 +2078,7 @@ const onMessage = function(request, sender, callback) {
             url: 'dashboard.html#3p-filters.html',
             select: true,
         });
-        io.updateStart({ delay: 100, auto: request.softUpdate });
+        io.updateStart({ delay: 100, auto: request.manual !== true });
         break;
 
     default:
