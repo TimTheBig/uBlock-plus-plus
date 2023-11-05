@@ -27,7 +27,7 @@
 
 const patches = new Map();
 const encoder = new TextEncoder();
-const reFileName = /[^\/]+$/;
+const reFileName = /([^\/]+?)(?:#.+)?$/;
 const EMPTYLINE = '';
 
 /******************************************************************************/
@@ -44,13 +44,12 @@ const suffleArray = arr => {
 
 const basename = url => {
     const match = reFileName.exec(url);
-    return match && match[0] || '';
+    return match && match[1] || '';
 };
 
 const resolveURL = (path, url) => {
     try {
-        const urlAfter = new URL(path, url);
-        return urlAfter.href;
+        return new URL(path, url);
     }
     catch(_) {
     }
@@ -201,8 +200,11 @@ async function fetchPatchDetailsFromCDNs(assetDetails) {
         if ( response.ok !== true ) { continue; }
         const patchText = await response.text();
         const patchDetails = parsePatch(patchText);
+        if ( patchURL.hash.length > 1 ) {
+            assetDetails.diffName = patchURL.hash.slice(1);
+        }
         return {
-            patchURL,
+            patchURL: patchURL.href,
             patchSize: `${(patchText.length / 1000).toFixed(1)} KB`,
             patchDetails,
         };
