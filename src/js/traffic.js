@@ -34,6 +34,7 @@ import textEncode from './text-encode.js';
 import µb from './background.js';
 import * as sfp from './static-filtering-parser.js';
 import * as fc from  './filtering-context.js';
+import { isNetworkURI } from './uri-utils.js';
 
 import {
     sessionFirewall,
@@ -41,10 +42,6 @@ import {
     sessionURLFiltering,
 } from './filtering-engines.js';
 
-import {
-    entityFromDomain,
-    isNetworkURI,
-} from './uri-utils.js';
 
 /******************************************************************************/
 
@@ -538,28 +535,30 @@ const onHeadersReceived = function(details) {
         }
     }
 
-    const bodyFilterSession = bodyFilterer.canFilter(fctxt, details);
-    if ( bodyFilterSession !== undefined ) {
+    if ( bodyFilterer.canFilter(fctxt, details) ) {
+        const jobs = [];
         // `replace=` filter option
         const replaceDirectives =
             staticNetFilteringEngine.matchAndFetchModifiers(fctxt, 'replace');
         if ( replaceDirectives ) {
-            bodyFilterSession.addJob({
+            jobs.push({
                 fn: textResponseFilterer,
                 args: [ replaceDirectives ],
             });
         }
         // html filtering
         if ( isRootDoc || fctxt.itype === fctxt.SUB_FRAME ) {
-            const selectors = htmlFilteringEngine.retrieve(bodyFilterSession);
+            const selectors = htmlFilteringEngine.retrieve(fctxt);
             if ( selectors ) {
-                bodyFilterSession.addJob({
+                jobs.push({
                     fn: htmlResponseFilterer,
                     args: [ selectors ],
                 });
             }
         }
-        bodyFilterSession.launch();
+        if ( jobs.length !== 0 ) {
+            bodyFilterer.doFilter(fctxt, jobs);
+        }
     }
 
     let modifiedHeaders = false;
@@ -637,14 +636,11 @@ function textResponseFilterer(session, directives) {
         ));
         applied.push(directive);
     }
-
-    if ( applied && logger.enabled ) {
-        session.setRealm('network')
-             .pushFilters(applied.map(a => a.logData()))
-             .toLogger();
-    }
-
-    return applied.length !== 0;
+    if ( applied.length === 0 ) { return; }
+    if ( logger.enabled !== true ) { return; }
+    session.setRealm('network')
+         .pushFilters(applied.map(a => a.logData()))
+         .toLogger();
 }
 
 /******************************************************************************/
@@ -660,11 +656,8 @@ function htmlResponseFilterer(session, selectors) {
         session.mime
     );
 
-    if ( selectors !== undefined ) {
-        if ( htmlFilteringEngine.apply(doc, session, selectors) !== true ) {
-            return false;
-        }
-    }
+    if ( selectors === undefined ) { return; }
+    if ( htmlFilteringEngine.apply(doc, session, selectors) !== true ) { return; }
 
     // https://stackoverflow.com/questions/6088972/get-doctype-of-an-html-as-string-with-javascript/10162353#10162353
     const doctypeStr = [
@@ -674,8 +667,6 @@ function htmlResponseFilterer(session, selectors) {
         doc.documentElement.outerHTML,
     ].join('\n');
     session.setString(doctypeStr);
-
-    return true;
 }
 htmlResponseFilterer.domParser = null;
 htmlResponseFilterer.xmlSerializer = null;
@@ -692,28 +683,58 @@ htmlResponseFilterer.xmlSerializer = null;
 
 const bodyFilterer = (( ) => {
     const sessions = new Map();
-    const reContentTypeDocument = /^(?:text\/html|application\/xhtml\+xml)/i;
+    const reContentTypeDocument = /^([^;]+)(?:;|$)/i;
     const reContentTypeCharset = /charset=['"]?([^'" ]+)/i;
     const otherValidMimes = new Set([
         'application/javascript',
         'application/json',
+        'application/vnd.apple.mpegurl',
+        'application/vnd.api+json',
         'application/xml',
         'application/xhtml+xml',
     ]);
-    const NOT_TEXT_TYPES = fc.FONT | fc.IMAGE | fc.MEDIA | fc.WEBSOCKET;
+    const BINARY_TYPES = fc.FONT | fc.IMAGE | fc.MEDIA | fc.WEBSOCKET;
+    const MAX_BUFFER_LENGTH = 3 * 1024 * 1024;
 
     let textDecoder, textEncoder;
+    let mime = '';
+    let charset = '';
+
+    const contentTypeFromDetails = details => {
+        switch ( details.type ) {
+            case 'script':
+                return 'text/javascript; charset=utf-8';
+            case 'stylesheet':
+                return 'text/css';
+            default:
+                break;
+        }
+        return '';
+    };
 
     const mimeFromContentType = contentType => {
         const match = reContentTypeDocument.exec(contentType);
         if ( match === null ) { return; }
-        return match[0].toLowerCase();
+        return match[1].toLowerCase();
     };
 
     const charsetFromContentType = contentType => {
         const match = reContentTypeCharset.exec(contentType);
         if ( match === null ) { return; }
         return match[1].toLowerCase();
+    };
+
+    const charsetFromMime = mime => {
+        switch ( mime ) {
+            case 'application/xml':
+            case 'application/xhtml+xml':
+            case 'text/html':
+            case 'text/css':
+                return;
+            default:
+                break;
+        }
+        return 'utf-8';
     };
 
     const charsetFromStream = bytes => {
@@ -742,7 +763,6 @@ const bodyFilterer = (( ) => {
             const c = bytes[i+j];
             if ( c >= 0x41 && c <= 0x5A ) { break; }
             if ( c >= 0x61 && c <= 0x7A ) { break; }
-            j += 1;
         }
         if ( j === 8 ) { return; }
         i += j;
@@ -796,6 +816,11 @@ const bodyFilterer = (( ) => {
         buffer.set(session.buffer);
         buffer.set(new Uint8Array(ev.data), session.buffer.byteLength);
         session.buffer = buffer;
+        if ( session.buffer.length >= MAX_BUFFER_LENGTH ) {
+            sessions.delete(this);
+            this.write(session.buffer);
+            this.disconnect();
+        }
     };
 
     const onStreamStop = function() {
@@ -816,12 +841,11 @@ const bodyFilterer = (( ) => {
             session.charset = charsetUsed;
         }
 
-        let modified = false;
         while ( session.jobs.length !== 0 ) {
             const job = session.jobs.shift();
-            modified = job.fn(session, ...job.args) || modified;
+            job.fn(session, ...job.args);
         }
-        if ( modified !== true ) { return streamClose(session); }
+        if ( session.modified !== true ) { return streamClose(session); }
 
         if ( textEncoder === undefined ) {
             textEncoder = new TextEncoder();
@@ -840,15 +864,15 @@ const bodyFilterer = (( ) => {
     };
 
     return class Session extends µb.FilteringContext {
-        constructor(fctxt, details, mime, charset) {
+        constructor(fctxt, mime, charset, jobs) {
             super(fctxt);
-            this.entity = entityFromDomain(this.getDomain());
             this.stream = null;
             this.buffer = null;
             this.mime = mime;
             this.charset = charset;
             this.str = null;
-            this.jobs = [];
+            this.modified = false;
+            this.jobs = jobs;
         }
         getString() {
             if ( this.str !== null ) { return this.str; }
@@ -865,23 +889,21 @@ const bodyFilterer = (( ) => {
         }
         setString(s) {
             this.str = s;
+            this.modified = true;
         }
-        addJob(job) {
-            this.jobs.push(job);
-        }
-        launch() {
-            if ( this.jobs.length === 0 ) { return; }
-            this.stream = browser.webRequest.filterResponseData(this.id);
-            this.stream.ondata = onStreamData;
-            this.stream.onstop = onStreamStop;
-            this.stream.onerror = onStreamError;
-            sessions.set(this.stream, this);
-            return true;
+        static doFilter(fctxt, jobs) {
+            if ( jobs.length === 0 ) { return; }
+            const session = new Session(fctxt, mime, charset, jobs);
+            session.stream = browser.webRequest.filterResponseData(session.id);
+            session.stream.ondata = onStreamData;
+            session.stream.onstop = onStreamStop;
+            session.stream.onerror = onStreamError;
+            sessions.set(session.stream, session);
         }
         static canFilter(fctxt, details) {
             if ( µb.canFilterResponseData !== true ) { return; }
 
-            if ( (fctxt.itype & NOT_TEXT_TYPES) !== 0 ) { return; }
+            if ( (fctxt.itype & BINARY_TYPES) !== 0 ) { return; }
 
             if ( fctxt.method !== fc.METHOD_GET ) {
                 if ( fctxt.method !== fc.METHOD_POST ) {
@@ -891,9 +913,7 @@ const bodyFilterer = (( ) => {
 
             // https://github.com/gorhill/uBlock/issues/3478
             const statusCode = details.statusCode || 0;
-            if ( statusCode !== 0 && (statusCode < 200 || statusCode >= 300) ) {
-                return;
-            }
+            if ( statusCode === 0 ) { return; }
 
             const hostname = fctxt.getHostname();
             if ( hostname === '' ) { return; }
@@ -902,13 +922,13 @@ const bodyFilterer = (( ) => {
             const headers = details.responseHeaders;
             const disposition = headerValueFromName('content-disposition', headers);
             if ( disposition !== '' ) {
-                if ( disposition.startsWith('inline') === false ) {
-                    return;
-                }
+                if ( disposition.startsWith('inline') === false ) { return; }
             }
 
-            const contentType = headerValueFromName('content-type', headers);
-            let mime = 'text/plain', charset;
+            mime = 'text/plain';
+            charset = 'utf-8';
+            const contentType = headerValueFromName('content-type', headers) ||
+                contentTypeFromDetails(details);
             if ( contentType !== '' ) {
                 mime = mimeFromContentType(contentType);
                 if ( mime === undefined ) { return; }
@@ -916,6 +936,8 @@ const bodyFilterer = (( ) => {
                 if ( charset !== undefined ) {
                     charset = textEncode.normalizeCharset(charset);
                     if ( charset === undefined ) { return; }
+                } else {
+                    charset = charsetFromMime(mime);
                 }
             }
 
@@ -923,7 +945,7 @@ const bodyFilterer = (( ) => {
                 if ( otherValidMimes.has(mime) === false ) { return; }
             }
 
-            return new Session(fctxt, details, mime, charset);
+            return true;
         }
     };
 })();
