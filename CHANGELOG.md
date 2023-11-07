@@ -2,11 +2,11 @@
 
 Differential update of filter lists, as a result of discussions at <https://github.com/AdguardTeam/FiltersCompiler/issues/192>. Resulting spec is [here](https://github.com/ameshkov/diffupdates).
 
-![inkscape](https://github.com/gorhill/uBlock/assets/585534/6d9fb4e2-8e33-4efe-9a65-854d125f045f)
+![inkscape](https://github.com/gorhill/uBlock/assets/585534/bf7f3da7-99cd-4477-a78f-573b3137ef21)
 
 The goal is to **NOT** be ranked among the "most popular projects" by bandwidth usage (as per [jsDelivr's public stats](https://www.jsdelivr.com/statistics)):
 
-![jsDelivr stats](https://github.com/gorhill/uBlock/assets/585534/30a0522b-f9ff-4ff7-8902-6c78e0d61dd1)
+![jsDelivr stats](https://github.com/gorhill/uBlock/assets/585534/96c7e0fa-ffcc-4879-a01e-e340b4f0fa9e)
 
 It is expected that differential updates will lower both requests and bandwidth usage.
 
@@ -14,6 +14,10 @@ To benefit the much shorter update period enabled by differential updates, you m
 
 ## Fixes / changes
 
+- [Lower maximum Expires value to 4h](https://github.com/gorhill/uBlock/commit/2360bc02f3)
+- [Properly reset needle length in unserialized buffer](https://github.com/gorhill/uBlock/commit/8ed1ad9c9d)
+- [Add additional flags to regional lists](https://github.com/gorhill/uBlock/commit/0962366524) (by @DandelionSprout)
+- [Harden scriptlets which need to serialize function code into string](https://github.com/gorhill/uBlock/commit/7823d98070)
 - [Reset `g` regexes before use in `rmnt`/`rpnt`  scriptlets](https://github.com/gorhill/uBlock/commit/cdc3f66a6b)
 - [Apply response filtering according to mime type](https://github.com/gorhill/uBlock/commit/6417f54299)
 - [Add t/f to set-cookie](https://github.com/gorhill/uBlock/commit/4ab1c36ac9) (by @ryanbr)
