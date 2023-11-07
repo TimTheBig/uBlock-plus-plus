@@ -55,7 +55,7 @@ const parseExpires = s => {
     if ( matches === null ) { return 0; }
     let updateAfter = parseInt(matches[1], 10);
     if ( matches[2] === 'h' ) {
-        updateAfter = Math.ceil(updateAfter / 6) / 4;
+        updateAfter = Math.max(updateAfter, 4) / 24;
     }
     return updateAfter;
 };
@@ -81,10 +81,10 @@ const extractMetadataFromList = (content, fields) => {
         out.lastModified = (new Date(out.lastModified)).getTime() || 0;
     }
     if ( out.expires ) {
-        out.expires = Math.max(parseExpires(out.expires), 0.5);
+        out.expires = parseExpires(out.expires);
     }
     if ( out.diffExpires ) {
-        out.diffExpires = Math.max(parseExpires(out.diffExpires), 0.25);
+        out.diffExpires = parseExpires(out.diffExpires);
     }
     return out;
 };
@@ -1262,7 +1262,7 @@ async function diffUpdater() {
             } else if ( data.error ) {
                 ubolog(`Diff updater: failed to update ${data.name} using ${data.patchPath}, reason: ${data.error}`);
             } else if ( data.status === 'nopatch-yet' || data.status === 'nodiff' ) {
-                ubolog(`Diff updater: Skip update of ${data.name} using ${data.patchPath}, reason: ${data.status}`);
+                ubolog(`Diff updater: skip update of ${data.name} using ${data.patchPath}, reason: ${data.status}`);
                 assetCacheSetDetails(data.name, {
                     writeTime: data.lastModified || 0
                 });
