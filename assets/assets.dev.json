@@ -43,7 +43,7 @@
 		"tags": "ads",
 		"contentURL": [
 			"https://ublockorigin.github.io/uAssets/filters/filters.txt",
-			"assets/ublock/filters.txt",
+			"assets/ublock/filters.min.txt",
 			"assets/ublock/filters.txt"
 		],
 		"cdnURLs": [
@@ -100,14 +100,14 @@
 		"title": "uBlock filters – Unbreak",
 		"contentURL": [
 			"https://ublockorigin.github.io/uAssets/filters/unbreak.txt",
-			"assets/ublock/unbreak.txt",
+			"assets/ublock/unbreak.min.txt",
 			"assets/ublock/unbreak.txt"
 		],
 		"cdnURLs": [
-			"https://ublockorigin.github.io/uAssetsCDN/filters/unbreak.txt",
-			"https://ublockorigin.pages.dev/filters/unbreak.txt",
-			"https://cdn.jsdelivr.net/gh/uBlockOrigin/uAssetsCDN@main/filters/unbreak.txt",
-			"https://cdn.statically.io/gh/uBlockOrigin/uAssetsCDN/main/filters/unbreak.txt"
+			"https://ublockorigin.github.io/uAssetsCDN/filters/unbreak.min.txt",
+			"https://ublockorigin.pages.dev/filters/unbreak.min.txt",
+			"https://cdn.jsdelivr.net/gh/uBlockOrigin/uAssetsCDN@main/filters/unbreak.min.txt",
+			"https://cdn.statically.io/gh/uBlockOrigin/uAssetsCDN/main/filters/unbreak.min.txt"
 		],
 		"supportURL": "https://github.com/uBlockOrigin/uAssets"
 	},
@@ -118,14 +118,14 @@
 		"title": "uBlock filters – Quick fixes",
 		"contentURL": [
 			"https://ublockorigin.github.io/uAssets/filters/quick-fixes.txt",
-			"assets/ublock/quick-fixes.txt",
+			"assets/ublock/quick-fixes.min.txt",
 			"assets/ublock/quick-fixes.txt"
 		],
 		"cdnURLs": [
-			"https://ublockorigin.github.io/uAssetsCDN/filters/quick-fixes.txt",
-			"https://ublockorigin.pages.dev/filters/quick-fixes.txt",
-			"https://cdn.jsdelivr.net/gh/uBlockOrigin/uAssetsCDN@main/filters/quick-fixes.txt",
-			"https://cdn.statically.io/gh/uBlockOrigin/uAssetsCDN/main/filters/quick-fixes.txt?dev=1"
+			"https://ublockorigin.github.io/uAssetsCDN/filters/quick-fixes.min.txt",
+			"https://ublockorigin.pages.dev/filters/quick-fixes.min.txt",
+			"https://cdn.jsdelivr.net/gh/uBlockOrigin/uAssetsCDN@main/filters/quick-fixes.min.txt",
+			"https://cdn.statically.io/gh/uBlockOrigin/uAssetsCDN/main/filters/quick-fixes.min.txt?dev=1"
 		],
 		"supportURL": "https://github.com/uBlockOrigin/uAssets"
 	},
@@ -514,10 +514,10 @@
 		"tags": "annoyances",
 		"contentURL": "https://ublockorigin.github.io/uAssets/filters/annoyances.txt",
 		"cdnURLs": [
-			"https://ublockorigin.github.io/uAssetsCDN/filters/annoyances.txt",
-			"https://ublockorigin.pages.dev/filters/annoyances.txt",
-			"https://cdn.jsdelivr.net/gh/uBlockOrigin/uAssetsCDN@main/filters/annoyances.txt",
-			"https://cdn.statically.io/gh/uBlockOrigin/uAssetsCDN/main/filters/annoyances.txt"
+			"https://ublockorigin.github.io/uAssetsCDN/filters/annoyances.min.txt",
+			"https://ublockorigin.pages.dev/filters/annoyances.min.txt",
+			"https://cdn.jsdelivr.net/gh/uBlockOrigin/uAssetsCDN@main/filters/annoyances.min.txt",
+			"https://cdn.statically.io/gh/uBlockOrigin/uAssetsCDN/main/filters/annoyances.min.txt"
 		],
 		"supportURL": "https://github.com/uBlockOrigin/uAssets"
 	},
