@@ -573,7 +573,9 @@
 		"title": "TimTheBig_pi-hole_tv (experimental)",
 		"tags": "ads privacy",
 		"contentURL": [
-			"https://raw.githubusercontent.com/TimTheBig/tv_block_list_for_pi-hole/main/TV_block_pi-hole.txt",
+			"https://raw.githubusercontent.com/TimTheBig/tv_block_list_for_pi-hole/main/TV_block_pi-hole.txt"
+		],
+		"cdnURLs": [
 			"https://raw.githack.com/TimTheBig/tv_block_list_for_pi-hole/main/TV_block_pi-hole.txt"
 		],
 		"supportURL": "https://github.com/TimTheBig/tv_block_list_for_pi-hole"
