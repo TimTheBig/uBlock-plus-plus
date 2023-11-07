@@ -62,7 +62,7 @@
 		"tags": "malware security",
 		"contentURL": [
 			"https://ublockorigin.github.io/uAssets/filters/badware.txt",
-			"assets/ublock/badware.txt",
+			"assets/ublock/badware.min.txt",
 			"assets/ublock/badware.txt"
 		],
 		"cdnURLs": [
@@ -118,7 +118,7 @@
 		"title": "uBlock filters – Quick fixes",
 		"contentURL": [
 			"https://ublockorigin.github.io/uAssets/filters/quick-fixes.txt",
-			"assets/ublock/quick-fixes.txt",
+			"assets/ublock/quick-fixes.min.txt",
 			"assets/ublock/quick-fixes.txt"
 		],
 		"cdnURLs": [
