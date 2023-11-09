@@ -599,11 +599,6 @@ const exCharCodeAt = (s, i) => {
     return pos >= 0 ? s.charCodeAt(pos) : -1;
 };
 
-const toEscapedCharRegex = c => {
-    const safe = c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return new RegExp(`((?:^|[^\\\\])(?:\\\\\\\\)*)\\\\${safe}`, 'g');
-};
-
 /******************************************************************************/
 
 class ArgListParser {
@@ -619,11 +614,7 @@ class ArgListParser {
         this.reWhitespaceStart = /^\s+/;
         this.reWhitespaceEnd = /\s+$/;
         this.reOddTrailingEscape = /(?:^|[^\\])(?:\\\\)*\\$/;
-        this.reEscapedDoubleQuote = toEscapedCharRegex('"');
-        this.reEscapedSingleQuote = toEscapedCharRegex("'");
-        this.reEscapedBacktick = toEscapedCharRegex('`');
-        this.reEscapedSeparator = toEscapedCharRegex(this.separatorChar);
-        this.unescapedSeparator = `$1${this.separatorChar}`;
+        this.reTrailingEscapeChars = /\\+$/;
     }
     nextArg(pattern, beg = 0) {
         const len = pattern.length;
@@ -655,22 +646,23 @@ class ArgListParser {
         }
         return this;
     }
-    normalizeArg(s) {
-        switch ( this.actualSeparatorCode ) {
-        case 0x22 /* " */:
-            if ( s.includes('"') === false ) { return; }
-            return s.replace(this.reEscapedDoubleQuote, '$1"');
-        case 0x27 /* ' */:
-            if ( s.includes("'") === false ) { return; }
-            return s.replace(this.reEscapedSingleQuote, "$1'");
-        case 0x60 /* ` */:
-            if ( s.includes('`') === false ) { return; }
-            return s.replace(this.reEscapedBacktick, '$1`');
-        default:
-            break;
+    normalizeArg(s, char = '') {
+        if ( char === '' ) { char = this.actualSeparatorChar; }
+        let out = '';
+        let pos = 0;
+        while ( (pos = s.lastIndexOf(char)) !== -1 ) {
+            out = s.slice(pos) + out;
+            s = s.slice(0, pos);
+            const match = this.reTrailingEscapeChars.exec(s);
+            if ( match === null ) { continue; }
+            const tail = (match[0].length & 1) !== 0
+                ? match[0].slice(0, -1)
+                : match[0];
+            out = tail + out;
+            s = s.slice(0, -match[0].length);
         }
-        if ( s.includes(this.separatorChar) === false ) { return; }
-        return s.replace(this.reEscapedSeparator, this.unescapedSeparator);
+        if ( out === '' ) { return s; }
+        return s + out;
     }
     leftWhitespaceCount(s) {
         const match = this.reWhitespaceStart.exec(s);
@@ -906,6 +898,10 @@ export class AstFilterParser {
         this.reBadCSP = /(?:=|;)\s*report-(?:to|uri)\b/;
         this.reNoopOption = /^_+$/;
         this.scriptletArgListParser = new ArgListParser(',');
+    }
+
+    finish() {
+        this.selectorCompiler.finish();
     }
 
     parse(raw) {
@@ -3002,7 +2998,6 @@ export function parseHeaderValue(arg) {
 
 export function parseReplaceValue(s) {
     if ( s.charCodeAt(0) !== 0x2F /* / */ ) { return; }
-    const { reEscapedComma, reEscapedDollarSign } = parseReplaceValue;
     const parser = new ArgListParser('/');
     parser.nextArg(s, 1);
     let pattern = s.slice(parser.argBeg, parser.argEnd);
@@ -3010,26 +3005,22 @@ export function parseReplaceValue(s) {
         pattern = parser.normalizeArg(pattern);
     }
     if ( pattern === '' ) { return; }
-    pattern = pattern
-        .replace(reEscapedDollarSign, '$1$$$')
-        .replace(reEscapedComma, '$1,');
+    pattern = parser.normalizeArg(pattern, '$');
+    pattern = parser.normalizeArg(pattern, ',');
     parser.nextArg(s, parser.separatorEnd);
     let replacement = s.slice(parser.argBeg, parser.argEnd);
     if ( parser.separatorEnd === parser.separatorBeg ) { return; }
     if ( parser.transform ) {
         replacement = parser.normalizeArg(replacement);
     }
-    replacement = replacement
-        .replace(reEscapedDollarSign, '$1$$')
-        .replace(reEscapedComma, '$1,');
+    replacement = parser.normalizeArg(replacement, '$');
+    replacement = parser.normalizeArg(replacement, ',');
     const flags = s.slice(parser.separatorEnd);
     try {
         return { re: new RegExp(pattern, flags), replacement };
     } catch(_) {
     }
 }
-parseReplaceValue.reEscapedDollarSign = toEscapedCharRegex('$');
-parseReplaceValue.reEscapedComma = toEscapedCharRegex(',');
 
 /******************************************************************************/
 
@@ -3227,6 +3218,14 @@ class ExtSelectorCompiler {
         // https://www.w3.org/TR/css-syntax-3/#typedef-ident-token
         this.reInvalidIdentifier = /^\d/;
         this.error = undefined;
+    }
+
+    // CSSTree library holds onto last string parsed, and this is problematic
+    // when the string is a slice of a huge parent string (typically a whole
+    // filter list), it causes the huge parent string to stay in memory.
+    // Asking CSSTree to parse an empty string resolves this issue.
+    finish() {
+        cssTree.parse('');
     }
 
     compile(raw, out, compileOptions = {}) {
