@@ -114,7 +114,7 @@ function safeSelf() {
                 return new RegExp(verbatim ? `^${reStr}$` : reStr, flags);
             }
             try {
-                return new RegExp(match[1], match[2] || flags);
+                return new RegExp(match[1], match[2] || undefined);
             }
             catch(ex) {
             }
@@ -563,7 +563,7 @@ function replaceNodeTextFn(
     const rePattern = safe.patternToRegex(pattern, 'gms');
     const extraArgs = safe.getExtraArgs(Array.from(arguments), 3);
     const shouldLog = scriptletGlobals.has('canDebug') && extraArgs.log || 0;
-    const reCondition = safe.patternToRegex(extraArgs.condition || '', 'gms');
+    const reCondition = safe.patternToRegex(extraArgs.condition || '', 'ms');
     const stop = (takeRecord = true) => {
         if ( takeRecord ) {
             handleMutations(observer.takeRecords());
@@ -848,10 +848,13 @@ function setLocalStorageItemFn(
             value = (new Date()).toISOString();
         }
     } else {
-        if ( trustedValues.includes(value.toLowerCase()) === false ) {
-            if ( /^\d+$/.test(value) === false ) { return; }
-            value = parseInt(value, 10);
-            if ( value > 32767 ) { return; }
+        const normalized = value.toLowerCase();
+        const match = /^("?)(.+)\1$/.exec(normalized);
+        const unquoted = match && match[2] || normalized;
+        if ( trustedValues.includes(unquoted) === false ) {
+            if ( /^\d+$/.test(unquoted) === false ) { return; }
+            const n = parseInt(unquoted, 10);
+            if ( n > 32767 ) { return; }
         }
     }
 
@@ -2686,9 +2689,9 @@ function disableNewtabLinks() {
 /******************************************************************************/
 
 builtinScriptlets.push({
-    name: 'cookie-remover.js',
+    name: 'remove-cookie.js',
     aliases: [
-        'remove-cookie.js',
+        'cookie-remover.js',
     ],
     fn: cookieRemover,
     world: 'ISOLATED',
@@ -2703,17 +2706,25 @@ function cookieRemover(
     if ( typeof needle !== 'string' ) { return; }
     const safe = safeSelf();
     const reName = safe.patternToRegex(needle);
-    const removeCookie = function() {
+    const extraArgs = safe.getExtraArgs(Array.from(arguments), 1);
+    const throttle = (fn, ms = 500) => {
+        if ( throttle.timer !== undefined ) { return; }
+        throttle.timer = setTimeout(( ) => {
+            throttle.timer = undefined;
+            fn();
+        }, ms);
+    };
+    const removeCookie = ( ) => {
         document.cookie.split(';').forEach(cookieStr => {
-            let pos = cookieStr.indexOf('=');
+            const pos = cookieStr.indexOf('=');
             if ( pos === -1 ) { return; }
-            let cookieName = cookieStr.slice(0, pos).trim();
-            if ( !reName.test(cookieName) ) { return; }
-            let part1 = cookieName + '=';
-            let part2a = '; domain=' + document.location.hostname;
-            let part2b = '; domain=.' + document.location.hostname;
+            const cookieName = cookieStr.slice(0, pos).trim();
+            if ( reName.test(cookieName) === false ) { return; }
+            const part1 = cookieName + '=';
+            const part2a = '; domain=' + document.location.hostname;
+            const part2b = '; domain=.' + document.location.hostname;
             let part2c, part2d;
-            let domain = document.domain;
+            const domain = document.domain;
             if ( domain ) {
                 if ( domain !== document.location.hostname ) {
                     part2c = '; domain=.' + domain;
@@ -2722,8 +2733,8 @@ function cookieRemover(
                     part2d = '; domain=' + domain.replace('www', '');
                 }
             }
-            let part3 = '; path=/';
-            let part4 = '; Max-Age=-1000; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+            const part3 = '; path=/';
+            const part4 = '; Max-Age=-1000; expires=Thu, 01 Jan 1970 00:00:00 GMT';
             document.cookie = part1 + part4;
             document.cookie = part1 + part2a + part4;
             document.cookie = part1 + part2b + part4;
@@ -2740,6 +2751,15 @@ function cookieRemover(
     };
     removeCookie();
     window.addEventListener('beforeunload', removeCookie);
+    if ( typeof extraArgs.when !== 'string' ) { return; }
+    const supportedEventTypes = [ 'scroll', 'keydown' ];
+    const eventTypes = extraArgs.when.split(/\s/);
+    for ( const type of eventTypes ) {
+        if ( supportedEventTypes.includes(type) === false ) { continue; }
+        document.addEventListener(type, ( ) => {
+            throttle(removeCookie);
+        }, { passive: true });
+    }
 }
 
 /******************************************************************************/
@@ -3398,15 +3418,17 @@ function setCookie(
         'ok',
         'on', 'off',
         'true', 't', 'false', 'f',
-        'y', 'n',
-        'yes', 'no',
+        'yes', 'y', 'no', 'n',
+        'necessary', 'required',
     ];
-    if ( validValues.includes(value.toLowerCase()) === false ) {
-        if ( /^\d+$/.test(value) === false ) { return; }
+    const normalized = value.toLowerCase();
+    const match = /^("?)(.+)\1$/.exec(normalized);
+    const unquoted = match && match[2] || normalized;
+    if ( validValues.includes(unquoted) === false ) {
+        if ( /^\d+$/.test(unquoted) === false ) { return; }
         const n = parseInt(value, 10);
         if ( n > 15 ) { return; }
     }
-    value = encodeURIComponent(value);
 
     setCookieFn(
         false,
@@ -4123,6 +4145,7 @@ function trustedPruneInboundObject(
     if ( rawNeedlePaths !== '' ) {
         needlePaths.push(...rawNeedlePaths.split(/ +/));
     }
+    const stackNeedle = safe.initPattern(extraArgs.stackToMatch || '', { canNegate: true });
     const mustProcess = root => {
         for ( const needlePath of needlePaths ) {
             if ( objectFindOwnerFn(root, needlePath) === false ) {
@@ -4150,7 +4173,7 @@ function trustedPruneInboundObject(
                         objBefore,
                         rawPrunePaths,
                         rawNeedlePaths,
-                        { matchAll: true },
+                        stackNeedle,
                         extraArgs
                     );
                     args[argIndex-1] = objAfter || objBefore;
