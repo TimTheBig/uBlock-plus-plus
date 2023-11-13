@@ -572,7 +572,7 @@
 		"group": "multipurpose",
 		"updateAfter": 13,
 		"off": true,
-		"title": "TimTheBig_pi-hole_tv (experimental)",
+		"title": "TimTheBig Pi-hole TV List",
 		"tags": "ads privacy",
 		"contentURL": [
 			"https://raw.githubusercontent.com/TimTheBig/tv_block_list_for_pi-hole/main/TV_block_pi-hole.txt"
