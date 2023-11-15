@@ -51,11 +51,13 @@ let remoteServerFriendly = false;
 const stringIsNotEmpty = s => typeof s === 'string' && s !== '';
 
 const parseExpires = s => {
-    const matches = s.match(/(\d+)\s*([dh])?/i);
+    const matches = s.match(/(\d+)\s*([dhm]?)/i);
     if ( matches === null ) { return 0; }
     let updateAfter = parseInt(matches[1], 10);
     if ( matches[2] === 'h' ) {
         updateAfter = Math.max(updateAfter, 4) / 24;
+    } else if ( matches[2] === 'm' ) {
+        updateAfter = Math.max(updateAfter, 240) / 1440;
     }
     return updateAfter;
 };
@@ -1229,7 +1231,7 @@ async function diffUpdater() {
             const metadata = extractMetadataFromList(data.text, [ 'Diff-Path' ]);
             if ( metadata instanceof Object === false ) { return; }
             if ( metadata.diffPath === data.patchPath ) { return; }
-            assetCacheSetDetails(data.assetKey, metadata.diffPath);
+            assetCacheSetDetails(data.assetKey, metadata);
         };
         bc.onmessage = ev => {
             const data = ev.data;
