@@ -24,9 +24,11 @@ This is uBo with builds that are up to date to the latest commit.
 
 ***
 
-uBlock Plus Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uB++ uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters.
+uBlock Plus Plus (uB++) is a CPU and memory-efficient [wide-spectrum content blocker][Blocking] for Chromium and Firefox. It blocks ads, trackers, coin miners, popups, annoying anti-blockers, malware sites, etc., by default using [EasyList][EasyList], [EasyPrivacy][EasyPrivacy], [Peter Lowe's Blocklist][Peter Lowe's Blocklist], [Online Malicious URL Blocklist][Malicious Blocklist], and uBO [filter lists][uBO Filters]. There are many other lists available to block even more. Hosts files are also supported. uB++ uses the EasyList filter syntax and [extends][Extended Syntax] the syntax to work with custom rules and filters. .
 
 You may easily unselect any preselected filter lists if you think uB++ blocks too much. For reference, Adblock Plus installs with only EasyList, ABP filters, and Acceptable Ads enabled by default.
+
+Good with [ClearURL](https://addons.mozilla.org/firefox/addon/clearurls/), [Privacy Badger](https://addons.mozilla.org/firefox/addon/privacy-badger17/), [LocalCDN](https://addons.mozilla.org/firefox/addon/localcdn-fork-of-decentraleyes/), [DuckDuckGo Privacy Essentials](https://addons.mozilla.org/firefox/addon/duckduckgo-for-firefox/)
 
 It is important to note that using a blocker is **NOT** [theft]. Do not fall for this creepy idea. The _ultimate_ logical consequence of `blocking = theft` is the criminalization of the inalienable right to privacy.
 
