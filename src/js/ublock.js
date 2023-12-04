@@ -23,12 +23,13 @@
 
 /******************************************************************************/
 
-import contextMenu from './contextmenu.js';
-import cosmeticFilteringEngine from './cosmetic-filtering.js';
 import io from './assets.js';
 import µb from './background.js';
-import { hostnameFromURI } from './uri-utils.js';
+import { broadcast, filteringBehaviorChanged, onBroadcast } from './broadcast.js';
+import contextMenu from './contextmenu.js';
+import cosmeticFilteringEngine from './cosmetic-filtering.js';
 import { redirectEngine } from './redirect-engine.js';
+import { hostnameFromURI } from './uri-utils.js';
 
 import {
     permanentFirewall,
@@ -147,7 +148,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         }
         bucket.push(directive);
         this.saveWhitelist();
-        µb.filteringBehaviorChanged({ hostname: targetHostname });
+        filteringBehaviorChanged({ hostname: targetHostname });
         return true;
     }
 
@@ -188,7 +189,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         }
     }
     this.saveWhitelist();
-    µb.filteringBehaviorChanged({ direction: 1 });
+    filteringBehaviorChanged({ direction: 1 });
     return true;
 };
 
@@ -432,7 +433,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         redirectEngine.invalidateResourcesSelfie(io);
         this.loadRedirectResources();
     }
-    this.fireEvent('hiddenSettingsChanged');
+    broadcast({ what: 'hiddenSettingsChanged' });
 };
 
 /******************************************************************************/
@@ -533,7 +534,7 @@ const matchBucket = function(url, hostname, bucket, start) {
     cosmeticFilteringEngine.removeFromSelectorCache(srcHostname, 'net');
 
     // Flush caches
-    µb.filteringBehaviorChanged({
+    filteringBehaviorChanged({
         direction: action === 1 ? 1 : 0,
         hostname: srcHostname,
     });
@@ -622,7 +623,7 @@ const matchBucket = function(url, hostname, bucket, start) {
         switch ( details.name ) {
             case 'no-scripting':
             case 'no-remote-fonts':
-                µb.filteringBehaviorChanged({
+                filteringBehaviorChanged({
                     direction: details.state ? 1 : 0,
                     hostname: details.hostname,
                 });
@@ -686,7 +687,10 @@ const matchBucket = function(url, hostname, bucket, start) {
 
     parse();
 
-    µb.onEvent('hiddenSettingsChanged', ( ) => { parse(); });
+    onBroadcast(msg => {
+        if ( msg.what !== 'hiddenSettingsChanged' ) { return; }
+        parse();
+    });
 }
 
 /******************************************************************************/
