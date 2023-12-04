@@ -28,6 +28,7 @@
 import publicSuffixList from '../lib/publicsuffixlist/publicsuffixlist.js';
 import punycode from '../lib/punycode.js';
 
+import { filteringBehaviorChanged } from './broadcast.js';
 import cacheStorage from './cachestorage.js';
 import cosmeticFilteringEngine from './cosmetic-filtering.js';
 import htmlFilteringEngine from './html-filtering.js';
@@ -346,7 +347,7 @@ const onMessage = function(request, sender, callback) {
     case 'setWhitelist':
         µb.netWhitelist = µb.whitelistFromString(request.whitelist);
         µb.saveWhitelist();
-        µb.filteringBehaviorChanged();
+        filteringBehaviorChanged();
         break;
 
     case 'toggleHostnameSwitch':
@@ -1695,17 +1696,14 @@ const getLoggerData = async function(details, activeTabId, callback) {
         tooltips: µb.userSettings.tooltipsDisabled === false
     };
     if ( µb.pageStoresToken !== details.tabIdsToken ) {
-        const tabIds = new Map();
+        response.tabIds = [];
         for ( const [ tabId, pageStore ] of µb.pageStores ) {
-            const { rawURL } = pageStore;
-            if (
-                rawURL.startsWith(extensionOriginURL) === false ||
-                rawURL.startsWith(documentBlockedURL)
-            ) {
-                tabIds.set(tabId, pageStore.title);
+            const { rawURL, title } = pageStore;
+            if ( rawURL.startsWith(extensionOriginURL) ) {
+                if ( rawURL.startsWith(documentBlockedURL) === false ) { continue; }
             }
+            response.tabIds.push([ tabId, title ]);
         }
-        response.tabIds = Array.from(tabIds);
     }
     if ( activeTabId ) {
         const pageStore = µb.pageStoreFromTabId(activeTabId);
@@ -1837,6 +1835,48 @@ vAPI.messaging.listen({
     name: 'loggerUI',
     listener: onMessage,
     privileged: true,
+});
+
+// <<<<< end of local scope
+}
+
+/******************************************************************************/
+/******************************************************************************/
+
+// Channel:
+//      domInspectorContent
+//      unprivileged
+
+{
+// >>>>> start of local scope
+
+const onMessage = (request, sender, callback) => {
+    // Async
+    switch ( request.what ) {
+    default:
+        break;
+    }
+    // Sync
+    let response;
+    switch ( request.what ) {
+    case 'getInspectorArgs':
+        response = {
+            inspectorURL: vAPI.getURL(
+                `/web_accessible_resources/dom-inspector.html?secret=${vAPI.warSecret.short()}`
+            ),
+        };
+        break;
+    default:
+        return vAPI.messaging.UNHANDLED;
+    }
+
+    callback(response);
+};
+
+vAPI.messaging.listen({
+    name: 'domInspectorContent',
+    listener: onMessage,
+    privileged: false,
 });
 
 // <<<<< end of local scope
