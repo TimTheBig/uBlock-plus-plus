@@ -160,7 +160,11 @@ const onMessage = function(request, sender, callback) {
             );
         }
         const options = {
-            extensionPaths: redirectEngine.getResourceDetails(),
+            extensionPaths: redirectEngine.getResourceDetails().filter(e =>
+                typeof e[1].extensionPath === 'string' && e[1].extensionPath !== ''
+            ).map(e =>
+                [ e[0], e[1].extensionPath ]
+            ),
             env: vAPI.webextFlavor.env,
         };
         const t0 = Date.now();
@@ -1443,7 +1447,9 @@ const getSupportData = async function() {
 
     const now = Date.now();
 
-    const formatDelayFromNow = time => {
+    const formatDelayFromNow = list => {
+        const time = list.writeTime;
+        if ( typeof time !== 'number' || time === 0 ) { return 'never'; }
         if ( (time || 0) === 0 ) { return '?'; }
         const delayInSec = (now - time) / 1000;
         const days = (delayInSec / 86400) | 0;
@@ -1454,7 +1460,9 @@ const getSupportData = async function() {
         if ( hours > 0 ) { parts.push(`${hours}h`); }
         if ( minutes > 0 ) { parts.push(`${minutes}m`); }
         if ( parts.length === 0 ) { parts.push('now'); }
-        return parts.join('.');
+        const out = parts.join('.');
+        if ( list.diffUpdated ) { return `${out} Δ`; }
+        return out;
     };
 
     const lists = µb.availableFilterLists;
@@ -1471,11 +1479,7 @@ const getSupportData = async function() {
             if ( typeof list.entryCount === 'number' ) {
                 listDetails.push(`${list.entryCount}-${list.entryCount-list.entryUsedCount}`);
             }
-            if ( typeof list.writeTime !== 'number' || list.writeTime === 0 ) {
-                listDetails.push('never');
-            } else {
-                listDetails.push(formatDelayFromNow(list.writeTime));
-            }
+            listDetails.push(formatDelayFromNow(list));
         }
         if ( list.isDefault || listKey === µb.userFiltersPath ) {
             if ( used ) {
@@ -1561,7 +1565,9 @@ const onMessage = function(request, sender, callback) {
         });
 
     case 'getLists':
-        return getLists(callback);
+        return µb.isReadyPromise.then(( ) => {
+            getLists(callback);
+        });
 
     case 'getLocalData':
         return getLocalData().then(localData => {
@@ -2109,9 +2115,12 @@ const onMessage = function(request, sender, callback) {
     case 'updateLists':
         const listkeys = request.listkeys.split(',').filter(s => s !== '');
         if ( listkeys.length === 0 ) { return; }
-        for ( const listkey of listkeys ) {
-            io.purge(listkey);
-            io.remove(`compiled/${listkey}`);
+        if ( listkeys.includes('all') ) {
+            io.purge(/./, 'public_suffix_list.dat');
+        } else {
+            for ( const listkey of listkeys ) {
+                io.purge(listkey);
+            }
         }
         µb.scheduleAssetUpdater(0);
         µb.openNewTab({
