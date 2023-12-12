@@ -273,6 +273,10 @@ const µBlock = {  // jshint ignore:line
     uiAccentStylesheet: '',
 };
 
+µBlock.isReadyPromise = new Promise(resolve => {
+    µBlock.isReadyResolve = resolve;
+});
+
 µBlock.domainFromHostname = domainFromHostname;
 µBlock.hostnameFromURI = hostnameFromURI;
 
