@@ -39,6 +39,7 @@ const reIsUserAsset = /^user-/;
 const errorCantConnectTo = i18n$('errorCantConnectTo');
 const MS_PER_HOUR = 60 * 60 * 1000;
 const MS_PER_DAY = 24 * MS_PER_HOUR;
+const MINUTES_PER_DAY = 24 * 60;
 const EXPIRES_DEFAULT = 7;
 
 const assets = {};
@@ -94,31 +95,11 @@ const extractMetadataFromList = (content, fields) => {
 assets.extractMetadataFromList = extractMetadataFromList;
 
 const resourceTimeFromXhr = xhr => {
-    try {
-        // First lookup timestamp from content
-        let assetTime = 0;
-        if ( typeof xhr.response === 'string' ) {
-            const metadata = extractMetadataFromList(xhr.response, [
-                'Last-Modified'
-            ]);
-            assetTime = metadata.lastModified || 0;
-        }
-        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Age
-        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Date
-        let networkTime = 0;
-        if ( assetTime === 0 ) {
-            const age = parseInt(xhr.getResponseHeader('Age'), 10);
-            if ( isNaN(age) === false ) {
-                const time = (new Date(xhr.getResponseHeader('Date'))).getTime();
-                if ( isNaN(time) === false ) {
-                    networkTime = time - age * 1000;
-                }
-            }
-        }
-        return Math.max(assetTime, networkTime, 0);
-    } catch(_) {
-    }
-    return 0;
+    if ( typeof xhr.response !== 'string' ) {  return 0; }
+    const metadata = extractMetadataFromList(xhr.response, [
+        'Last-Modified'
+    ]);
+    return metadata.lastModified || 0;
 };
 
 const resourceTimeFromParts = (parts, time) => {
@@ -175,6 +156,23 @@ const isDiffUpdatableAsset = content => {
         data.diffPath.startsWith('%') === false;
 };
 
+const computedPatchUpdateTime = assetKey => {
+    const entry = assetCacheRegistry[assetKey];
+    if ( entry === undefined ) { return 0; }
+    if ( typeof entry.diffPath !== 'string' ) { return 0; }
+    if ( typeof entry.diffExpires !== 'number' ) { return 0; }
+    const match = /(\d+)\.(\d+)\.(\d+)\.(\d+)/.exec(entry.diffPath);
+    if ( match === null ) { return getWriteTime(); }
+    const date = new Date();
+    date.setUTCFullYear(
+        parseInt(match[1], 10),
+        parseInt(match[2], 10) - 1,
+        parseInt(match[3], 10)
+    );
+    date.setUTCHours(0, parseInt(match[4], 10) + entry.diffExpires * MINUTES_PER_DAY, 0, 0);
+    return date.getTime();
+};
+
 /******************************************************************************/
 
 // favorLocal: avoid making network requests whenever possible
@@ -198,14 +196,14 @@ const getContentURLs = (assetKey, options = {}) => {
             return 0;
         });
     }
-    if ( Array.isArray(entry.cdnURLs) ) {
+    if ( options.favorOrigin !== true && Array.isArray(entry.cdnURLs) ) {
         const cdnURLs = entry.cdnURLs.slice();
         for ( let i = 0, n = cdnURLs.length; i < n; i++ ) {
             const j = Math.floor(Math.random() * n);
             if ( j === i ) { continue; }
             [ cdnURLs[j], cdnURLs[i] ] = [ cdnURLs[i], cdnURLs[j] ];
         }
-        if ( options.favorLocal || options.favorOrigin ) {
+        if ( options.favorLocal ) {
             contentURLs.push(...cdnURLs);
         } else {
             contentURLs.unshift(...cdnURLs);
@@ -1050,8 +1048,10 @@ async function getRemote(assetKey, options = {}) {
         error = undefined;
 
         // If fetched resource is older than cached one, ignore
-        stale = resourceIsStale(result, cacheDetails);
-        if ( stale ) { continue; }
+        if ( options.favorOrigin !== true ) {
+            stale = resourceIsStale(result, cacheDetails);
+            if ( stale ) { continue; }
+        }
 
         // Success
         assetCacheWrite(assetKey, {
@@ -1169,7 +1169,7 @@ assets.getUpdateAges = async function(conditions = {}) {
         out.push({
             assetKey,
             age,
-            ageNormalized: age / getUpdateAfterTime(assetKey),
+            ageNormalized: age / Math.max(1, getUpdateAfterTime(assetKey)),
         });
     }
     return out;
@@ -1221,12 +1221,13 @@ async function diffUpdater() {
         const assetDetails = getAssetDiffDetails(assetKey);
         if ( assetDetails === undefined ) { continue; }
         assetDetails.what = 'update';
-        if ( (getWriteTime(assetKey) + assetDetails.diffExpires) > now ) {
-            assetDetails.fetch = false;
-            toSoftUpdate.push(assetDetails);
-        } else {
+        const computedUpdateTime = computedPatchUpdateTime(assetKey);
+        if ( computedUpdateTime !== 0 && computedUpdateTime <= now ) {
             assetDetails.fetch = true;
             toHardUpdate.push(assetDetails);
+        } else {
+            assetDetails.fetch = false;
+            toSoftUpdate.push(assetDetails);
         }
     }
     if ( toHardUpdate.length === 0 ) { return; }
@@ -1432,8 +1433,8 @@ function updateDone() {
 
 assets.updateStart = function(details) {
     const oldUpdateDelay = updaterAssetDelay;
-    const newUpdateDelay = typeof details.delay === 'number'
-        ? details.delay
+    const newUpdateDelay = typeof details.fetchDelay === 'number'
+        ? details.fetchDelay
         : updaterAssetDelayDefault;
     updaterAssetDelay = Math.min(oldUpdateDelay, newUpdateDelay);
     updaterAuto = details.auto === true;
