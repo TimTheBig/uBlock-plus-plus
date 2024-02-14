@@ -53,10 +53,13 @@ let remoteServerFriendly = false;
 const stringIsNotEmpty = s => typeof s === 'string' && s !== '';
 
 const parseExpires = s => {
-    const matches = s.match(/(\d+)\s*([dhm]?)/i);
+    const matches = s.match(/(\d+)\s*([wdhm]?)/i);
     if ( matches === null ) { return; }
     let updateAfter = parseInt(matches[1], 10);
-    if ( matches[2] === 'h' ) {
+    if ( updateAfter === 0 ) { return; }
+    if ( matches[2] === 'w' ) {
+        updateAfter *= 7 * 24;
+    } else if ( matches[2] === 'h' ) {
         updateAfter = Math.max(updateAfter, 4) / 24;
     } else if ( matches[2] === 'm' ) {
         updateAfter = Math.max(updateAfter, 240) / 1440;
@@ -428,7 +431,7 @@ assets.fetchFilterList = async function(mainlistURL) {
                 continue;
             }
             if ( result instanceof Object === false ) { continue; }
-            const content = result.content;
+            const content = result.content.trimEnd() + '\n';
             const slices = sfp.utils.preparser.splitter(
                 content,
                 vAPI.webextFlavor.env
@@ -500,7 +503,7 @@ assets.fetchFilterList = async function(mainlistURL) {
         resourceTime,
         content: allParts.length === 1
             ? allParts[0]
-            : allParts.join('') + '\n'
+            : allParts.join('')
     };
 };
 

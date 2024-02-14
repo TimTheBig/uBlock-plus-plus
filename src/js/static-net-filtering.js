@@ -4571,17 +4571,7 @@ FilterContainer.prototype.dnrFromCompiled = function(op, context, ...args) {
             }
             break;
         case 'uritransform': {
-            const path = rule.__modifierValue;
-            let priority = rule.priority || 1;
-            if ( rule.__modifierAction !== ALLOW_REALM ) {
-                const transform = { path };
-                rule.action.type = 'redirect';
-                rule.action.redirect = { transform };
-                rule.priority = priority + 1;
-            } else {
-                rule.action.type = 'block';
-                rule.priority = priority + 2;
-            }
+            dnrAddRuleError(rule, `Incompatible with DNR: uritransform=${rule.__modifierValue}`);
             break;
         }
         default:
@@ -5309,13 +5299,16 @@ FilterContainer.prototype.transformRequest = function(fctxt) {
     const cache = refs.$cache;
     if ( cache === undefined ) { return; }
     const redirectURL = new URL(fctxt.url);
-    const before = redirectURL.pathname + redirectURL.search;
+    const before = `${redirectURL.pathname}${redirectURL.search}${redirectURL.hash}`;
     if ( cache.re.test(before) !== true ) { return; }
     const after = before.replace(cache.re, cache.replacement);
     if ( after === before ) { return; }
-    const searchPos = after.includes('?') && after.indexOf('?') || after.length;
-    redirectURL.pathname = after.slice(0, searchPos);
-    redirectURL.search = after.slice(searchPos);
+    const hashPos = after.indexOf('#');
+    redirectURL.hash = hashPos !== -1 ? after.slice(hashPos) : '';
+    const afterMinusHash = hashPos !== -1 ? after.slice(0, hashPos) : after;
+    const searchPos = afterMinusHash.indexOf('?');
+    redirectURL.search = searchPos !== -1 ? afterMinusHash.slice(searchPos) : '';
+    redirectURL.pathname = searchPos !== -1 ? after.slice(0, searchPos) : after;
     fctxt.redirectURL = redirectURL.href;
     return directives;
 };
@@ -5422,7 +5415,7 @@ FilterContainer.prototype.filterQuery = function(fctxt) {
         fctxt.redirectURL = url.slice(0, qpos);
         if ( params.size !== 0 ) {
             fctxt.redirectURL += '?' + Array.from(params).map(a =>
-                a[1] === '' ? a[0] : `${a[0]}=${a[1]}`
+                a[1] === '' ? `${a[0]}=` : `${a[0]}=${a[1]}`
             ).join('&');
         }
         if ( hpos !== url.length ) {
