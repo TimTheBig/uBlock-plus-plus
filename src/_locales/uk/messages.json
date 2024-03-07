@@ -483,6 +483,14 @@
     "message": "Домени шкідливих програм",
     "description": "Filter lists section name"
   },
+  "3pGroupSocial": {
+    "message": "Віджети соціальних мереж",
+    "description": "Filter lists section name"
+  },
+  "3pGroupCookies": {
+    "message": "Повідомлення про файли cookie",
+    "description": "Filter lists section name"
+  },
   "3pGroupAnnoyances": {
     "message": "Надокучливості",
     "description": "Filter lists section name"

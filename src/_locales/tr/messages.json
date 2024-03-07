@@ -483,6 +483,14 @@
     "message": "Zararlı alan adları",
     "description": "Filter lists section name"
   },
+  "3pGroupSocial": {
+    "message": "Sosyal gereçler",
+    "description": "Filter lists section name"
+  },
+  "3pGroupCookies": {
+    "message": "Çerez bildirimleri",
+    "description": "Filter lists section name"
+  },
   "3pGroupAnnoyances": {
     "message": "Can sıkıcı ögeler",
     "description": "Filter lists section name"

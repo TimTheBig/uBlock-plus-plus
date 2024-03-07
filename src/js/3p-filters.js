@@ -74,7 +74,9 @@ const renderNodeStats = (used, total) => {
 };
 
 const i18nGroupName = name => {
-    return i18n$('3pGroup' + name.charAt(0).toUpperCase() + name.slice(1));
+    const groupname = i18n$('3pGroup' + name.charAt(0).toUpperCase() + name.slice(1));
+    if ( groupname !== '' ) { return groupname; }
+    return `${name.charAt(0).toLocaleUpperCase}${name.slice(1)}`;
 };
 
 /******************************************************************************/
@@ -223,8 +225,11 @@ const renderFilterLists = ( ) => {
             'privacy',
             'malware',
             'multipurpose',
+            'cookies',
+            'social',
             'annoyances',
             'regions',
+            'unknown',
             'custom'
         ];
         for ( const key of groupKeys ) {
@@ -234,11 +239,11 @@ const renderFilterLists = ( ) => {
             };
         }
         for ( const [ listkey, listDetails ] of Object.entries(response.available) ) {
-            let groupKey = listDetails.group;
-            if ( groupKey === 'social' ) {
-                groupKey = 'annoyances';
+            let groupkey = listDetails.group;
+            if ( listTree.hasOwnProperty(groupkey) === false ) {
+                groupkey = 'unknown';
             }
-            const groupDetails = listTree[groupKey];
+            const groupDetails = listTree[groupkey];
             if ( listDetails.parent !== undefined ) {
                 let lists = groupDetails.lists;
                 for ( const parent of listDetails.parent.split('|') ) {
@@ -253,6 +258,15 @@ const renderFilterLists = ( ) => {
                 groupDetails.lists[listkey] = listDetails;
             }
         }
+        // https://github.com/uBlockOrigin/uBlock-issues/issues/3154#issuecomment-1975413427
+        //   Remove empty sections
+        for ( const groupkey of groupKeys ) {
+            const groupDetails = listTree[groupkey];
+            if ( groupDetails === undefined ) { continue; }
+            if ( Object.keys(groupDetails.lists).length !== 0 ) { continue; }
+            delete listTree[groupkey];
+        }
+
         const listEntries = createListEntries('root', listTree);
         qs$('#lists .listEntries').replaceWith(listEntries);
 
@@ -530,6 +544,34 @@ dom.on('#lists', 'click', 'span.cache', onPurgeClicked);
 /******************************************************************************/
 
 const selectFilterLists = async ( ) => {
+    // External filter lists to import
+    // Find stock list matching entries in lists to import
+    const toImport = (( ) => {
+        const textarea = qs$('#lists .listEntry[data-role="import"].expanded textarea');
+        if ( textarea === null ) { return ''; }
+        const lists = listsetDetails.available;
+        const lines = textarea.value.split(/\s+\n|\s+/);
+        const after = [];
+        for ( const line of lines ) {
+            if ( /^https?:\/\//.test(line) === false ) { continue; }
+            for ( const [ listkey, list ] of Object.entries(lists) ) {
+                if ( list.content !== 'filters' ) { continue; }
+                if ( list.contentURL === undefined ) { continue; }
+                if ( list.contentURL.includes(line) === false ) {
+                    after.push(line);
+                    continue;
+                }
+                const listEntry = qs$(`[data-key="${list.group}"] [data-key="${listkey}"]`);
+                if ( listEntry === null ) { break; }
+                toggleFilterList(listEntry, true);
+                break;
+            }
+        }
+        dom.cl.remove(textarea.closest('.expandable'), 'expanded');
+        textarea.value = '';
+        return after.join('\n');
+    })();
+
     // Cosmetic filtering switch
     let checked = qs$('#parseCosmeticFilters').checked;
     vAPI.messaging.send('dashboard', {
@@ -567,14 +609,6 @@ const selectFilterLists = async ( ) => {
         } else {
             listDetails.off = true;
         }
-    }
-
-    // External filter lists to import
-    const textarea = qs$('#lists .listEntry[data-role="import"].expanded textarea');
-    const toImport = textarea !== null && textarea.value.trim() || '';
-    if ( textarea !== null ) {
-        dom.cl.remove(textarea.closest('.expandable'), 'expanded');
-        textarea.value = '';
     }
 
     hashFromListsetDetails();
@@ -678,9 +712,8 @@ dom.on('.searchbar input', 'input', searchFilterLists);
 /******************************************************************************/
 
 const expandedListSet = new Set([
-    'uBlock filters',
-    'AdGuard – Annoyances',
-    'EasyList – Annoyances',
+    'cookies',
+    'social',
 ]);
 
 const listIsExpanded = which => {

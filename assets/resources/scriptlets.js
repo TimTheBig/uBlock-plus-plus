@@ -1198,10 +1198,10 @@ function jsonPruneFetchResponseFn(
     const extraArgs = safe.getExtraArgs(Array.from(arguments), 2);
     const propNeedles = parsePropertiesToMatch(extraArgs.propsToMatch, 'url');
     const stackNeedle = safe.initPattern(extraArgs.stackToMatch || '', { canNegate: true });
+    const logall = rawPrunePaths === '';
     const applyHandler = function(target, thisArg, args) {
         const fetchPromise = Reflect.apply(target, thisArg, args);
-        if ( rawPrunePaths === '' ) { return fetchPromise; }
-        let outcome = 'match';
+        let outcome = logall ? 'nomatch' : 'match';
         if ( propNeedles.size !== 0 ) {
             const objs = [ args[0] instanceof Object ? args[0] : { url: args[0] } ];
             if ( objs[0] instanceof Request ) {
@@ -1218,14 +1218,18 @@ function jsonPruneFetchResponseFn(
                 outcome = 'nomatch';
             }
         }
-        if ( outcome === 'nomatch' ) { return fetchPromise; }
-        if ( safe.logLevel > 1 ) {
+        if ( logall === false && outcome === 'nomatch' ) { return fetchPromise; }
+        if ( safe.logLevel > 1 && outcome !== 'nomatch' && propNeedles.size !== 0 ) {
             safe.uboLog(logPrefix, `Matched optional "propsToMatch"\n${extraArgs.propsToMatch}`);
         }
         return fetchPromise.then(responseBefore => {
             const response = responseBefore.clone();
             return response.json().then(objBefore => {
                 if ( typeof objBefore !== 'object' ) { return responseBefore; }
+                if ( logall ) {
+                    safe.uboLog(logPrefix, safe.JSON_stringify(objBefore, null, 2));
+                    return responseBefore;
+                }
                 const objAfter = objectPruneFn(
                     objBefore,
                     rawPrunePaths,
@@ -1481,7 +1485,7 @@ function abortOnPropertyWrite(
     if ( typeof prop !== 'string' ) { return; }
     if ( prop === '' ) { return; }
     const safe = safeSelf();
-    const logPrefix = safe.makeLogPrefix('abort-on-property-read', prop);
+    const logPrefix = safe.makeLogPrefix('abort-on-property-write', prop);
     const exceptionToken = getExceptionToken();
     let owner = window;
     for (;;) {
@@ -3455,7 +3459,7 @@ function hrefSanitizer(
             if ( shouldSanitize ) { break; }
         }
         if ( shouldSanitize === false ) { return; }
-        timer = self.requestAnimationFrame(( ) => {
+        timer = self.requestIdleCallback(( ) => {
             timer = undefined;
             sanitize();
         });
@@ -3564,6 +3568,11 @@ function spoofCSS(
         }
         return value;
     };
+    const cloackFunc = (fn, thisArg, name) => {
+        const trap = fn.bind(thisArg);
+        Object.defineProperty(trap, 'name', { value: name });
+        return trap;
+    };
     self.getComputedStyle = new Proxy(self.getComputedStyle, {
         apply: function(target, thisArg, args) {
             if ( shouldDebug !== 0 ) { debugger; }    // jshint ignore: line
@@ -3574,11 +3583,11 @@ function spoofCSS(
                 get(target, prop, receiver) {
                     if ( typeof target[prop] === 'function' ) {
                         if ( prop === 'getPropertyValue' ) {
-                            return (function(prop) {
+                            return cloackFunc(function(prop) {
                                 return spoofStyle(prop, target[prop]);
-                            }).bind(target);
+                            }, target, 'getPropertyValue');
                         }
-                        return target[prop].bind(target);
+                        return cloackFunc(target[prop], target, prop);
                     }
                     return spoofStyle(prop, Reflect.get(target, prop, receiver));
                 },
@@ -3706,7 +3715,7 @@ function setCookie(
         value,
         '',
         path,
-        safeSelf().getExtraArgs(Array.from(arguments), 3)
+        safe.getExtraArgs(Array.from(arguments), 3)
     );
 
     if ( done ) {

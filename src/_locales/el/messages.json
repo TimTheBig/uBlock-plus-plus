@@ -483,6 +483,14 @@
     "message": "Τομείς κακόβουλου λογισμικού",
     "description": "Filter lists section name"
   },
+  "3pGroupSocial": {
+    "message": "Γραφικά στοιχεία κοινωνικής δικτύωσης",
+    "description": "Filter lists section name"
+  },
+  "3pGroupCookies": {
+    "message": "Ειδοποιήσεις για cookies",
+    "description": "Filter lists section name"
+  },
   "3pGroupAnnoyances": {
     "message": "Ενοχλήσεις",
     "description": "Filter lists section name"
