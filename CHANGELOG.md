@@ -1,5 +1,33 @@
 ## Fixes / changes
 
+- [Assume UTF-8 when no encoding can be looked up](https://github.com/gorhill/uBlock/commit/63acdcbdeb)
+- [Fix issue with "My filters" pane on mobile](https://github.com/gorhill/uBlock/commit/24d94e559d)
+- [Support aborting "Pick" mode in element picker](https://github.com/gorhill/uBlock/commit/a557f62112)
+- [Remove sections with no lists in "Filter lists" pane](https://github.com/gorhill/uBlock/commit/0f4e50db07)
+- [Add "Social widgets", "Cookie notices" sections in "Filter lists" pane](https://github.com/gorhill/uBlock/commit/21a76e32a1)
+- [No longer disable generic cosmetic filters by default on mobile](https://github.com/gorhill/uBlock/commit/7a768e7b1a)
+- [Improve `spoof-css` scriptlet](https://github.com/gorhill/uBlock/commit/603239970d)
+- [Make asset updater compatible with non-persistent background page](https://github.com/gorhill/uBlock/commit/96704f2fda)
+- [Move dragbar to the top of element picker dialog](https://github.com/gorhill/uBlock/commit/953c978d59)
+    - [Move "Quit" button to top bar in element picker](https://github.com/gorhill/uBlock/commit/6266c4718d)
+- [Add advanced setting `requestStatsDisabled`](https://github.com/gorhill/uBlock/commit/e02ea69c86)
+- [First lookup matching stock lists when importing URLs](https://github.com/gorhill/uBlock/commit/2b16a10b82)
+- [Reset filter lists in worker when creating filters via "Block element"](https://github.com/gorhill/uBlock/commit/b0067b79d5)
+- [Remove trusted-source requirement when using `badfilter`](https://github.com/gorhill/uBlock/commit/3c299b8632)
+- [Redesign cache storage](https://github.com/gorhill/uBlock/commit/086766a924)
+- [Don't match network filter-derived regexes against non-network URIs](https://github.com/gorhill/uBlock/commit/2262a129ec)
+- [Remove obsolete trusted directives](https://github.com/gorhill/uBlock/commit/439a059cca)
+- [Support logging details of calls to `json-prune-fetch-response`](https://github.com/gorhill/uBlock/commit/e527a8f9af)
+- [Escape special whitespace characters in attribute values](https://github.com/gorhill/uBlock/commit/be3e366019)
+
+----------
+
+# 1.56.0
+
+## Fixes / changes
+
+- [Mind that multiple `uritransform` may apply to a single request](https://github.com/gorhill/uBlock/commit/2a5a444482)
+- [Fix incorrect built-in filtering expression in logger](https://github.com/gorhill/uBlock/commit/9bff0c2f94)
 - [Fix improper invalidation of valid `uritransform` exception filters](https://github.com/gorhill/uBlock/commit/21ec5a277c)
 - [Improve `prevent-addEventListener` scriptlet](https://github.com/gorhill/uBlock/commit/b22b3d729b)
 - [Fix Chartbeat flicker control `div`'s](https://github.com/gorhill/uBlock/commit/397d6d47b9) (by @ryanbr)
