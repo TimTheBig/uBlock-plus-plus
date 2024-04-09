@@ -19,11 +19,9 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-'use strict';
-
-import { onBroadcast } from './broadcast.js';
 import { dom, qs$, qsa$ } from './dom.js';
 import { i18n, i18n$ } from './i18n.js';
+import { onBroadcast } from './broadcast.js';
 
 /******************************************************************************/
 
@@ -31,6 +29,10 @@ const lastUpdateTemplateString = i18n$('3pLastUpdate');
 const obsoleteTemplateString = i18n$('3pExternalListObsolete');
 const reValidExternalList = /^[a-z-]+:\/\/(?:\S+\/\S*|\/\S+)/m;
 const recentlyUpdated = 1 * 60 * 60 * 1000; // 1 hour
+
+// https://eslint.org/docs/latest/rules/no-prototype-builtins
+const hasOwnProperty = (o, p) =>
+    Object.prototype.hasOwnProperty.call(o, p);
 
 let listsetDetails = {};
 
@@ -92,8 +94,9 @@ const renderFilterLists = ( ) => {
 
     const initializeListEntry = (listDetails, listEntry) => {
         const listkey = listEntry.dataset.key;
+        const groupkey = listDetails.group2 || listDetails.group;
         const listEntryPrevious =
-            qs$(`[data-key="${listDetails.group}"] [data-key="${listkey}"]`);
+            qs$(`[data-key="${groupkey}"] [data-key="${listkey}"]`);
         if ( listEntryPrevious !== null ) {
             if ( dom.cl.has(listEntryPrevious, 'checked') ) {
                 dom.cl.add(listEntry, 'checked');
@@ -181,6 +184,9 @@ const renderFilterLists = ( ) => {
         if ( depth !== 0 ) {
             const reEmojis = /\p{Emoji}+/gu;
             treeEntries.sort((a ,b) => {
+                const ap = a[1].preferred === true;
+                const bp = b[1].preferred === true;
+                if ( ap !== bp ) { return ap ? -1 : 1; }
                 const as = (a[1].title || a[0]).replace(reEmojis, '');
                 const bs = (b[1].title || b[0]).replace(reEmojis, '');
                 return as.localeCompare(bs);
@@ -239,8 +245,8 @@ const renderFilterLists = ( ) => {
             };
         }
         for ( const [ listkey, listDetails ] of Object.entries(response.available) ) {
-            let groupkey = listDetails.group;
-            if ( listTree.hasOwnProperty(groupkey) === false ) {
+            let groupkey = listDetails.group2 || listDetails.group;
+            if ( hasOwnProperty(listTree, groupkey) === false ) {
                 groupkey = 'unknown';
             }
             const groupDetails = listTree[groupkey];
@@ -249,6 +255,9 @@ const renderFilterLists = ( ) => {
                 for ( const parent of listDetails.parent.split('|') ) {
                     if ( lists[parent] === undefined ) {
                         lists[parent] = { title: parent, lists: {} };
+                    }
+                    if ( listDetails.preferred === true ) {
+                        lists[parent].preferred = true;
                     }
                     lists = lists[parent].lists;
                 }
@@ -550,20 +559,20 @@ const selectFilterLists = async ( ) => {
         const textarea = qs$('#lists .listEntry[data-role="import"].expanded textarea');
         if ( textarea === null ) { return ''; }
         const lists = listsetDetails.available;
-        const lines = textarea.value.split(/\s+\n|\s+/);
+        const lines = textarea.value.split(/\s+/);
         const after = [];
         for ( const line of lines ) {
+            after.push(line);
             if ( /^https?:\/\//.test(line) === false ) { continue; }
             for ( const [ listkey, list ] of Object.entries(lists) ) {
                 if ( list.content !== 'filters' ) { continue; }
                 if ( list.contentURL === undefined ) { continue; }
-                if ( list.contentURL.includes(line) === false ) {
-                    after.push(line);
-                    continue;
-                }
-                const listEntry = qs$(`[data-key="${list.group}"] [data-key="${listkey}"]`);
+                if ( list.contentURL.includes(line) === false ) { continue; }
+                const groupkey = list.group2 || list.group;
+                const listEntry = qs$(`[data-key="${groupkey}"] [data-key="${listkey}"]`);
                 if ( listEntry === null ) { break; }
                 toggleFilterList(listEntry, true);
+                after.pop();
                 break;
             }
         }
@@ -594,7 +603,7 @@ const selectFilterLists = async ( ) => {
     const toRemove = [];
     for ( const liEntry of qsa$('#lists .listEntry[data-role="leaf"]') ) {
         const listkey = liEntry.dataset.key;
-        if ( listsetDetails.available.hasOwnProperty(listkey) === false ) {
+        if ( hasOwnProperty(listsetDetails.available, listkey) === false ) {
             continue;
         }
         const listDetails = listsetDetails.available[listkey];
@@ -664,7 +673,7 @@ dom.on('#suspendUntilListsAreLoaded', 'change', userSettingCheckboxChanged);
 /******************************************************************************/
 
 const searchFilterLists = ( ) => {
-    const pattern = dom.prop('.searchbar input', 'value') || '';
+    const pattern = dom.prop('.searchfield input', 'value') || '';
     dom.cl.toggle('#lists', 'searchMode', pattern !== '');
     if ( pattern === '' ) { return; }
     const reflectSearchMatches = listEntry => {
@@ -691,10 +700,11 @@ const searchFilterLists = ( ) => {
         if ( listDetails === undefined ) { continue; }
         let haystack = perListHaystack.get(listDetails);
         if ( haystack === undefined ) {
+            const groupkey = listDetails.group2 || listDetails.group || '';
             haystack = [
                 listDetails.title,
-                listDetails.group || '',
-                i18nGroupName(listDetails.group || ''),
+                groupkey,
+                i18nGroupName(groupkey),
                 listDetails.tags || '',
                 toI18n(listDetails.tags || ''),
             ].join(' ').trim();
@@ -707,7 +717,7 @@ const searchFilterLists = ( ) => {
 
 const perListHaystack = new WeakMap();
 
-dom.on('.searchbar input', 'input', searchFilterLists);
+dom.on('.searchfield input', 'input', searchFilterLists);
 
 /******************************************************************************/
 
@@ -876,6 +886,8 @@ self.cloud.onPull = function fromCloudData(data, append) {
 };
 
 /******************************************************************************/
+
+self.wikilink = 'https://github.com/gorhill/uBlock/wiki/Dashboard:-Filter-lists';
 
 self.hasUnsavedData = function() {
     return hashFromCurrentFromSettings() !== filteringSettingsHash;
