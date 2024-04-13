@@ -1,8 +1,9 @@
 name: uB++ release
 
 on:
-  create:
-    branches: master
+  push:
+    branches:
+    - master
 
 permissions:
   contents: read
