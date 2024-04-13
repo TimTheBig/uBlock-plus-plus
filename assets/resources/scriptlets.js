@@ -977,7 +977,7 @@ function setCookieFn(
     // https://datatracker.ietf.org/doc/html/rfc6265#section-4.1.1
     // The characters [",] are given a pass from the RFC requirements because
     // apparently browsers do not follow the RFC to the letter.
-    if ( /[^!-:<-[\]-~]/.test(value) ) {
+    if ( /[^ -:<-[\]-~]/.test(value) ) {
         value = encodeURIComponent(value);
     }
 
@@ -3270,6 +3270,10 @@ function m3uPrune(
     };
     const pruner = text => {
         if ( (/^\s*#EXTM3U/.test(text)) === false ) { return text; }
+        if ( m3uPattern === '' ) {
+            safe.uboLog(` Content:\n${text}`);
+            return text;
+        }
         if ( reM3u.multiline ) {
             reM3u.lastIndex = 0;
             for (;;) {
@@ -3606,6 +3610,9 @@ function spoofCSS(
     const cloackFunc = (fn, thisArg, name) => {
         const trap = fn.bind(thisArg);
         Object.defineProperty(trap, 'name', { value: name });
+        Object.defineProperty(trap, 'toString', {
+            value: ( ) => `function ${name}() { [native code] }`
+        });
         return trap;
     };
     self.getComputedStyle = new Proxy(self.getComputedStyle, {
@@ -3619,7 +3626,7 @@ function spoofCSS(
                 get(target, prop, receiver) {
                     if ( typeof target[prop] === 'function' ) {
                         if ( prop === 'getPropertyValue' ) {
-                            return cloackFunc(function(prop) {
+                            return cloackFunc(function getPropertyValue(prop) {
                                 return spoofStyle(prop, target[prop]);
                             }, target, 'getPropertyValue');
                         }
