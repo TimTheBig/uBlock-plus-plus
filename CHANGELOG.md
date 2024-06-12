@@ -1,7 +1,30 @@
+- [Improve `prevent-addEventListener` scriptlet](https://github.com/gorhill/uBlock/commit/91ee5bdeae)
+- [Add `isodate` as available placeholder for auto-comment](https://github.com/gorhill/uBlock/commit/d5208ee5dd)
+- [Improve `trusted-replace-outbound-text` scriptlet](https://github.com/gorhill/uBlock/commit/fa6740a059)
+- [Classify generic cosmetic filters with comma as highly generic](https://github.com/gorhill/uBlock/commit/8f81833efc)
+- [Raise max buffer size for response body filtering](https://github.com/gorhill/uBlock/commit/82a3992896)
+- [Trim end of class tokens in generic cosmetic filtering's surveyor](https://github.com/gorhill/uBlock/commit/8ea1bac80b)
+- [Improve `trusted-set-cookie` scriptlet](https://github.com/gorhill/uBlock/commit/0e1e4b82c5)
+
+----------
+
+# 1.58.0
+
 ## Fixes / changes
 
+- [Fallback to `requestAnimationFrame` when `requestIdleCallback` is not available](https://github.com/gorhill/uBlock/commit/59ffc96e89)
+- [Improve `trusted-click-element` scriptlet](https://github.com/gorhill/uBlock/commit/ee67cd6284)
+- [Replace EasyDutch with AdGuard Dutch](https://github.com/gorhill/uBlock/commit/ca7d2ad61d)
+- [Add checksum validation when loading trie buffers in selfie](https://github.com/gorhill/uBlock/commit/0e6d607484)
+- [Catch exceptions in API calls for the sake of old Chromium versions](https://github.com/gorhill/uBlock/commit/bb479b0a66)
+- [Add `accept`/`reject` to `set-local-storage-item`](https://github.com/gorhill/uBlock/commit/363ad6795c) (by @ryanbr)
+- [Use raw string for regex patterns in python scripts](https://github.com/gorhill/uBlock/commit/923452b788)
+- [Improve `noeval-if` scriptlet](https://github.com/gorhill/uBlock/commit/4d8ee35ef7)
+- [Improve `trusted-set-local-storage-item` scriptlet](https://github.com/gorhill/uBlock/commit/2ccc3135c1)
+- [Fix potential corruption when reading serialized data](https://github.com/gorhill/uBlock/commit/c098eb8625)
+- [Improve `remove-[attr|class]` scriptlets](https://github.com/gorhill/uBlock/commit/91dfcbef2a)
+- [Improve dashboard layout at high zoom factor](https://github.com/gorhill/uBlock/commit/6152f5269e)
 - [Add a console pane to the logger](https://github.com/gorhill/uBlock/commit/3b4f02db21)
-- [Improve suggested candidate filters in element picker](https://github.com/gorhill/uBlock/commit/c0b56cffab)
 - [Improve `spoof-css` scriptlet](https://github.com/gorhill/uBlock/commit/277e90a4a7)
 - [Fix bad date computation in auto-comment feature](https://github.com/gorhill/uBlock/commit/a5f6c35bb0)
 - [Fix regression breaking import of `file://` lists](https://github.com/gorhill/uBlock/commit/c223a8cd39)

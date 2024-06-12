@@ -155,6 +155,12 @@ function safeSelf() {
             }, []);
             return this.Object_fromEntries(entries);
         },
+        onIdle(fn, options) {
+            if ( self.requestIdleCallback ) {
+                return self.requestIdleCallback(fn, options);
+            }
+            return self.requestAnimationFrame(fn);
+        },
     };
     scriptletGlobals.safeSelf = safe;
     if ( scriptletGlobals.bcSecret === undefined ) { return safe; }
@@ -1047,17 +1053,21 @@ function setLocalStorageItemFn(
         'false', 'true',
         'on', 'off',
         'yes', 'no',
+        'accept', 'reject',
+        'accepted', 'rejected',
         '{}', '[]', '""',
         '$remove$',
     ];
 
     if ( trusted ) {
-        if ( value === '$now$' ) {
-            value = Date.now();
-        } else if ( value === '$currentDate$' ) {
-            value = `${Date()}`;
-        } else if ( value === '$currentISODate$' ) {
-            value = (new Date()).toISOString();
+        if ( value.includes('$now$') ) {
+            value = value.replaceAll('$now$', Date.now());
+        }
+        if ( value.includes('$currentDate$') ) {
+            value = value.replaceAll('$currentDate$', `${Date()}`);
+        }
+        if ( value.includes('$currentISODate$') ) {
+            value = value.replaceAll('$currentISODate$', (new Date()).toISOString());
         }
     } else {
         const normalized = value.toLowerCase();
@@ -1632,6 +1642,8 @@ function addEventListenerDefuser(
     const debug = shouldDebug(extraArgs);
     const targetSelector = extraArgs.elements || undefined;
     const elementMatches = elem => {
+        if ( targetSelector === 'window' ) { return elem === window; }
+        if ( targetSelector === 'document' ) { return elem === document; }
         if ( elem && elem.matches && elem.matches(targetSelector) ) { return true; }
         const elems = Array.from(document.querySelectorAll(targetSelector));
         return elems.includes(elem);
@@ -2013,12 +2025,19 @@ function noEvalIf(
 ) {
     if ( typeof needle !== 'string' ) { return; }
     const safe = safeSelf();
+    const logPrefix = safe.makeLogPrefix('noeval-if', needle);
     const reNeedle = safe.patternToRegex(needle);
     window.eval = new Proxy(window.eval, {  // jshint ignore: line
         apply: function(target, thisArg, args) {
-            const a = args[0];
-            if ( reNeedle.test(a.toString()) ) { return; }
-            return target.apply(thisArg, args);
+            const a = String(args[0]);
+            if ( needle !== '' && reNeedle.test(a) ) {
+                safe.uboLog(logPrefix, 'Prevented:\n', a);
+                return;
+            }
+            if ( needle === '' || safe.logLevel > 1 ) {
+                safe.uboLog(logPrefix, 'Not prevented:\n', a);
+            }
+            return Reflect.apply(target, thisArg, args);
         }
     });
 }
@@ -2173,18 +2192,24 @@ builtinScriptlets.push({
     fn: removeAttr,
     dependencies: [
         'run-at.fn',
+        'safe-self.fn',
     ],
 });
 function removeAttr(
-    token = '',
-    selector = '',
+    rawToken = '',
+    rawSelector = '',
     behavior = ''
 ) {
-    if ( typeof token !== 'string' ) { return; }
-    if ( token === '' ) { return; }
-    const tokens = token.split(/\s*\|\s*/);
-    if ( selector === '' ) {
-        selector = `[${tokens.join('],[')}]`;
+    if ( typeof rawToken !== 'string' ) { return; }
+    if ( rawToken === '' ) { return; }
+    const safe = safeSelf();
+    const logPrefix = safe.makeLogPrefix('remove-attr', rawToken, rawSelector, behavior);
+    const tokens = rawToken.split(/\s*\|\s*/);
+    const selector = tokens
+        .map(a => `${rawSelector}[${CSS.escape(a)}]`)
+        .join(',');
+    if ( safe.logLevel > 1 ) {
+        safe.uboLog(logPrefix, `Target selector:\n\t${selector}`);
     }
     let timer;
     const rmattr = ( ) => {
@@ -2193,7 +2218,9 @@ function removeAttr(
             const nodes = document.querySelectorAll(selector);
             for ( const node of nodes ) {
                 for ( const attr of tokens ) {
+                    if ( node.hasAttribute(attr) === false ) { continue; }
                     node.removeAttribute(attr);
+                    safe.uboLog(logPrefix, `Removed attribute '${attr}'`);
                 }
             }
         } catch(ex) {
@@ -2213,7 +2240,7 @@ function removeAttr(
             }
         }
         if ( skip ) { return; }
-        timer = self.requestIdleCallback(rmattr, { timeout: 17 });
+        timer = safe.onIdle(rmattr, { timeout: 67 });
     };
     const start = ( ) => {
         rmattr();
@@ -2242,27 +2269,34 @@ builtinScriptlets.push({
     world: 'ISOLATED',
     dependencies: [
         'run-at.fn',
+        'safe-self.fn',
     ],
 });
 function removeClass(
-    token = '',
-    selector = '',
+    rawToken = '',
+    rawSelector = '',
     behavior = ''
 ) {
-    if ( typeof token !== 'string' ) { return; }
-    if ( token === '' ) { return; }
-    const classTokens = token.split(/\s*\|\s*/);
-    if ( selector === '' ) {
-        selector = '.' + classTokens.map(a => CSS.escape(a)).join(',.');
+    if ( typeof rawToken !== 'string' ) { return; }
+    if ( rawToken === '' ) { return; }
+    const safe = safeSelf();
+    const logPrefix = safe.makeLogPrefix('remove-class', rawToken, rawSelector, behavior);
+    const tokens = rawToken.split(/\s*\|\s*/);
+    const selector = tokens
+        .map(a => `${rawSelector}.${CSS.escape(a)}`)
+        .join(',');
+    if ( safe.logLevel > 1 ) {
+        safe.uboLog(logPrefix, `Target selector:\n\t${selector}`);
     }
     const mustStay = /\bstay\b/.test(behavior);
     let timer;
-    const rmclass = function() {
+    const rmclass = ( ) => {
         timer = undefined;
         try {
             const nodes = document.querySelectorAll(selector);
             for ( const node of nodes ) {
-                node.classList.remove(...classTokens);
+                node.classList.remove(...tokens);
+                safe.uboLog(logPrefix, 'Removed class(es)');
             }
         } catch(ex) {
         }
@@ -2284,7 +2318,7 @@ function removeClass(
             }
         }
         if ( skip ) { return; }
-        timer = self.requestIdleCallback(rmclass, { timeout: 67 });
+        timer = safe.onIdle(rmclass, { timeout: 67 });
     };
     const observer = new MutationObserver(mutationHandler);
     const start = ( ) => {
@@ -3497,7 +3531,7 @@ function hrefSanitizer(
             if ( shouldSanitize ) { break; }
         }
         if ( shouldSanitize === false ) { return; }
-        timer = self.requestIdleCallback(( ) => {
+        timer = safe.onIdle(( ) => {
             timer = undefined;
             sanitize();
         });
@@ -3745,6 +3779,7 @@ function setCookie(
         'true', 't', 'false', 'f',
         'yes', 'y', 'no', 'n',
         'necessary', 'required',
+        'approved', 'disapproved',
     ];
     const normalized = value.toLowerCase();
     const match = /^("?)(.+)\1$/.exec(normalized);
@@ -4195,10 +4230,11 @@ function trustedSetCookie(
     const logPrefix = safe.makeLogPrefix('set-cookie', name, value, path);
     const time = new Date();
 
-    if ( value === '$now$' ) {
-        value = Date.now();
-    } else if ( value === '$currentDate$' ) {
-        value = time.toUTCString();
+    if ( value.includes('$now$') ) {
+        value = value.replaceAll('$now$', time.getTime());
+    }
+    if ( value.includes('$currentDate$') ) {
+        value = value.replaceAll('$currentDate$', time.toUTCString());
     }
 
     let expires = '';
@@ -4456,6 +4492,20 @@ function trustedClickElement(
         }
     }
 
+    const getShadowRoot = elem => {
+        // Firefox
+        if ( elem.openOrClosedShadowRoot ) {
+            return elem.openOrClosedShadowRoot;
+        }
+        // Chromium
+        if ( typeof chrome === 'object' ) {
+            if ( chrome.dom && chrome.dom.openOrClosedShadowRoot ) {
+                return chrome.dom.openOrClosedShadowRoot(elem);
+            }
+        }
+        return null;
+    };
+
     const querySelectorEx = (selector, context = document) => {
         const pos = selector.indexOf(' >>> ');
         if ( pos === -1 ) { return context.querySelector(selector); }
@@ -4463,7 +4513,7 @@ function trustedClickElement(
         const inside = selector.slice(pos + 5).trim();
         const elem = context.querySelector(outside);
         if ( elem === null ) { return null; }
-        const shadowRoot = elem.shadowRoot;
+        const shadowRoot = getShadowRoot(elem);
         return shadowRoot && querySelectorEx(inside, shadowRoot);
     };
 
@@ -4734,20 +4784,29 @@ function trustedReplaceOutboundText(
     const extraArgs = safe.getExtraArgs(args);
     const reCondition = safe.patternToRegex(extraArgs.condition || '');
     const reflector = proxyApplyFn(propChain, function(...args) {
-        const textBefore = reflector(...args);
+        const encodedTextBefore = reflector(...args);
+        let textBefore = encodedTextBefore;
+        if ( extraArgs.encoding === 'base64' ) {
+            try { textBefore = self.atob(encodedTextBefore); }
+            catch(ex) { return encodedTextBefore; }
+        }
         if ( pattern === '' ) {
-            safe.uboLog(logPrefix, 'Outbound text:\n', textBefore);
-            return textBefore;
+            safe.uboLog(logPrefix, 'Decoded outbound text:\n', textBefore);
+            return encodedTextBefore;
         }
         reCondition.lastIndex = 0;
-        if ( reCondition.test(textBefore) === false ) { return textBefore; }
+        if ( reCondition.test(textBefore) === false ) { return encodedTextBefore; }
         const textAfter = textBefore.replace(rePattern, replacement);
-        if ( textAfter === textBefore ) { return textBefore; }
+        if ( textAfter === textBefore ) { return encodedTextBefore; }
         safe.uboLog(logPrefix, 'Matched and replaced');
         if ( safe.logLevel > 1 ) {
-            safe.uboLog(logPrefix, 'Modified outbound text:\n', textAfter);
+            safe.uboLog(logPrefix, 'Modified decoded outbound text:\n', textAfter);
         }
-        return textAfter;
+        let encodedTextAfter = textAfter;
+        if ( extraArgs.encoding === 'base64' ) {
+            encodedTextAfter = self.btoa(textAfter);
+        }
+        return encodedTextAfter;
     });
 }
 
