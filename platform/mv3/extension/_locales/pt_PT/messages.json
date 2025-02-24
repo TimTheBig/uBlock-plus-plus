@@ -4,7 +4,7 @@
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "Um bloqueador de conteúdo sem permissões. Bloqueia anúncios, rastreadores, mineradores de criptomoedas e muito mais, imediatamente após a instalação.",
+    "message": "Um bloqueador de conteúdo sem permissões. Bloqueia anúncios, rastreadores e muito mais, imediatamente após a instalação.",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "perRulesetStats": {
@@ -30,6 +30,10 @@
   "popupFilteringModeLabel": {
     "message": "modo de filtragem",
     "description": "Label in the popup panel for the current filtering mode"
+  },
+  "popupTipReport": {
+    "message": "Relatar um problema neste website",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipDashboard": {
     "message": "Abrir o painel de controlo",
@@ -99,6 +103,70 @@
     "message": "Dependências externas (compatíveis com GPLv3):",
     "description": "Shown in the About pane"
   },
+  "supportS6H": {
+    "message": "Relatar um problema de filtro",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Relate problemas de filtros em websites específicos no controlador de problemas <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code></span>. <u>Requer uma conta GitHub.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Para evitar sobrecarregar os voluntários com relatórios duplicados, verifique se o problema ainda não foi relatado.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "Encontrar relatórios semelhantes",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Endereço da página web:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "A página web…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Escolha uma entrada --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Mostra anúncios ou restos de anúncios",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Tem sobreposições ou outros incómodos",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Deteta o uBO Lite",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Tem problemas relacionados com a privacidade",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Falha quando o uBO Lite está ativado",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Abre separadores ou janelas indesejáveis",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Leva a badware e phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Classifica a página web como “NSFW” (<a href=\"https://pt.wikipedia.org/wiki/Not_safe_for_work\">“Não segura para o trabalho”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "Criar novo relatório",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
   "firstRunSectionLabel": {
     "message": "Bem-vindo(a)",
     "description": "The header text for the welcome message section"
@@ -144,19 +212,71 @@
     "description": "This describes the 'complete' filtering mode"
   },
   "noFilteringModeDescription": {
-    "message": "Lista de nomes de anfitriões para os quais não será efetuada qualquer filtragem.",
+    "message": "Lista de nomes de websites para os quais não será efetuada qualquer filtragem.",
     "description": "A short description for the editable field which lists trusted sites"
+  },
+  "noFilteringModePlaceholder": {
+    "message": "[apenas nomes de anfitriões]\nexemplo.com\njogos.exemplo\n...",
+    "description": "Default text for in edit field"
   },
   "behaviorSectionLabel": {
     "message": "Comportamento",
     "description": "The header text for the 'Behavior' section"
   },
   "autoReloadLabel": {
-    "message": "Recarrega automaticamente a página ao mudar o modo de filtragem",
+    "message": "Recarregar automaticamente a página ao mudar o modo de filtragem",
     "description": "Label for a checkbox in the options page"
   },
   "showBlockedCountLabel": {
-    "message": "Mostra o número de pedidos bloqueados no ícone da barra de ferramentas",
+    "message": "Mostrar o número de pedidos bloqueados no ícone da barra de ferramentas",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "Ativar bloqueio estrito",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "A navegação para sites potencialmente indesejáveis será bloqueada e ser-lhe-á dada a opção de proceder.",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "Encontrar listas",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "Página bloqueada",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "O uBO Lite impediu a seguinte página de ser carregada:",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "A página foi bloqueada devido a um filtro correspondente em {{listname}}.",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "A página bloqueada pretende redirecionar para outro site. Se optar por proceder, navegará diretamente para: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "sem parâmetros",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "Voltar",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "Fechar esta janela",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "Não me avisar novamente acerca deste site",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "Proceder",
+    "description": "A button to navigate to the blocked page"
   }
 }

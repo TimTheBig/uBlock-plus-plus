@@ -4,7 +4,7 @@
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "Finalmente, um bloqueador eficiente. Com baixo uso de memória e CPU.",
+    "message": "Finalmente, um bloqueador eficiente. Com baixo uso de CPU e memória.",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
@@ -1011,6 +1011,10 @@
     "message": "Abre abas ou janelas indesejadas",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Leva a badware, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Rotula a página da web como \"NSFW\" (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">\"Não é Seguro no Trabalho\"</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Prosseguir",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "A página bloqueada quer redirecionar pra outro site. Se você escolher prosseguir você navegará diretamente para: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Exportar pro armazenamento na nuvem",

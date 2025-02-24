@@ -19,20 +19,6 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-/* jshint esversion:11 */
-
-'use strict';
-
-/******************************************************************************/
-
-import {
-    browser,
-    dnr,
-    localRead, localWrite, localRemove,
-    sessionRead, sessionWrite,
-    adminRead,
-} from './ext.js';
-
 import {
     broadcastMessage,
     hostnamesFromMatches,
@@ -41,9 +27,13 @@ import {
 } from './utils.js';
 
 import {
-    TRUSTED_DIRECTIVE_BASE_RULE_ID,
-    getDynamicRules
-} from './ruleset-manager.js';
+    browser,
+    localRead, localWrite,
+    sessionRead, sessionWrite,
+} from './ext.js';
+
+import { adminReadEx } from './admin.js';
+import { filteringModesToDNR } from './ruleset-manager.js';
 
 /******************************************************************************/
 
@@ -75,18 +65,6 @@ const pruneHostnameFromSet = (hostname, hnSet) => {
         hn = toBroaderHostname(hn);
         if ( hn === '*' ) { break; }
     }
-};
-
-/******************************************************************************/
-
-const eqSets = (setBefore, setAfter) => {
-    for ( const hn of setAfter ) {
-        if ( setBefore.has(hn) === false ) { return false; }
-    }
-    for ( const hn of setBefore ) {
-        if ( setAfter.has(hn) === false ) { return false; }
-    }
-    return true;
 };
 
 /******************************************************************************/
@@ -229,38 +207,40 @@ function applyFilteringMode(filteringModes, hostname, afterLevel) {
 
 /******************************************************************************/
 
-async function readFilteringModeDetails() {
-    if ( readFilteringModeDetails.cache ) {
-        return readFilteringModeDetails.cache;
-    }
-    const sessionModes = await sessionRead('filteringModeDetails');
-    if ( sessionModes instanceof Object ) {
-        readFilteringModeDetails.cache = unserializeModeDetails(sessionModes);
-        return readFilteringModeDetails.cache;
+export async function readFilteringModeDetails(bypassCache = false) {
+    if ( bypassCache === false ) {
+        if ( readFilteringModeDetails.cache ) {
+            return readFilteringModeDetails.cache;
+        }
+        const sessionModes = await sessionRead('filteringModeDetails');
+        if ( sessionModes instanceof Object ) {
+            readFilteringModeDetails.cache = unserializeModeDetails(sessionModes);
+            return readFilteringModeDetails.cache;
+        }
     }
     let [ userModes, adminNoFiltering ] = await Promise.all([
         localRead('filteringModeDetails'),
-        localRead('adminNoFiltering'),
+        adminReadEx('noFiltering'),
     ]);
     if ( userModes === undefined ) {
         userModes = { basic: [ 'all-urls' ] };
     }
     userModes = unserializeModeDetails(userModes);
     if ( Array.isArray(adminNoFiltering) ) {
+        if ( adminNoFiltering.includes('-*') ) {
+            userModes.none.clear();
+        }
         for ( const hn of adminNoFiltering ) {
-            applyFilteringMode(userModes, hn, 0);
+            if ( hn.charAt(0) === '-' ) {
+                userModes.none.delete(hn.slice(1));
+            } else {
+                applyFilteringMode(userModes, hn, 0);
+            }
         }
     }
     filteringModesToDNR(userModes);
     sessionWrite('filteringModeDetails', serializeModeDetails(userModes));
     readFilteringModeDetails.cache = userModes;
-    adminRead('noFiltering').then(results => {
-        if ( results ) {
-            localWrite('adminNoFiltering', results);
-        } else {
-            localRemove('adminNoFiltering');
-        }
-    });
     return userModes;
 }
 
@@ -272,78 +252,17 @@ async function writeFilteringModeDetails(afterDetails) {
     localWrite('filteringModeDetails', data);
     sessionWrite('filteringModeDetails', data);
     readFilteringModeDetails.cache = unserializeModeDetails(data);
-
-    Promise.all([
+    return Promise.all([
         getDefaultFilteringMode(),
         getTrustedSites(),
+        localWrite('filteringModeDetails', data),
+        sessionWrite('filteringModeDetails', data),
     ]).then(results => {
         broadcastMessage({
             defaultFilteringMode: results[0],
             trustedSites: Array.from(results[1]),
         });
     });
-}
-
-/******************************************************************************/
-
-async function filteringModesToDNR(modes) {
-    const dynamicRuleMap = await getDynamicRules();
-    const presentRule = dynamicRuleMap.get(TRUSTED_DIRECTIVE_BASE_RULE_ID+0);
-    const presentNone = new Set(
-        presentRule && presentRule.condition.requestDomains
-    );
-    if ( eqSets(presentNone, modes.none) ) { return; }
-    const removeRuleIds = [];
-    if ( presentRule !== undefined ) {
-        removeRuleIds.push(TRUSTED_DIRECTIVE_BASE_RULE_ID+0);
-        removeRuleIds.push(TRUSTED_DIRECTIVE_BASE_RULE_ID+1);
-        dynamicRuleMap.delete(TRUSTED_DIRECTIVE_BASE_RULE_ID+0);
-        dynamicRuleMap.delete(TRUSTED_DIRECTIVE_BASE_RULE_ID+1);
-    }
-    const addRules = [];
-    const noneHostnames = [ ...modes.none ];
-    const notNoneHostnames = [ ...modes.basic, ...modes.optimal, ...modes.complete ];
-    if ( noneHostnames.length !== 0 ) {
-        const rule0 = {
-            id: TRUSTED_DIRECTIVE_BASE_RULE_ID+0,
-            action: { type: 'allowAllRequests' },
-            condition: {
-                resourceTypes: [ 'main_frame' ],
-            },
-            priority: 100,
-        };
-        if ( modes.none.has('all-urls') === false ) {
-            rule0.condition.requestDomains = noneHostnames.slice();
-        } else if ( notNoneHostnames.length !== 0 ) {
-            rule0.condition.excludedRequestDomains = notNoneHostnames.slice();
-        }
-        addRules.push(rule0);
-        dynamicRuleMap.set(TRUSTED_DIRECTIVE_BASE_RULE_ID+0, rule0);
-        // https://github.com/uBlockOrigin/uBOL-home/issues/114
-        const rule1 = {
-            id: TRUSTED_DIRECTIVE_BASE_RULE_ID+1,
-            action: { type: 'allow' },
-            condition: {
-                resourceTypes: [ 'script' ],
-            },
-            priority: 100,
-        };
-        if ( modes.none.has('all-urls') === false ) {
-            rule1.condition.initiatorDomains = noneHostnames.slice();
-        } else if ( notNoneHostnames.length !== 0 ) {
-            rule1.condition.excludedInitiatorDomains = notNoneHostnames.slice();
-        }
-        addRules.push(rule1);
-        dynamicRuleMap.set(TRUSTED_DIRECTIVE_BASE_RULE_ID+1, rule1);
-    }
-    const updateOptions = {};
-    if ( addRules.length ) {
-        updateOptions.addRules = addRules;
-    }
-    if ( removeRuleIds.length ) {
-        updateOptions.removeRuleIds = removeRuleIds;
-    }
-    await dnr.updateDynamicRules(updateOptions);
 }
 
 /******************************************************************************/
@@ -394,6 +313,11 @@ export async function setTrustedSites(hostnames) {
     const { none } = filteringModes;
     const hnSet = new Set(hostnames);
     let modified = false;
+    // Set default mode to Basic when removing No-filtering as default mode
+    if ( none.has('all-urls') && hnSet.has('all-urls') === false ) {
+        applyFilteringMode(filteringModes, 'all-urls', MODE_BASIC);
+        modified = true;
+    }
     for ( const hn of none ) {
         if ( hnSet.has(hn) ) {
             hnSet.delete(hn);

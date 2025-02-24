@@ -12,7 +12,7 @@
     "description": "English: uBlock₀ — Dashboard"
   },
   "dashboardUnsavedWarning": {
-    "message": "Diwallit! Kemmoù zo ha n'ho peus enrollet anezho",
+    "message": "Diwallit! Kemmoù zo ha n'ho peus ket enrollet",
     "description": "A warning in the dashboard when navigating away from unsaved changes"
   },
   "dashboardUnsavedWarningStay": {
@@ -156,15 +156,15 @@
     "description": "Tooltip for the no-large-media per-site switch"
   },
   "popupTipNoCosmeticFiltering": {
-    "message": "Lazhañ/enaouiñ ar silañ kenedel war al lec'hienn-mañ",
+    "message": "Lazhañ/enaouiñ ar siloù kenedel war al lec'hienn-mañ",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering1": {
-    "message": "Lazhañ ar silañ kenedel war al lec'hienn-mañ",
+    "message": "Lazhañ ar siloù kenedel war al lec'hienn-mañ",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering2": {
-    "message": "Enaouiñ ar silañ kenedel war al lec'hienn-mañ",
+    "message": "Enaouiñ ar siloù kenedel war al lec'hienn-mañ",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoRemoteFonts": {
@@ -376,7 +376,7 @@
     "description": ""
   },
   "settingsNoCosmeticFilteringPrompt": {
-    "message": "Lazhañ ar silañ kenedel",
+    "message": "Lazhañ ar siloù kenedel",
     "description": ""
   },
   "settingsNoLargeMediaPrompt": {
@@ -484,11 +484,11 @@
     "description": "Filter lists section name"
   },
   "3pGroupSocial": {
-    "message": "Social widgets",
+    "message": "Widgetoù sokial",
     "description": "Filter lists section name"
   },
   "3pGroupCookies": {
-    "message": "Cookie notices",
+    "message": "Kemennadennoù diwar-benn an toupinoù",
     "description": "Filter lists section name"
   },
   "3pGroupAnnoyances": {
@@ -1011,6 +1011,10 @@
     "message": "Digeriñ a ra ivinelloù pe prenestroù noazus",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Leads to badware, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Merkañ ar bejenn evel \"NSFW\" (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>) hag a dalv ez eus danvez noazus pe kizidik enni",
     "description": "A checkbox to use for NSFW sites"
@@ -1156,7 +1160,7 @@
     "description": "label to be used for the parameter-less URL: https://cloud.githubusercontent.com/assets/585534/9832014/bfb1b8f0-593b-11e5-8a27-fba472a5529a.png"
   },
   "docblockedFoundIn": {
-    "message": "Hag a vez kavet e-barzh:",
+    "message": "Hag a zo kavet e-barzh:",
     "description": "English: List of filter list names follows"
   },
   "docblockedBack": {
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Kenderc'hel",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Ar bajenn stanket a fell dezhi adkas d'ul lec'hienn all. M'ho peus c'hoant da genderc'hel e vioc'h kaset d'ar chomlec'h-mañ: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Ezporzhiañ etrezek stokañ ar goumoulenn (cloud)",
@@ -1260,7 +1268,7 @@
     "description": "Label for buttons used to select all text in editor"
   },
   "toggleCosmeticFiltering": {
-    "message": "Enaouiñ ar silañ kenedel",
+    "message": "Enaouiñ ar siloù kenedel",
     "description": "Label for keyboard shortcut used to toggle cosmetic filtering"
   },
   "toggleJavascript": {

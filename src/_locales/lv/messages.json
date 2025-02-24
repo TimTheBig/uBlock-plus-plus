@@ -340,7 +340,7 @@
     "description": "Section for controlling user interface appearance"
   },
   "settingsThemeLabel": {
-    "message": "Izskats",
+    "message": "Motīvs",
     "description": "Label for checkbox to enable a custom dark theme"
   },
   "settingsThemeAccent0Label": {
@@ -480,7 +480,7 @@
     "description": "Filter lists section name"
   },
   "3pGroupMalware": {
-    "message": "Ļaundabīgo programmu domēni",
+    "message": "Aizsardzība pret ļaunprātīgām (inficētas vai satur vīrusus) vietnēm, drošība",
     "description": "Filter lists section name"
   },
   "3pGroupSocial": {
@@ -552,7 +552,7 @@
     "description": "Button in the 'My filters' pane"
   },
   "1pExport": {
-    "message": "Eksportēt",
+    "message": "Eksportēt…",
     "description": "Button in the 'My filters' pane"
   },
   "1pExportFilename": {
@@ -636,7 +636,7 @@
     "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExport": {
-    "message": "Eksportēt",
+    "message": "Eksportēt…",
     "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExportFilename": {
@@ -1011,6 +1011,10 @@
     "message": "Atver nevēlamas cilnes vai logus",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Noved pie slitkas programmatūras, pikšķerēšanas",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Iezīmēt tīmekļa lapu kā \"NSFW\" (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">\"Not Safe for Work</a> (nav droša darbam))",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Turpināt",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Aizturētā lapa veic pārvirzīšanu uz citu vietni. Ja izvēlēsies turpināt, nonāksi uzreiz šeit: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Eksports uz mākoņdatu glabātuvi",

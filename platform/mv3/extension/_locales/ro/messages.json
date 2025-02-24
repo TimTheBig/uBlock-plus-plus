@@ -8,7 +8,7 @@
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "perRulesetStats": {
-    "message": "{{ruleCount}} de reguli convertite din {{filterCount}} filtre de rețea",
+    "message": "{{ruleCount}} de reguli, convertite din {{filterCount}} filtre de rețea",
     "description": "Appears aside each filter list in the _3rd-party filters_ pane"
   },
   "dashboardName": {
@@ -30,6 +30,10 @@
   "popupFilteringModeLabel": {
     "message": "Mod de filtrare",
     "description": "Label in the popup panel for the current filtering mode"
+  },
+  "popupTipReport": {
+    "message": "Raportează o eroare pe acest site web",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipDashboard": {
     "message": "Deschide panoul de control",
@@ -99,6 +103,70 @@
     "message": "Dependențe externe (compatibile GPLv3):",
     "description": "Shown in the About pane"
   },
+  "supportS6H": {
+    "message": "Raportează o problemă cu filtrele",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Raportează aici o eroare cu filtrele pentru un site specific <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> issue tracker</span>. <u>Este necesar un cont GitHub.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Pentru a evita încărcarea voluntarilor cu rapoarte duplicate, vă rugăm să verificați dacă problema nu a fost deja raportată.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "Găsiți rapoarte similare",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Adresa paginii web:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Pagina web…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Alege o intrare --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Arată reclame sau resturi de reclame",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Are suprapuneri sau alte inconveniente",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Detectează uBO Lite",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Are probleme privind confidențialitatea",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Defecțiuni atunci când uBO Lite este activat",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Deschide file sau ferestre nedorite",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Duce la programe dăunătoare, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Etichetați pagina web ca “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Nu este sigur la locul de muncă”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "Creează o nouă sesizare",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
   "firstRunSectionLabel": {
     "message": "Bun venit",
     "description": "The header text for the welcome message section"
@@ -144,8 +212,12 @@
     "description": "This describes the 'complete' filtering mode"
   },
   "noFilteringModeDescription": {
-    "message": "Lista numelor mașinilor pentru care nu se va face filtrare",
+    "message": "Lista numelor site-urilor pentru care nu se va face filtrare",
     "description": "A short description for the editable field which lists trusted sites"
+  },
+  "noFilteringModePlaceholder": {
+    "message": "[doar hostnames]\nexample.com\ngames.example\n...",
+    "description": "Default text for in edit field"
   },
   "behaviorSectionLabel": {
     "message": "Comportament",
@@ -156,7 +228,55 @@
     "description": "Label for a checkbox in the options page"
   },
   "showBlockedCountLabel": {
-    "message": "Show the number of blocked requests on the toolbar icon",
+    "message": "Arată numărul cererilor blocate pe simbolul extensiei",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "Activați blocarea strictă",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "Navigarea către site-uri potențial nedorite va fi blocată și vi se va oferi opțiunea de a continua.",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "Căutați liste",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "Pagină blocată",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "uBO Lite a împiedicat încărcarea următoarei pagini:",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "Pagina a fost blocată din cauza unui filtru din {{listname}}.",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "Pagina blocată dorește să redirecționeze către un alt site. Dacă alegeți să continuați, veți naviga direct către: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "fără parametri",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "Înapoi",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "Închide fereastra",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "Nu mă avertiza din nou despre acest site",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "Continuă",
+    "description": "A button to navigate to the blocked page"
   }
 }

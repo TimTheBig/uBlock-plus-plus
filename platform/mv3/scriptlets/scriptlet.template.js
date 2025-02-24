@@ -20,14 +20,9 @@
 
 */
 
-/* jshint esversion:11 */
-/* global cloneInto */
-
-'use strict';
+/* eslint-disable indent */
 
 // ruleset: $rulesetId$
-
-/******************************************************************************/
 
 // Important!
 // Isolate from global scope
@@ -40,7 +35,7 @@
 // Start of code to inject
 const uBOL_$scriptletName$ = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
 const argsList = self.$argsList$;
 
@@ -57,8 +52,20 @@ function $scriptletName$(){}
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
-catch(ex) { }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+} catch {
+}
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }
 
@@ -115,7 +122,7 @@ if ( entitiesMap.size !== 0 ) {
 // Apply scriplets
 for ( const i of todoIndices ) {
     try { $scriptletName$(...argsList[i]); }
-    catch(ex) {}
+    catch { }
 }
 argsList.length = 0;
 
@@ -126,44 +133,7 @@ argsList.length = 0;
 
 /******************************************************************************/
 
-// Inject code
-
-// https://bugzilla.mozilla.org/show_bug.cgi?id=1736575
-//   'MAIN' world not yet supported in Firefox, so we inject the code into
-//   'MAIN' ourself when environment in Firefox.
-
-const targetWorld = '$world$';
-
-// Not Firefox
-if ( typeof wrappedJSObject !== 'object' || targetWorld === 'ISOLATED' ) {
-    return uBOL_$scriptletName$();
-}
-
-// Firefox
-{
-    const page = self.wrappedJSObject;
-    let script, url;
-    try {
-        page.uBOL_$scriptletName$ = cloneInto([
-            [ '(', uBOL_$scriptletName$.toString(), ')();' ],
-            { type: 'text/javascript; charset=utf-8' },
-        ], self);
-        const blob = new page.Blob(...page.uBOL_$scriptletName$);
-        url = page.URL.createObjectURL(blob);
-        const doc = page.document;
-        script = doc.createElement('script');
-        script.async = false;
-        script.src = url;
-        (doc.head || doc.documentElement || doc).append(script);
-    } catch (ex) {
-        console.error(ex);
-    }
-    if ( url ) {
-        if ( script ) { script.remove(); }
-        page.URL.revokeObjectURL(url);
-    }
-    delete page.uBOL_$scriptletName$;
-}
+uBOL_$scriptletName$();
 
 /******************************************************************************/
 

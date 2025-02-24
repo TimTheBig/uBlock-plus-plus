@@ -31,6 +31,10 @@
     "message": "フィルタリングモード",
     "description": "Label in the popup panel for the current filtering mode"
   },
+  "popupTipReport": {
+    "message": "このサイト上での問題を報告",
+    "description": "Tooltip used for the 'chat' icon in the panel"
+  },
   "popupTipDashboard": {
     "message": "ダッシュボードを開く",
     "description": "English: Click to open the dashboard"
@@ -99,12 +103,76 @@
     "message": "外部依存関係 (GPLv3 互換):",
     "description": "Shown in the About pane"
   },
+  "supportS6H": {
+    "message": "フィルターの問題を報告する",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "<span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> issue tracker</span> で特定のウェブサイトでのフィルターの問題を報告します。<u>GitHub アカウントが必要です</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "重複した報告によってボランティアに負担をかけないように、問題がすでに報告されていないか確認してください。 <b>注意:</b> ボタンをクリックすると、ページのオリジンが GitHub に送信されます。",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "似た報告を探す",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "ウェブページのアドレス:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "ウェブページ…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- エントリーを選択 --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "広告または消し残りが表示される",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "オーバーレイなど邪魔なものがある",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "uBO Lite が検出される",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "プライバシーに関連する問題がある",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "uBO Lite 有効時に機能しなくなる",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "勝手にタブやウィンドウが開く",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "悪質ソフトやフィッシングへの誘導",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "ウェブページを “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>) としてラベル付け",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "新しい報告を作成",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
   "firstRunSectionLabel": {
     "message": "ようこそ",
     "description": "The header text for the welcome message section"
   },
   "firstRunDescription": {
-    "message": "uBO Lite のインストールが完了しました。すべてのサイトに適用するデフォルトのフィルタリングモードを選んでください。\n\nデフォルトでは、データの読み書きの権限が必要ない<em>基本</em>モードが選択されています。 uBO Lite を信用してもらえるなら、データの読み書きや変更の権限を許可してもらえればすべてのサイトに対してより詳細なフィルタリングを有効化できます。",
+    "message": "uBO Lite のインストールが完了しました。すべてのサイトに適用するデフォルトのフィルタリングモードを選んでください。\n\nデフォルトでは、データの読み書きの権限が必要ない<em>基本</em>モードが選択されています。 uBO Lite を信用する場合は、データの読み書きや変更の権限を許可して、すべてのサイトに対してより高度なフィルタリングを有効化できます。",
     "description": "Descriptive text shown at first install time only "
   },
   "defaultFilteringModeSectionLabel": {
@@ -147,6 +215,10 @@
     "message": "フィルタリングを行わないホスト名のリスト",
     "description": "A short description for the editable field which lists trusted sites"
   },
+  "noFilteringModePlaceholder": {
+    "message": "[ホスト名のみ]\nexample.com\ngames.example\n...",
+    "description": "Default text for in edit field"
+  },
   "behaviorSectionLabel": {
     "message": "動作",
     "description": "The header text for the 'Behavior' section"
@@ -158,5 +230,53 @@
   "showBlockedCountLabel": {
     "message": "ブロックしたリクエストの数をツールバーのアイコンに表示",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "厳格なブロックを有効化",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "望ましくない可能性のあるサイトへのナビゲーションはブロックされ、次に進むためのオプションが表示されます。",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "リストを検索",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "ブロックしたページ",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "uBO Lite はこのページの読み込みをブロックしています：",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "このページは、{{listname}} のフィルターに一致したためブロックされました。",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "ブロックしたページは別のサイトへリダイレクトしようとしています。続行すると次の URL へ移動します: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "パラメータを除いた URL",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "戻る",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "このウィンドウを閉じる",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "今後このサイトに関する警告を表示しない",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "続行する",
+    "description": "A button to navigate to the blocked page"
   }
 }

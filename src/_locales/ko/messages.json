@@ -1011,6 +1011,10 @@
     "message": "원치 않는 탭이나 창을 엽니다",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "악성코드, 피싱으로 유도합니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "웹페이지를 \"NSFW\"  (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)로 분류",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "계속",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "차단된 페이지에서 다른 사이트로 이동하려 합니다. 계속하시면, {{url}} 주소로 바로 이동합니다.",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "클라우드 저장소로 내보내기",

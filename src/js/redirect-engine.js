@@ -19,12 +19,8 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-'use strict';
-
-/******************************************************************************/
-
-import redirectableResources from './redirect-resources.js';
 import { LineIterator, orphanizeString } from './text-utils.js';
+import redirectableResources from './redirect-resources.js';
 
 /******************************************************************************/
 
@@ -316,7 +312,7 @@ class RedirectEngine {
         this.aliases = new Map();
 
         const fetches = [
-            import('/assets/resources/scriptlets.js').then(module => {
+            import('/js/resources/scriptlets.js').then(module => {
                 for ( const scriptlet of module.builtinScriptlets ) {
                     const details = {};
                     details.mime = mimeFromName(scriptlet.name);
@@ -333,6 +329,8 @@ class RedirectEngine {
                     }
                 }
                 this.modifyTime = Date.now();
+            }).catch(reason => {
+                console.error(reason);
             }),
         ];
 

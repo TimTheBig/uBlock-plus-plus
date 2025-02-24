@@ -136,8 +136,7 @@
 		"title": "AdGuard – Ads",
 		"tags": "ads",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/2_without_easylist.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"adguard-mobile": {
 		"content": "filters",
@@ -147,8 +146,7 @@
 		"tags": "ads mobile",
 		"ua": "mobile",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/11.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"easylist": {
 		"content": "filters",
@@ -174,8 +172,7 @@
 		"title": "AdGuard URL Tracking Protection",
 		"tags": "privacy",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/17.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"adguard-spyware": {
 		"content": "filters",
@@ -183,8 +180,7 @@
 		"off": true,
 		"title": "AdGuard Tracking Protection",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/3.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"block-lan": {
 		"content": "filters",
@@ -255,8 +251,7 @@
 		"title": "AdGuard – Cookie Notices",
 		"tags": "annoyances cookies",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/18.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"ublock-cookies-adguard": {
 		"content": "filters",
@@ -324,8 +319,7 @@
 		"title": "AdGuard – Social Widgets",
 		"tags": "annoyances social",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/4.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"fanboy-social": {
 		"content": "filters",
@@ -367,8 +361,7 @@
 		"title": "AdGuard – Popup Overlays",
 		"tags": "annoyances",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/19.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"adguard-mobile-app-banners": {
 		"content": "filters",
@@ -378,8 +371,7 @@
 		"title": "AdGuard – Mobile App Banners",
 		"tags": "annoyances mobile",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/20.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"adguard-other-annoyances": {
 		"content": "filters",
@@ -389,8 +381,7 @@
 		"title": "AdGuard – Other Annoyances",
 		"tags": "annoyances",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/21.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"adguard-widgets": {
 		"content": "filters",
@@ -400,8 +391,7 @@
 		"title": "AdGuard – Widgets",
 		"tags": "annoyances",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/22.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"easylist-annoyances": {
 		"content": "filters",
@@ -584,8 +574,8 @@
 		"title": "🇪🇪ee: Eesti saitidele kohandatud filter",
 		"tags": "ads estonian",
 		"lang": "et",
-		"contentURL": "https://adblock.ee/list.php",
-		"supportURL": "https://adblock.ee/"
+		"contentURL": "https://adblock.ee/list.txt",
+		"supportURL": "https://adblock.ee"
 	},
 	"FIN-0": {
 		"content": "filters",
@@ -622,9 +612,13 @@
 		"group": "regions",
 		"off": true,
 		"title": "🇭🇷hr 🇷🇸rs: Dandelion Sprout's Serbo-Croatian filters",
-		"tags": "ads croatian serbian",
-		"lang": "hr sr",
-		"contentURL": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/SerboCroatianList.txt",
+		"tags": "ads croatian serbian bosnian",
+		"lang": "bs hr sr",
+		"contentURL": [
+			"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/SerboCroatianList.txt",
+			"https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/SerboCroatianList.txt",
+			"https://cdn.statically.io/gl/DandelionSprout/adfilt/master/SerboCroatianList.txt"
+		],
 		"supportURL": "https://github.com/DandelionSprout/adfilt#readme"
 	},
 	"HUN-0": {
@@ -634,7 +628,7 @@
 		"title": "🇭🇺hu: hufilter",
 		"tags": "ads hungarian",
 		"lang": "hu",
-		"contentURL": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter-ublock.txt",
+		"contentURL": "https://cdn.jsdelivr.net/gh/hufilter/hufilter@gh-pages/hufilter-ublock.txt",
 		"supportURL": "https://github.com/hufilter/hufilter"
 	},
 	"IDN-0": {
@@ -681,8 +675,8 @@
 		"title": "🇮🇸is: Icelandic ABP List",
 		"tags": "ads icelandic",
 		"lang": "is",
-		"contentURL": "https://adblock.gardar.net/is.abp.txt",
-		"supportURL": "https://adblock.gardar.net/"
+		"contentURL": "https://raw.githubusercontent.com/brave/adblock-lists/master/custom/is.txt",
+		"supportURL": "https://github.com/brave/adblock-lists/issues"
 	},
 	"ISR-0": {
 		"content": "filters",
@@ -712,8 +706,7 @@
 		"tags": "ads japanese 日本語",
 		"lang": "ja",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/7.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"KOR-1": {
 		"content": "filters",
@@ -768,7 +761,7 @@
 		"lang": "af fy nl",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/8.txt",
 		"cdnURLs": null,
-		"supportURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"NOR-0": {
 		"content": "filters",
@@ -778,9 +771,7 @@
 		"tags": "ads norwegian danish icelandic",
 		"lang": "nb nn no da is",
 		"contentURL": [
-			"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/NorwegianList.txt"
-		],
-		"cdnURLs": [
+			"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/NorwegianList.txt",
 			"https://cdn.jsdelivr.net/gh/DandelionSprout/adfilt@master/NorwegianList.txt",
 			"https://cdn.statically.io/gl/DandelionSprout/adfilt/master/NorwegianList.txt"
 		],
@@ -824,6 +815,7 @@
 	"RUS-0": {
 		"content": "filters",
 		"group": "regions",
+		"parent": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList",
 		"off": true,
 		"title": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList",
 		"tags": "ads belarusian беларуская kazakh tatar russian русский ukrainian українська uzbek",
@@ -833,6 +825,22 @@
 			"https://cdn.jsdelivr.net/gh/dimisa-RUAdList/RUAdListCDN@main/lists/ruadlist.ubo.min.txt",
 			"https://cdn.statically.io/gh/dimisa-RUAdList/RUAdListCDN/main/lists/ruadlist.ubo.min.txt",
 			"https://raw.githubusercontent.com/dimisa-RUAdList/RUAdListCDN/main/lists/ruadlist.ubo.min.txt"
+		],
+		"supportURL": "https://forums.lanik.us/viewforum.php?f=102",
+		"instructionURL": "https://forums.lanik.us/viewtopic.php?f=102&t=22512"
+	},
+	"RUS-1": {
+		"content": "filters",
+		"group": "regions",
+		"parent": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList",
+		"off": true,
+		"title": "🇷🇺ru 🇺🇦ua 🇺🇿uz 🇰🇿kz: RU AdList: Counters",
+		"tags": "ads belarusian беларуская kazakh tatar russian русский ukrainian українська uzbek be kk tt ru uk uz",
+		"contentURL": "https://raw.githubusercontent.com/easylist/ruadlist/master/cntblock.txt",
+		"cdnURLs": [
+			"https://cdn.jsdelivr.net/gh/easylist/ruadlist@master/cntblock.txt",
+			"https://cdn.statically.io/gh/easylist/ruadlist/master/cntblock.txt",
+			"https://raw.githubusercontent.com/easylist/ruadlist/master/cntblock.txt"
 		],
 		"supportURL": "https://forums.lanik.us/viewforum.php?f=102",
 		"instructionURL": "https://forums.lanik.us/viewtopic.php?f=102&t=22512"
@@ -855,8 +863,7 @@
 		"tags": "ads aragonese basque catalan spanish español galician guarani portuguese português",
 		"lang": "an ast ca cak es eu gl gn trs pt quz",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/9.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"SVN-0": {
 		"content": "filters",
@@ -900,8 +907,7 @@
 		"tags": "ads turkish türkçe",
 		"lang": "tr",
 		"contentURL": "https://filters.adtidy.org/extension/ublock/filters/13.txt",
-		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters",
-		"instructionURL": "https://kb.adguard.com/en/general/adguard-ad-filters"
+		"supportURL": "https://github.com/AdguardTeam/AdguardFilters#adguard-filters"
 	},
 	"VIE-1": {
 		"content": "filters",

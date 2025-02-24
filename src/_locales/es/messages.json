@@ -900,11 +900,11 @@
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportReportSpecificButton": {
-    "message": "Crear nuevo reporte",
+    "message": "Crear nuevo reporte en GitHub",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportFindSpecificButton": {
-    "message": "Encontrar reportes similares",
+    "message": "Encontrar reportes similares en GitHub",
     "description": "A clickable link in the filter issue reporter section"
   },
   "supportS1H": {
@@ -964,7 +964,7 @@
     "description": "Header of 'Report a filter issue' section in Support pane"
   },
   "supportS6P1S1": {
-    "message": "Para evitar sobrecargar a voluntarios con reportes duplicados, verifica que el problema no haya sido reportado.",
+    "message": "Para evitar sobrecargar a voluntarios con reportes duplicados, verifica que el problema no haya sido reportado. <b>Nota:</b> al hacer clic en el botón, hará que el origen de la página se envíe a GitHub.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6P2S1": {
@@ -1004,11 +1004,15 @@
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option5": {
-    "message": "Se rompe cuando uBlock Origin está habilitado",
+    "message": "Funciona mal cuando uBlock Origin está habilitado",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option6": {
     "message": "Abre pestañas o ventanas no deseadas",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Conduce a malware y phishing",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Continuar",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "La página bloqueada quiere redirigir a otro sitio. Si eliges continuar, navegarás directamente a: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Exportar datos a la nube",

@@ -40,7 +40,7 @@
     "description": "appears as tab name in dashboard"
   },
   "whitelistPageName": {
-    "message": "Έμπιστες τοποθεσίες",
+    "message": "Αξιόπιστοι ιστότοποι",
     "description": "appears as tab name in dashboard"
   },
   "shortcutsPageName": {
@@ -184,7 +184,7 @@
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupTipNoScripting2": {
-    "message": "Κάντε κλικ για να μην απενεργοποιείται πλέον η JavaScript σε αυτή την τοποθεσία",
+    "message": "Κάντε κλικ για να μην απενεργοποιήσετε πλέον τη JavaScript σε αυτόν τον ιστότοπο",
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupNoPopups_v2": {
@@ -196,7 +196,7 @@
     "description": "Caption for the no-large-media per-site switch"
   },
   "popupNoCosmeticFiltering_v2": {
-    "message": "Καλλωπιστικά φίλτρα",
+    "message": "Κοσμητικά φίλτρα",
     "description": "Caption for the no-cosmetic-filtering per-site switch"
   },
   "popupNoRemoteFonts_v2": {
@@ -224,7 +224,7 @@
     "description": "Tooltip when hovering the top-most cell of the local-rules column."
   },
   "popupTipSaveRules": {
-    "message": "Πατήστε για να κάνετε τις αλλαγές σας μόνιμες.",
+    "message": "Κάντε κλικ για να μονιμοποιήσετε τις αλλαγές σας.",
     "description": "Tooltip when hovering over the padlock in the dynamic filtering pane."
   },
   "popupTipRevertRules": {
@@ -960,7 +960,7 @@
     "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
   },
   "supportS6H": {
-    "message": "Αναφέρετε ένα πρόβλημα φίλτρου",
+    "message": "Αναφέρετε πρόβλημα φίλτρου",
     "description": "Header of 'Report a filter issue' section in Support pane"
   },
   "supportS6P1S1": {
@@ -1009,6 +1009,10 @@
   },
   "supportS6Select1Option6": {
     "message": "Ανοίγει ανεπιθύμητες καρτέλες ή παράθυρα",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Οδηγεί σε κακόβουλο λογισμικό, ηλεκτρονικό «ψάρεμα»",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1060,7 +1064,7 @@
     "description": "Shown in the About pane"
   },
   "aboutCDNsInfo": {
-    "message": "Ένα τυχαία επιλεγμένο CDN χρησιμοποιείται όταν πρέπει να ενημερωθεί μια λίστα φίλτρων",
+    "message": "Χρησιμοποιείται τυχαία-επιλεγμένο CDN όταν πρέπει να ενημερωθεί μια λίστα φίλτρων",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Συνέχεια",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Η αποκλεισμένη σελίδα θέλει να κάνει ανακατεύθυνση σε άλλο ιστότοπο. Αν επιλέξετε να συνεχίσετε, θα μεταβείτε απευθείας στο: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Εξαγωγή στο cloud storage",

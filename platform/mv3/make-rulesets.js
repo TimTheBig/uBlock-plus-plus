@@ -19,19 +19,23 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-'use strict';
+import * as makeScriptlet from './make-scriptlets.js';
+import * as sfp from './js/static-filtering-parser.js';
 
-/******************************************************************************/
+import {
+    createHash,
+    randomBytes,
+} from 'crypto';
+import {
+    dnrRulesetFromRawLists,
+    mergeRules,
+} from './js/static-dnr-filtering.js';
 
 import fs from 'fs/promises';
 import https from 'https';
 import path from 'path';
 import process from 'process';
-import { createHash, randomBytes } from 'crypto';
 import redirectResourcesMap from './js/redirect-resources.js';
-import { dnrRulesetFromRawLists } from './js/static-dnr-filtering.js';
-import * as sfp from './js/static-filtering-parser.js';
-import * as makeScriptlet from './make-scriptlets.js';
 import { safeReplace } from './safe-replace.js';
 
 /******************************************************************************/
@@ -85,29 +89,26 @@ const uidint32 = (s) => {
     return parseInt(h,16) & 0x7FFFFFFF;
 };
 
-const hnSort = (a, b) =>
-    a.split('.').reverse().join('.').localeCompare(
-        b.split('.').reverse().join('.')
-    );
-
 /******************************************************************************/
 
+const consoleLog = console.log;
 const stdOutput = [];
 
-const log = (text, silent = false) => {
+const log = (text, silent = true) => {
     stdOutput.push(text);
     if ( silent === false ) {
-        console.log(text);
+        consoleLog(text);
     }
 };
+
+console.log = log;
 
 /******************************************************************************/
 
 const urlToFileName = url => {
     return url
         .replace(/^https?:\/\//, '')
-        .replace(/\//g, '_')
-        ;
+        .replace(/\//g, '_');
 };
 
 const fetchText = (url, cacheDir) => {
@@ -127,7 +128,7 @@ const fetchText = (url, cacheDir) => {
                     const content = data.join('');
                     try {
                         writeFile(`${cacheDir}/${fname}`, content);
-                    } catch (ex) {
+                    } catch {
                     }
                     resolve({ url, content });
                 });
@@ -166,6 +167,52 @@ const scriptletStats = new Map();
 const genericDetails = new Map();
 const requiredRedirectResources = new Set();
 
+// This will be used to sign our inserted `!#trusted on` directives
+const secret = createHash('sha256').update(randomBytes(16)).digest('hex').slice(0,16);
+log(`Secret: ${secret}`, false);
+
+/******************************************************************************/
+
+const restrSeparator = '(?:[^%.0-9a-z_-]|$)';
+
+const rePatternFromUrlFilter = s => {
+    let anchor = 0b000;
+    if ( s.startsWith('||') ) {
+        anchor = 0b100;
+        s = s.slice(2);
+    } else if ( s.startsWith('|') ) {
+        anchor = 0b010;
+        s = s.slice(1);
+    }
+    if ( s.endsWith('|') ) {
+        anchor |= 0b001;
+        s = s.slice(0, -1);
+    }
+    let reStr = s.replace(rePatternFromUrlFilter.rePlainChars, '\\$&')
+                 .replace(rePatternFromUrlFilter.reSeparators, restrSeparator)
+                 .replace(rePatternFromUrlFilter.reDanglingAsterisks, '')
+                 .replace(rePatternFromUrlFilter.reAsterisks, '\\S*?');
+    if ( anchor & 0b100 ) {
+        reStr = (
+            reStr.startsWith('\\.') ?
+                rePatternFromUrlFilter.restrHostnameAnchor2 :
+                rePatternFromUrlFilter.restrHostnameAnchor1
+        ) + reStr;
+    } else if ( anchor & 0b010 ) {
+        reStr = '^' + reStr;
+    }
+    if ( anchor & 0b001 ) {
+        reStr += '$';
+    }
+    return reStr;
+};
+rePatternFromUrlFilter.rePlainChars = /[.+?${}()|[\]\\]/g;
+rePatternFromUrlFilter.reSeparators = /\^/g;
+rePatternFromUrlFilter.reDanglingAsterisks = /^\*+|\*+$/g;
+rePatternFromUrlFilter.reAsterisks = /\*+/g;
+rePatternFromUrlFilter.restrHostnameAnchor1 = '^[a-z-]+://(?:[^/?#]+\\.)?';
+rePatternFromUrlFilter.restrHostnameAnchor2 = '^[a-z-]+://(?:[^/?#]+)?';
+
 /******************************************************************************/
 
 async function fetchList(assetDetails) {
@@ -187,7 +234,7 @@ async function fetchList(assetDetails) {
             }
             fetchedURLs.add(part.url);
             if ( part.url.startsWith('https://ublockorigin.github.io/uAssets/filters/') ) {
-                newParts.push(`!#trusted on ${assetDetails.secret}`);
+                newParts.push(`!#trusted on ${secret}`);
             }
             newParts.push(
                 fetchText(part.url, cacheDir).then(details => {
@@ -201,11 +248,11 @@ async function fetchList(assetDetails) {
                             return { url, content };
                         }
                     }
-                    log(`No valid content for ${details.name}`);
+                    log(`No valid content for ${details.name}`, false);
                     return { url, content: '' };
                 })
             );
-            newParts.push(`!#trusted off ${assetDetails.secret}`);
+            newParts.push(`!#trusted off ${secret}`);
         }
         parts = await Promise.all(newParts);
         parts = sfp.utils.preparser.expandIncludes(parts, env);
@@ -213,7 +260,7 @@ async function fetchList(assetDetails) {
     const text = parts.join('\n');
 
     if ( text === '' ) {
-        log('No filterset found');
+        log('No filterset found', false);
     }
     return text;
 }
@@ -228,7 +275,7 @@ const isRegex = rule =>
     rule.condition.regexFilter !== undefined;
 
 const isRedirect = rule => {
-    if ( rule.action === undefined ) { return false; }
+    if ( isUnsupported(rule) ) { return false; }
     if ( rule.action.type !== 'redirect' ) { return false; }
     if ( rule.action.redirect?.extensionPath !== undefined ) { return true; }
     if ( rule.action.redirect?.transform?.path !== undefined ) { return true; }
@@ -236,19 +283,26 @@ const isRedirect = rule => {
 };
 
 const isModifyHeaders = rule =>
-    rule.action !== undefined &&
+    isUnsupported(rule) === false &&
     rule.action.type === 'modifyHeaders';
 
 const isRemoveparam = rule =>
-    rule.action !== undefined &&
+    isUnsupported(rule) === false &&
     rule.action.type === 'redirect' &&
     rule.action.redirect.transform !== undefined;
 
-const isGood = rule =>
+const isSafe = rule =>
     isUnsupported(rule) === false &&
-    isRedirect(rule) === false &&
-    isModifyHeaders(rule) === false &&
-    isRemoveparam(rule) === false;
+    rule.action !== undefined && (
+        rule.action.type === 'block' ||
+        rule.action.type === 'allow' ||
+        rule.action.type === 'allowAllRequests'
+    );
+
+const isURLSkip = rule =>
+    isUnsupported(rule) === false &&
+    rule.action !== undefined &&
+    rule.action.type === 'urlskip';
 
 /******************************************************************************/
 
@@ -331,6 +385,68 @@ function toJSONRuleset(ruleset) {
 
 /******************************************************************************/
 
+function toStrictBlockRule(rule, out) {
+    if ( rule.action.type !== 'block' ) { return; }
+    const { condition } = rule;
+    if ( condition === undefined ) { return; }
+    if ( condition.domainType ) { return; }
+    if ( condition.excludedResourceTypes ) { return; }
+    if ( condition.requestMethods ) { return; }
+    if ( condition.excludedRequestMethods ) { return; }
+    if ( condition.responseHeaders ) { return; }
+    if ( condition.excludedResponseHeaders ) { return; }
+    if ( condition.initiatorDomains ) { return; }
+    if ( condition.excludedInitiatorDomains ) { return; }
+    if ( condition.excludedRequestDomains ) { return; }
+    const { resourceTypes } = condition;
+    if ( resourceTypes === undefined ) {
+        if ( condition.requestDomains === undefined ) { return; }
+    } else {
+        if ( resourceTypes.length !== 1 ) { return; }
+        if ( resourceTypes[0] !== 'main_frame' ) { return; }
+    }
+    let regexFilter;
+    if ( condition.urlFilter ) {
+        regexFilter = rePatternFromUrlFilter(condition.urlFilter);
+    } else if ( condition.regexFilter ) {
+        regexFilter = condition.regexFilter;
+    } else {
+        regexFilter = '^https?://.*';
+    }
+    if (
+        regexFilter.startsWith('^') === false
+    ) {
+        regexFilter = `^.*${regexFilter}`;
+    }
+    if (
+        regexFilter.endsWith('$') === false &&
+        regexFilter.endsWith('.*') === false &&
+        regexFilter.endsWith('.+') === false
+    ) {
+        regexFilter = `${regexFilter}.*`;
+    }
+    const strictBlockRule = {
+        action: {
+            type: 'redirect',
+            redirect: {
+                regexSubstitution: `/strictblock.html#\\0`,
+            },
+        },
+        condition: {
+            regexFilter,
+            resourceTypes: [ 'main_frame' ],
+        },
+        priority: 29,
+    };
+    if ( condition.requestDomains ) {
+        strictBlockRule.condition.requestDomains = condition.requestDomains.slice();
+    }
+    out.set(toStrictBlockRule.ruleId++, strictBlockRule);
+}
+toStrictBlockRule.ruleId = 1;
+
+/******************************************************************************/
+
 async function processNetworkFilters(assetDetails, network) {
     const { ruleset: rules } = network;
     log(`Input filter count: ${network.filterCount}`);
@@ -360,16 +476,15 @@ async function processNetworkFilters(assetDetails, network) {
         }
     }
 
-    const plainGood = rules.filter(rule => isGood(rule) && isRegex(rule) === false);
+    const plainGood = rules.filter(rule => isSafe(rule) && isRegex(rule) === false);
     log(`\tPlain good: ${plainGood.length}`);
     log(plainGood
         .filter(rule => Array.isArray(rule._warning))
         .map(rule => rule._warning.map(v => `\t\t${v}`))
-        .join('\n'),
-        true
+        .join('\n'), true
     );
 
-    const regexes = rules.filter(rule => isGood(rule) && isRegex(rule));
+    const regexes = rules.filter(rule => isSafe(rule) && isRegex(rule));
     log(`\tMaybe good (regexes): ${regexes.length}`);
 
     const redirects = rules.filter(rule =>
@@ -397,6 +512,47 @@ async function processNetworkFilters(assetDetails, network) {
         isModifyHeaders(rule)
     );
     log(`\tmodifyHeaders=: ${modifyHeaders.length}`);
+
+    const urlskips = new Map();
+    for ( const rule of rules ) {
+        if ( isURLSkip(rule) === false ) { continue; }
+        if ( rule.__modifierAction !== 0 ) { continue; }
+        const { condition } = rule;
+        if ( condition.resourceTypes ) {
+            if ( condition.resourceTypes.includes('main_frame') === false ) {
+                continue;
+            }
+        }
+        const { urlFilter, regexFilter, requestDomains } = condition;
+        let re;
+        if ( urlFilter !== undefined ) {
+            re = rePatternFromUrlFilter(urlFilter);
+        } else if ( regexFilter !== undefined ) {
+            re = regexFilter;
+        } else {
+            re = '^';
+        }
+        const rawSteps = rule.__modifierValue;
+        const steps = rawSteps.includes(' ') && rawSteps.split(/ +/) || [ rawSteps ];
+        const keyEntry = {
+            re,
+            c: condition.isUrlFilterCaseSensitive,
+            steps,
+        }
+        const key = JSON.stringify(keyEntry);
+        let actualEntry = urlskips.get(key);
+        if ( actualEntry === undefined ) {
+            urlskips.set(key, keyEntry);
+            actualEntry = keyEntry;
+        }
+        if ( requestDomains !== undefined ) {
+            if ( actualEntry.hostnames === undefined ) {
+                actualEntry.hostnames = [];
+            }
+            actualEntry.hostnames.push(...requestDomains);
+        }
+    }
+    log(`\turlskip=: ${urlskips.size}`);
 
     const bad = rules.filter(rule =>
         isUnsupported(rule)
@@ -437,6 +593,29 @@ async function processNetworkFilters(assetDetails, network) {
         );
     }
 
+    const strictBlocked = new Map();
+    for ( const rule of plainGood ) {
+        toStrictBlockRule(rule, strictBlocked);
+    }
+    if ( strictBlocked.size !== 0 ) {
+        mergeRules(strictBlocked, 'requestDomains');
+        let id = 1;
+        for ( const rule of strictBlocked.values() ) {
+            rule.id = id++;
+        }
+        writeFile(
+            `${rulesetDir}/strictblock/${assetDetails.id}.json`,
+            toJSONRuleset(Array.from(strictBlocked.values()))
+        );
+    }
+
+    if ( urlskips.size !== 0 ) {
+        writeFile(
+            `${rulesetDir}/urlskip/${assetDetails.id}.json`,
+            JSON.stringify(Array.from(urlskips.values()), null, 1)
+        );
+    }
+
     return {
         total: rules.length,
         plain: plainGood.length,
@@ -446,6 +625,8 @@ async function processNetworkFilters(assetDetails, network) {
         removeparam: removeparamsGood.length,
         redirect: redirects.length,
         modifyHeaders: modifyHeaders.length,
+        strictblock: strictBlocked.size,
+        urlskip: urlskips.size,
     };
 }
 
@@ -626,14 +807,10 @@ function groupHostnamesBySelectors(arrayin) {
     const out = Array.from(contentMap).map(a => [
         a[0], {
             a: a[1].a,
-            y: a[1].y ? Array.from(a[1].y).sort(hnSort) : '*',
+            y: a[1].y ? Array.from(a[1].y) : undefined,
             n: a[1].n ? Array.from(a[1].n) : undefined,
         }
-    ]).sort((a, b) => {
-        const ha = Array.isArray(a[1].y) ? a[1].y[0] : '*';
-        const hb = Array.isArray(b[1].y) ? b[1].y[0] : '*';
-        return hnSort(ha, hb);
-    });
+    ]);
     return out;
 }
 
@@ -952,7 +1129,7 @@ async function processScriptletFilters(assetDetails, mapin) {
     makeScriptlet.init();
 
     for ( const details of mapin.values() ) {
-        makeScriptlet.compile(details);
+        makeScriptlet.compile(assetDetails, details);
     }
     const stats = await makeScriptlet.commit(
         assetDetails.id,
@@ -972,15 +1149,24 @@ async function rulesetFromURLs(assetDetails) {
     log('============================');
     log(`Listset for '${assetDetails.id}':`);
 
-    if ( assetDetails.text === undefined ) {
+    if ( assetDetails.text === undefined && assetDetails.urls.length !== 0 ) {
         const text = await fetchList(assetDetails);
-        if ( text === '' ) { return; }
         assetDetails.text = text;
+    } else {
+        assetDetails.text = '';
     }
 
-    if ( Array.isArray(assetDetails.filters) ) {
-        assetDetails.text += '\n' + assetDetails.filters.join('\n');
+    if ( Array.isArray(assetDetails.filters) && assetDetails.filters.length ) {
+        const extra = [
+            `!#trusted on ${secret}`,
+            ...assetDetails.filters,
+            `!#trusted off ${secret}`,
+            assetDetails.text,
+        ];
+        assetDetails.text = extra.join('\n').trim();
     }
+
+    if ( assetDetails.text === '' ) { return; }
 
     const extensionPaths = [];
     for ( const [ fname, details ] of redirectResourcesMap ) {
@@ -999,7 +1185,7 @@ async function rulesetFromURLs(assetDetails) {
 
     const results = await dnrRulesetFromRawLists(
         [ { name: assetDetails.id, text: assetDetails.text } ],
-        { env, extensionPaths, secret: assetDetails.secret }
+        { env, extensionPaths, secret }
     );
 
     const netStats = await processNetworkFilters(
@@ -1072,8 +1258,10 @@ async function rulesetFromURLs(assetDetails) {
         id: assetDetails.id,
         name: assetDetails.name,
         group: assetDetails.group,
+        parent: assetDetails.parent,
         enabled: assetDetails.enabled,
         lang: assetDetails.lang,
+        tags: assetDetails.tags,
         homeURL: assetDetails.homeURL,
         filters: {
             total: results.network.filterCount,
@@ -1087,6 +1275,8 @@ async function rulesetFromURLs(assetDetails) {
             removeparam: netStats.removeparam,
             redirect: netStats.redirect,
             modifyHeaders: netStats.modifyHeaders,
+            strictblock: netStats.strictblock,
+            urlskip: netStats.urlskip,
             discarded: netStats.discarded,
             rejected: netStats.rejected,
         },
@@ -1121,82 +1311,49 @@ async function main() {
         const minutePart = Math.floor(now.getUTCMinutes());
         version = `${yearPart}.${monthPart}.${dayPart}.${hourPart * 60 + minutePart}`;
     }
-    log(`Version: ${version}`);
+    log(`Version: ${version}`, false);
 
     // Get assets.json content
     const assets = await fs.readFile(
-        `./assets.json`,
+        `./assets.dev.json`,
         { encoding: 'utf8' }
     ).then(text =>
         JSON.parse(text)
     );
 
-    // This will be used to sign our inserted `!#trusted on` directives
-    const secret = createHash('sha256').update(randomBytes(16)).digest('hex').slice(0,16);
-    log(`Secret: ${secret}`);
-
     // Assemble all default lists as the default ruleset
-    const contentURLs = [
-        'https://ublockorigin.github.io/uAssets/filters/filters.min.txt',
-        'https://ublockorigin.github.io/uAssets/filters/badware.min.txt',
-        'https://ublockorigin.github.io/uAssets/filters/privacy.min.txt',
-        'https://ublockorigin.github.io/uAssets/filters/unbreak.min.txt',
-        'https://ublockorigin.github.io/uAssets/filters/quick-fixes.min.txt',
-        'https://ublockorigin.github.io/uAssets/filters/ubol-filters.txt',
-        'https://ublockorigin.github.io/uAssets/thirdparties/easylist.txt',
-        'https://ublockorigin.github.io/uAssets/thirdparties/easyprivacy.txt',
-        'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext',
-    ];
     await rulesetFromURLs({
         id: 'default',
         name: 'Ads, trackers, miners, and more' ,
         enabled: true,
-        secret,
-        urls: contentURLs,
+        urls: [
+            'https://ublockorigin.github.io/uAssets/filters/filters.min.txt',
+            'https://ublockorigin.github.io/uAssets/filters/privacy.min.txt',
+            'https://ublockorigin.github.io/uAssets/filters/unbreak.min.txt',
+            'https://ublockorigin.github.io/uAssets/filters/quick-fixes.min.txt',
+            'https://ublockorigin.github.io/uAssets/filters/ubol-filters.txt',
+            'https://ublockorigin.github.io/uAssets/thirdparties/easylist.txt',
+            'https://ublockorigin.github.io/uAssets/thirdparties/easyprivacy.txt',
+            'https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext',
+        ],
         dnrURL: 'https://ublockorigin.github.io/uAssets/dnr/default.json',
         homeURL: 'https://github.com/uBlockOrigin/uAssets',
         filters: [
         ],
     });
 
-    // Regional rulesets
-    const excludedLists = [
-        'ara-0',
-        'EST-0',
-    ];
-    // Merge lists which have same target languages
-    const langToListsMap = new Map();
-    for ( const [ id, asset ] of Object.entries(assets) ) {
-        if ( asset.content !== 'filters' ) { continue; }
-        if ( asset.off !== true ) { continue; }
-        if ( typeof asset.lang !== 'string' ) { continue; }
-        if ( excludedLists.includes(id) ) { continue; }
-        let ids = langToListsMap.get(asset.lang);
-        if ( ids === undefined ) {
-            langToListsMap.set(asset.lang, ids = []);
-        }
-        ids.push(id);
-    }
-    for ( const ids of langToListsMap.values() ) {
-        const urls = [];
-        for ( const id of ids ) {
-            const asset = assets[id];
-            const contentURL = Array.isArray(asset.contentURL)
-                ? asset.contentURL[0]
-                : asset.contentURL;
-            urls.push(contentURL);
-        }
-        const id = ids[0];
-        const asset = assets[id];
-        await rulesetFromURLs({
-            id: id.toLowerCase(),
-            lang: asset.lang,
-            name: asset.title,
-            enabled: false,
-            urls,
-            homeURL: asset.supportURL,
-        });
-    }
+    await rulesetFromURLs({
+        id: 'badware',
+        name: 'Badware risks' ,
+        group: 'malware',
+        enabled: true,
+        urls: [
+            'https://ublockorigin.github.io/uAssets/filters/badware.min.txt',
+        ],
+        homeURL: 'https://github.com/uBlockOrigin/uAssets',
+        filters: [
+        ],
+    });
 
     // Handpicked rulesets from assets.json
     const handpicked = [
@@ -1225,7 +1382,6 @@ async function main() {
         name: 'EasyList/uBO – Cookie Notices',
         group: 'annoyances',
         enabled: false,
-        secret,
         urls: [
             'https://ublockorigin.github.io/uAssets/thirdparties/easylist-cookies.txt',
             'https://ublockorigin.github.io/uAssets/filters/annoyances-cookies.txt',
@@ -1237,7 +1393,6 @@ async function main() {
         name: 'EasyList/uBO – Overlay Notices',
         group: 'annoyances',
         enabled: false,
-        secret,
         urls: [
             'https://ublockorigin.github.io/uAssets/thirdparties/easylist-newsletters.txt',
             'https://ublockorigin.github.io/uAssets/filters/annoyances-others.txt',
@@ -1277,11 +1432,92 @@ async function main() {
 
     // Handpicked rulesets from abroad
     await rulesetFromURLs({
+        id: 'urlhaus-full',
+        name: 'Malicious URL Blocklist',
+        group: 'malware',
+        enabled: true,
+        urls: [
+            'https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt',
+        ],
+        filters: [
+        ],
+        homeURL: 'https://gitlab.com/malware-filter/urlhaus-filter',
+    });
+    await rulesetFromURLs({
+        id: 'openphish-domains',
+        name: 'OpenPhish Domain Blocklist',
+        group: 'malware',
+        enabled: true,
+        urls: [
+            'https://raw.githubusercontent.com/stephenhawk8054/openphish-adblock/refs/heads/main/filters_init_domains.txt',
+        ],
+        filters: [
+        ],
+        homeURL: 'https://github.com/stephenhawk8054/openphish-adblock',
+    });
+
+    await rulesetFromURLs({
         id: 'stevenblack-hosts',
-        name: 'Steven Black\'s hosts file',
+        name: 'Steven Black’s Unified Hosts (adware + malware)',
         enabled: false,
         urls: [ 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts' ],
         homeURL: 'https://github.com/StevenBlack/hosts#readme',
+    });
+
+    // Regional rulesets
+    const excludedLists = [
+        'ara-0',
+        'EST-0',
+    ];
+    // Merge lists which have same target languages
+    const langToListsMap = new Map();
+    for ( const [ id, asset ] of Object.entries(assets) ) {
+        if ( asset.content !== 'filters' ) { continue; }
+        if ( asset.off !== true ) { continue; }
+        if ( asset.group !== 'regions' ) { continue; }
+        if ( excludedLists.includes(id) ) { continue; }
+        // Not all "regions" lists have a set language
+        const bundleId = asset.lang ||
+            createHash('sha256').update(randomBytes(16)).digest('hex').slice(0,16);
+        let ids = langToListsMap.get(bundleId);
+        if ( ids === undefined ) {
+            langToListsMap.set(bundleId, ids = []);
+        }
+        ids.push(id);
+    }
+    for ( const ids of langToListsMap.values() ) {
+        const urls = [];
+        for ( const id of ids ) {
+            const asset = assets[id];
+            const contentURL = Array.isArray(asset.contentURL)
+                ? asset.contentURL[0]
+                : asset.contentURL;
+            urls.push(contentURL);
+        }
+        const id = ids[0];
+        const asset = assets[id];
+        const rulesetDetails = {
+            id: id.toLowerCase(),
+            group: 'regions',
+            parent: asset.parent,
+            lang: asset.lang,
+            name: asset.title,
+            tags: asset.tags,
+            enabled: false,
+            urls,
+            homeURL: asset.supportURL,
+        };
+        await rulesetFromURLs(rulesetDetails);
+    }
+
+    await rulesetFromURLs({
+        id: 'est-0',
+		group: 'regions',
+		lang: 'et',
+        name: '🇪🇪ee: Eesti saitidele kohandatud filter',
+        enabled: false,
+        urls: [ 'https://ubol-et.adblock.ee/list.txt' ],
+        homeURL: 'https://github.com/sander85/uBOL-et',
     });
 
     writeFile(
@@ -1317,6 +1553,7 @@ async function main() {
     // Patch declarative_net_request key
     manifest.declarative_net_request = { rule_resources: ruleResources };
     // Patch web_accessible_resources key
+    manifest.web_accessible_resources = manifest.web_accessible_resources || [];
     const web_accessible_resources = {
         resources: Array.from(requiredRedirectResources).map(path => `/${path}`),
         matches: [ '<all_urls>' ],
@@ -1324,7 +1561,7 @@ async function main() {
     if ( platform === 'chromium' ) {
         web_accessible_resources.use_dynamic_url = true;
     }
-    manifest.web_accessible_resources = [ web_accessible_resources ];
+    manifest.web_accessible_resources.push(web_accessible_resources);
 
     // Patch manifest version property
     manifest.version = version;
@@ -1336,7 +1573,7 @@ async function main() {
 
     // Log results
     const logContent = stdOutput.join('\n') + '\n';
-    await fs.writeFile(`${cacheDir}/log.txt`, logContent);
+    await fs.writeFile(`${outputDir}/log.txt`, logContent);
 }
 
 main();

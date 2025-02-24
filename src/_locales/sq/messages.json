@@ -1011,6 +1011,10 @@
     "message": "Hap skeda ose dritare të panevojshme",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Çon në instalimin e programeve keqdashëse, mashtruese",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Etiketoj faqen si “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“E papërshtatshme për punë”</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Vazhdoj",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Faqja e bllokuar do t'ju drejtojë në një uebsajt tjetër. Në rast se vijoni do të shkoni te: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Eksportoni në renë informatike",

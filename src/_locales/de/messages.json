@@ -900,11 +900,11 @@
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportReportSpecificButton": {
-    "message": "Neuen Bericht erstellen",
+    "message": "Neue Meldung auf GitHub erstellen",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportFindSpecificButton": {
-    "message": "Ähnliche Berichte suchen",
+    "message": "Ähnliche Meldungen auf GitHub finden",
     "description": "A clickable link in the filter issue reporter section"
   },
   "supportS1H": {
@@ -964,7 +964,7 @@
     "description": "Header of 'Report a filter issue' section in Support pane"
   },
   "supportS6P1S1": {
-    "message": "Um die Freiwilligen nicht mit doppelten Meldungen zu belasten, vergewissern Sie sich bitte, dass das Problem nicht schon einmal gemeldet wurde.",
+    "message": "Um die Freiwilligen nicht mit doppelten Meldungen zu überlasten, vergewissern Sie sich bitte, dass das Problem noch nicht gemeldet wurde. <b>Hinweis:</b> Das Anklicken der Schaltfläche übermittelt den Ursprung der Seite an GitHub.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6P2S1": {
@@ -988,11 +988,11 @@
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option1": {
-    "message": "Zeigt Werbung oder Anzeigenreste",
+    "message": "Zeigt Werbung oder Werbereste",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option2": {
-    "message": "Enthält Überdeckungen oder andere Belästigungen",
+    "message": "Hat Überdeckungen oder andere Belästigungen",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option3": {
@@ -1009,6 +1009,10 @@
   },
   "supportS6Select1Option6": {
     "message": "Öffnet unerwünschte Tabs oder Fenster",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Führt zu Schadsoftware, Phishing",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Fortfahren",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Die blockierte Seite möchte zu einer anderen Website weiterleiten. Beim Fortfahren wird folgende Seite aufgerufen: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "In den Cloud-Speicher exportieren",

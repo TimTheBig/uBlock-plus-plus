@@ -188,17 +188,21 @@ const onBeforeRootFrameRequest = function(fctxt) {
     }
 
     if ( logger.enabled ) {
-        fctxt.setFilter(logData);
+        fctxt.setRealm('network').setFilter(logData);
     }
 
     // https://github.com/uBlockOrigin/uBlock-issues/issues/760
     //   Redirect non-blocked request?
-    if ( result !== 1 && trusted === false && pageStore !== null ) {
-        pageStore.redirectNonBlockedRequest(fctxt);
+    if ( trusted === false && pageStore !== null ) {
+        if ( result !== 1 ) {
+            pageStore.redirectNonBlockedRequest(fctxt);
+        } else {
+            pageStore.skipMainDocument(fctxt, true);
+        }
     }
 
     if ( logger.enabled ) {
-        fctxt.setRealm('network').toLogger();
+        fctxt.toLogger();
     }
 
     // Redirected
@@ -212,16 +216,20 @@ const onBeforeRootFrameRequest = function(fctxt) {
     if ( result !== 1 ) { return; }
 
     // No log data means no strict blocking (because we need to report why
-    // the blocking occurs.
+    // the blocking occurs
     if ( logData === undefined  ) { return; }
 
     // Blocked
 
+    // Find out the URL navigated to should the document not be strict-blocked
+    pageStore.skipMainDocument(fctxt, false);
+
     const query = encodeURIComponent(JSON.stringify({
         url: requestURL,
-        hn: requestHostname,
         dn: fctxt.getDomain() || requestHostname,
-        fs: logData.raw
+        fs: logData.raw,
+        hn: requestHostname,
+        to: fctxt.redirectURL || '',
     }));
 
     vAPI.tabs.replace(
@@ -485,7 +493,7 @@ const onHeadersReceived = function(details) {
     }
     if ( pageStore.getNetFilteringSwitch(fctxt) === false ) { return; }
 
-    if ( fctxt.itype === fctxt.IMAGE || fctxt.itype === fctxt.MEDIA ) {
+    if ( (fctxt.itype & foilLargeMediaElement.TYPE_BITS) !== 0 ) {
         const result = foilLargeMediaElement(details, fctxt, pageStore);
         if ( result !== undefined ) { return result; }
     }
@@ -553,11 +561,16 @@ const onHeadersReceived = function(details) {
     if ( httpheaderFilteringEngine.apply(fctxt, responseHeaders) === true ) {
         modifiedHeaders = true;
     }
-    if ( injectCSP(fctxt, pageStore, responseHeaders) === true ) {
-        modifiedHeaders = true;
-    }
-    if ( injectPP(fctxt, pageStore, responseHeaders) === true ) {
-        modifiedHeaders = true;
+
+    // https://github.com/uBlockOrigin/uBlock-issues/issues/229#issuecomment-2220354261
+    // Inject CSP/PP in document resource only
+    if ( fctxt.isDocument() ) {
+        if ( injectCSP(fctxt, pageStore, responseHeaders) === true ) {
+            modifiedHeaders = true;
+        }
+        if ( injectPP(fctxt, pageStore, responseHeaders) === true ) {
+            modifiedHeaders = true;
+        }
     }
 
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1376932
@@ -675,6 +688,7 @@ const bodyFilterer = (( ) => {
     const sessions = new Map();
     const reContentTypeCharset = /charset=['"]?([^'" ]+)/i;
     const otherValidMimes = new Set([
+        'application/dash+xml',
         'application/javascript',
         'application/json',
         'application/mpegurl',
@@ -955,7 +969,7 @@ const injectCSP = function(fctxt, pageStore, responseHeaders) {
     const builtinDirectives = [];
 
     if ( pageStore.filterScripting(fctxt, true) === 1 ) {
-        builtinDirectives.push(µb.cspNoScripting);
+        builtinDirectives.push(µb.hiddenSettings.noScriptingCSP);
         if ( logger.enabled ) {
             fctxt.setRealm('network').setType('scripting').toLogger();
         }
@@ -1115,15 +1129,12 @@ const injectPP = function(fctxt, pageStore, responseHeaders) {
 const foilLargeMediaElement = function(details, fctxt, pageStore) {
     if ( details.fromCache === true ) { return; }
 
-    let size = 0;
-    if ( µb.userSettings.largeMediaSize !== 0 ) {
-        const headers = details.responseHeaders;
-        const i = headerIndexFromName('content-length', headers);
-        if ( i === -1 ) { return; }
-        size = parseInt(headers[i].value, 10) || 0;
-    }
+    onDemandHeaders.setHeaders(details.responseHeaders);
 
-    const result = pageStore.filterLargeMediaElement(fctxt, size);
+    const result = pageStore.filterLargeMediaElement(fctxt, onDemandHeaders);
+
+    onDemandHeaders.reset();
+
     if ( result === 0 ) { return; }
 
     if ( logger.enabled ) {
@@ -1133,16 +1144,15 @@ const foilLargeMediaElement = function(details, fctxt, pageStore) {
     return { cancel: true };
 };
 
+foilLargeMediaElement.TYPE_BITS = fc.IMAGE | fc.MEDIA | fc.XMLHTTPREQUEST;
+
 /******************************************************************************/
 
 // Caller must ensure headerName is normalized to lower case.
 
 const headerIndexFromName = function(headerName, headers) {
-    let i = headers.length;
-    while ( i-- ) {
-        if ( headers[i].name.toLowerCase() === headerName ) {
-            return i;
-        }
+    for ( let i = 0, n = headers.length; i < n; i++ ) {
+        if ( headers[i].name.toLowerCase() === headerName ) { return i; }
     }
     return -1;
 };
@@ -1150,6 +1160,24 @@ const headerIndexFromName = function(headerName, headers) {
 const headerValueFromName = function(headerName, headers) {
     const i = headerIndexFromName(headerName, headers);
     return i !== -1 ? headers[i].value : '';
+};
+
+const onDemandHeaders = {
+    headers: [],
+    get contentLength() {
+        const contentLength = headerValueFromName('content-length', this.headers);
+        if ( contentLength === '' ) { return Number.NaN; }
+        return parseInt(contentLength, 10) || 0;
+    },
+    get contentType() {
+        return headerValueFromName('content-type', this.headers);
+    },
+    setHeaders(headers) {
+        this.headers = headers;
+    },
+    reset() {
+        this.headers = [];
+    }
 };
 
 /******************************************************************************/

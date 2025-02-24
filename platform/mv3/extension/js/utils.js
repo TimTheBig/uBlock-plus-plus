@@ -19,20 +19,12 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-/* jshint esversion:11 */
-
-'use strict';
-
-/******************************************************************************/
-
-import { browser } from './ext.js';
-
 /******************************************************************************/
 
 function parsedURLromOrigin(origin) {
     try {
         return new URL(origin);
-    } catch(ex) {
+    } catch {
     }
 }
 
@@ -55,6 +47,13 @@ const isDescendantHostname = (hna, hnb) => {
     return hna.charCodeAt(hna.length - hnb.length - 1) === 0x2E /* '.' */;
 };
 
+/**
+ * Returns whether a hostname is part of a collection, or is descendant of an
+ * item in the collection.
+ * @param hna - the hostname representing the needle.
+ * @param iterb - an iterable representing the haystack of hostnames.
+ */
+
 const isDescendantHostnameOfIter = (hna, iterb) => {
     const setb = iterb instanceof Set ? iterb : new Set(iterb);
     if ( setb.has('all-urls') || setb.has('*') ) { return true; }
@@ -67,6 +66,13 @@ const isDescendantHostnameOfIter = (hna, iterb) => {
     }
     return false;
 };
+
+/**
+ * Returns all hostnames in the first collection which are equal or descendant
+ * of hostnames in the second collection.
+ * @param itera - an iterable which hostnames must be filtered out.
+ * @param iterb - an iterable which hostnames must be matched.
+ */
 
 const intersectHostnameIters = (itera, iterb) => {
     const setb = iterb instanceof Set ? iterb : new Set(iterb);
@@ -114,7 +120,7 @@ const hostnamesFromMatches = origins => {
             out.push('all-urls');
             continue;
         }
-        const match = /^\*:\/\/(?:\*\.)?([^\/]+)\/\*/.exec(origin);
+        const match = /^\*:\/\/(?:\*\.)?([^/]+)\/\*/.exec(origin);
         if ( match === null ) { continue; }
         out.push(match[1]);
     }
@@ -123,33 +129,15 @@ const hostnamesFromMatches = origins => {
 
 /******************************************************************************/
 
-export const broadcastMessage = message => {
+const broadcastMessage = message => {
     const bc = new self.BroadcastChannel('uBOL');
     bc.postMessage(message);
 };
 
 /******************************************************************************/
 
-const ubolLog = (...args) => {
-    // Do not pollute dev console in stable releases.
-    if ( shouldLog !== true ) { return; }
-    console.info('[uBOL]', ...args);
-};
-
-const shouldLog = (( ) => {
-    const { id } = browser.runtime;
-    // https://addons.mozilla.org/en-US/firefox/addon/ublock-origin-lite/
-    if ( id === 'uBOLite@raymondhill.net' ) { return false; }
-    // https://chromewebstore.google.com/detail/ddkjiahejlhfcafbddmgiahcphecmpfh
-    if ( id === 'ddkjiahejlhfcafbddmgiahcphecmpfh' ) { return false; }
-    // https://microsoftedge.microsoft.com/addons/detail/cimighlppcgcoapaliogpjjdehbnofhn
-    if ( id === 'cimighlppcgcoapaliogpjjdehbnofhn' ) { return false; }
-    return true;
-})();
-
-/******************************************************************************/
-
 export {
+    broadcastMessage,
     parsedURLromOrigin,
     toBroaderHostname,
     isDescendantHostname,
@@ -158,5 +146,4 @@ export {
     subtractHostnameIters,
     matchesFromHostnames,
     hostnamesFromMatches,
-    ubolLog,
 };

@@ -1011,6 +1011,10 @@
     "message": "Avab soovimatuid kaarte või aknaid",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Põhjustab pahavara, õngitsuskirju",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Sildista veebileht kui „NSFW“ (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">&ldquo;tööks sobimatu&rdquo;</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Jätka",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Tõkestatud veebileht üritab suunata muule veebilehele. Jätkates suunatakse teid veebilehele {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Ekspordi pilvehoidlasse",

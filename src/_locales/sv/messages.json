@@ -4,7 +4,7 @@
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "Äntligen en effektiv blockerare. Snäll mot både processor och minne.",
+    "message": "Äntligen en effektiv blockerare. Skonsam mot både processor och minne.",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
@@ -900,11 +900,11 @@
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportReportSpecificButton": {
-    "message": "Skapa ny rapport",
+    "message": "Skapa ny rapport på GitHub",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportFindSpecificButton": {
-    "message": "Hitta liknande rapporter",
+    "message": "Hitta liknande rapporter på GitHub",
     "description": "A clickable link in the filter issue reporter section"
   },
   "supportS1H": {
@@ -928,7 +928,7 @@
     "description": "Header of 'Filter issues' section in Support pane"
   },
   "supportS3P1": {
-    "message": "Rapportera filterproblem med specifika webbplatser till <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> problemhanteringssystemet</span>. <u>Kräver ett GitHub-konto.</u>",
+    "message": "Rapportera filterproblem med specifika webbplatser till problemhanteringssystemet <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code></span>. <u>Kräver ett GitHub-konto.</u>",
     "description": "First paragraph of 'Filter issues' section in Support pane"
   },
   "supportS3P2": {
@@ -944,7 +944,7 @@
     "description": "Header of 'Bug report' section in Support pane"
   },
   "supportS4P1": {
-    "message": "Rapportera problem med själva uBlock Origin till <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> ärendehanteringssystemet</span>. <u>Kräver ett GitHub-konto.</u>",
+    "message": "Rapportera problem med själva uBlock Origin till problemhanteringssystemet <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code></span>. <u>Kräver ett GitHub-konto.</u>",
     "description": "First paragraph of 'Bug report' section in Support pane"
   },
   "supportS5H": {
@@ -964,7 +964,7 @@
     "description": "Header of 'Report a filter issue' section in Support pane"
   },
   "supportS6P1S1": {
-    "message": "För att undvika att belasta volontärer med dubbletter av rapporter, kontrollera att problemet inte redan har rapporterats.",
+    "message": "För att undvika att belasta volontärer med dubbletter av rapporter, kontrollera att problemet inte redan har rapporterats. <b>Observera:</b> om du klickar på knappen kommer sidans ursprung att skickas till GitHub.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6P2S1": {
@@ -1009,6 +1009,10 @@
   },
   "supportS6Select1Option6": {
     "message": "Öppnar oönskade flikar eller fönster",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Leder till skadlig programvara, nätfiske",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Fortsätt",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Den blockerade sidan vill omdirigera dig till en annan webbplats. Om du väljer att fortsätta skickas du direkt till: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Exportera till molnlagring",

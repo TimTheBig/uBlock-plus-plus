@@ -19,22 +19,15 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-/* jshint esversion:11 */
-
-'use strict';
-
-/******************************************************************************/
+import * as ut from './utils.js';
 
 import { browser } from './ext.js';
 import { fetchJSON } from './fetch.js';
-import { getFilteringModeDetails } from './mode-manager.js';
 import { getEnabledRulesetsDetails } from './ruleset-manager.js';
-
-import * as ut from './utils.js';
+import { getFilteringModeDetails } from './mode-manager.js';
+import { ubolLog } from './debug.js';
 
 /******************************************************************************/
-
-const isGecko = browser.runtime.getURL('').startsWith('moz-extension://');
 
 const resourceDetailPromises = new Map();
 
@@ -144,6 +137,7 @@ function registerHighGeneric(context, genericDetails) {
     const directive = {
         id: 'css-generichigh',
         css,
+        allFrames: true,
         matches,
         excludeMatches,
         runAt: 'document_end',
@@ -276,7 +270,7 @@ function registerProcedural(context) {
         allFrames: true,
         matches,
         excludeMatches,
-        runAt: 'document_end',
+        runAt: 'document_start',
     };
 
     // register
@@ -436,7 +430,7 @@ function registerScriptlet(context, scriptletDetails) {
         const scriptletList = scriptletDetails.get(rulesetId);
         if ( scriptletList === undefined ) { continue; }
 
-        for ( const [ token, scriptletHostnames ] of scriptletList ) {
+        for ( const [ token, details ] of scriptletList ) {
             const id = `${rulesetId}.${token}`;
             const registered = before.get(id);
 
@@ -445,18 +439,18 @@ function registerScriptlet(context, scriptletDetails) {
             let targetHostnames = [];
             if ( hasBroadHostPermission ) {
                 excludeMatches.push(...permissionRevokedMatches);
-                if ( scriptletHostnames.length > 100 ) {
+                if ( details.hostnames.length > 100 ) {
                     targetHostnames = [ '*' ];
                 } else {
-                    targetHostnames = scriptletHostnames;
+                    targetHostnames = details.hostnames;
                 }
             } else if ( permissionGrantedHostnames.length !== 0 ) {
-                if ( scriptletHostnames.includes('*') ) {
+                if ( details.hostnames.includes('*') ) {
                     targetHostnames = permissionGrantedHostnames;
                 } else {
                     targetHostnames = ut.intersectHostnameIters(
-                        permissionGrantedHostnames,
-                        scriptletHostnames
+                        details.hostnames,
+                        permissionGrantedHostnames
                     );
                 }
             }
@@ -471,14 +465,10 @@ function registerScriptlet(context, scriptletDetails) {
                 allFrames: true,
                 matches,
                 excludeMatches,
+                matchOriginAsFallback: true,
                 runAt: 'document_start',
+                world: details.world,
             };
-
-            // https://bugzilla.mozilla.org/show_bug.cgi?id=1736575
-            //   `MAIN` world not yet supported in Firefox
-            if ( isGecko === false ) {
-                directive.world = 'MAIN';
-            }
 
             // register
             if ( registered === undefined ) {
@@ -542,13 +532,13 @@ async function registerInjectables(origins) {
     toRemove.push(...Array.from(before.keys()));
 
     if ( toRemove.length !== 0 ) {
-        ut.ubolLog(`Unregistered ${toRemove} content (css/js)`);
+        ubolLog(`Unregistered ${toRemove} content (css/js)`);
         await browser.scripting.unregisterContentScripts({ ids: toRemove })
             .catch(reason => { console.info(reason); });
     }
 
     if ( toAdd.length !== 0 ) {
-        ut.ubolLog(`Registered ${toAdd.map(v => v.id)} content (css/js)`);
+        ubolLog(`Registered ${toAdd.map(v => v.id)} content (css/js)`);
         await browser.scripting.registerContentScripts(toAdd)
             .catch(reason => { console.info(reason); });
     }

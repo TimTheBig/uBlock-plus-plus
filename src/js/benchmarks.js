@@ -19,25 +19,21 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-'use strict';
-
-/******************************************************************************/
-
-import cosmeticFilteringEngine from './cosmetic-filtering.js';
-import io from './assets.js';
-import scriptletFilteringEngine from './scriptlet-filtering.js';
-import staticNetFilteringEngine from './static-net-filtering.js';
-import µb from './background.js';
-import webRequest from './traffic.js';
-import { FilteringContext } from './filtering-context.js';
-import { LineIterator } from './text-utils.js';
-import { sessionFirewall } from './filtering-engines.js';
-
 import {
     domainFromHostname,
     entityFromDomain,
     hostnameFromURI,
 } from './uri-utils.js';
+
+import { FilteringContext } from './filtering-context.js';
+import { LineIterator } from './text-utils.js';
+import cosmeticFilteringEngine from './cosmetic-filtering.js';
+import io from './assets.js';
+import scriptletFilteringEngine from './scriptlet-filtering.js';
+import { sessionFirewall } from './filtering-engines.js';
+import { default as sfne } from './static-net-filtering.js';
+import webRequest from './traffic.js';
+import µb from './background.js';
 
 /******************************************************************************/
 
@@ -93,7 +89,7 @@ const loadBenchmarkDataset = (( ) => {
             if ( details.content.startsWith('[') ) {
                 try {
                     requests = JSON.parse(details.content);
-                } catch(ex) {
+                } catch {
                 }
             } else {
                 const lineIter = new LineIterator(details.content);
@@ -103,7 +99,7 @@ const loadBenchmarkDataset = (( ) => {
                     if ( line === '' ) { continue; }
                     try {
                         parsed.push(JSON.parse(line));
-                    } catch(ex) {
+                    } catch {
                         parsed.length = 0;
                         break;
                     }
@@ -134,8 +130,6 @@ const loadBenchmarkDataset = (( ) => {
 
 /******************************************************************************/
 
-// action: 1=test
-
 export async function benchmarkStaticNetFiltering(options = {}) {
     const { target, redirectEngine } = options;
 
@@ -155,13 +149,13 @@ export async function benchmarkStaticNetFiltering(options = {}) {
         fctxt.setURL(request.url);
         fctxt.setDocOriginFromURL(request.frameUrl);
         fctxt.setType(request.cpt);
-        const r = staticNetFilteringEngine.matchRequest(fctxt);
+        const r = sfne.matchRequest(fctxt);
         console.info(`Result=${r}:`);
         console.info(`\ttype=${fctxt.type}`);
         console.info(`\turl=${fctxt.url}`);
         console.info(`\tdocOrigin=${fctxt.getDocOrigin()}`);
         if ( r !== 0 ) {
-            console.info(staticNetFilteringEngine.toLogData());
+            console.info(sfne.toLogData());
         }
         return;
     }
@@ -172,43 +166,52 @@ export async function benchmarkStaticNetFiltering(options = {}) {
     let allowCount = 0;
     let redirectCount = 0;
     let removeparamCount = 0;
+    let urlskipCount = 0;
     let cspCount = 0;
     let permissionsCount = 0;
     let replaceCount = 0;
-    for ( let i = 0; i < requests.length; i++ ) {
-        const request = requests[i];
+    for ( const request of requests ) {
         fctxt.setURL(request.url);
+        if ( fctxt.getIPAddress() === '' ) {
+            fctxt.setIPAddress('93.184.215.14\n2606:2800:21f:cb07:6820:80da:af6b:8b2c');
+        }
         fctxt.setDocOriginFromURL(request.frameUrl);
         fctxt.setType(request.cpt);
-        staticNetFilteringEngine.redirectURL = undefined;
-        const r = staticNetFilteringEngine.matchRequest(fctxt);
+        sfne.redirectURL = undefined;
+        const r = sfne.matchRequest(fctxt);
         matchCount += 1;
         if ( r === 1 ) { blockCount += 1; }
         else if ( r === 2 ) { allowCount += 1; }
         if ( r !== 1 ) {
-            if ( staticNetFilteringEngine.transformRequest(fctxt) ) {
+            if ( sfne.transformRequest(fctxt) ) {
                 redirectCount += 1;
             }
-            if ( fctxt.redirectURL !== undefined && staticNetFilteringEngine.hasQuery(fctxt) ) {
-                if ( staticNetFilteringEngine.filterQuery(fctxt, 'removeparam') ) {
+            if ( sfne.hasQuery(fctxt) ) {
+                if ( sfne.filterQuery(fctxt) ) {
                     removeparamCount += 1;
                 }
             }
-            if ( fctxt.type === 'main_frame' || fctxt.type === 'sub_frame' ) {
-                if ( staticNetFilteringEngine.matchAndFetchModifiers(fctxt, 'csp') ) {
+            if ( sfne.urlSkip(fctxt, false) ) {
+                urlskipCount += 1;
+            }
+            if ( fctxt.isDocument() ) {
+                if ( sfne.matchAndFetchModifiers(fctxt, 'csp') ) {
                     cspCount += 1;
                 }
-                if ( staticNetFilteringEngine.matchAndFetchModifiers(fctxt, 'permissions') ) {
+                if ( sfne.matchAndFetchModifiers(fctxt, 'permissions') ) {
                     permissionsCount += 1;
                 }
             }
-            staticNetFilteringEngine.matchHeaders(fctxt, []);
-            if ( staticNetFilteringEngine.matchAndFetchModifiers(fctxt, 'replace') ) {
+            sfne.matchHeaders(fctxt, []);
+            if ( sfne.matchAndFetchModifiers(fctxt, 'replace') ) {
                 replaceCount += 1;
             }
         } else if ( redirectEngine !== undefined ) {
-            if ( staticNetFilteringEngine.redirectRequest(redirectEngine, fctxt) ) {
+            if ( sfne.redirectRequest(redirectEngine, fctxt) ) {
                 redirectCount += 1;
+            }
+            if ( fctxt.isRootDocument() && sfne.urlSkip(fctxt, true) ) {
+                urlskipCount += 1;
             }
         }
     }
@@ -217,13 +220,14 @@ export async function benchmarkStaticNetFiltering(options = {}) {
 
     const output = [
         'Benchmarked static network filtering engine:',
-        `\tEvaluated ${matchCount} match calls in ${dur.toFixed(0)} ms`,
+        `\tEvaluated ${matchCount} requests in ${dur.toFixed(0)} ms`,
         `\tAverage: ${(dur / matchCount).toFixed(3)} ms per request`,
         `\tNot blocked: ${matchCount - blockCount - allowCount}`,
         `\tBlocked: ${blockCount}`,
         `\tUnblocked: ${allowCount}`,
         `\tredirect=: ${redirectCount}`,
         `\tremoveparam=: ${removeparamCount}`,
+        `\turlskip=: ${urlskipCount}`,
         `\tcsp=: ${cspCount}`,
         `\tpermissions=: ${permissionsCount}`,
         `\treplace=: ${replaceCount}`,
@@ -254,7 +258,7 @@ export async function tokenHistogramsfunction() {
         fctxt.setURL(request.url);
         fctxt.setDocOriginFromURL(request.frameUrl);
         fctxt.setType(request.cpt);
-        const r = staticNetFilteringEngine.matchRequest(fctxt);
+        const r = sfne.matchRequest(fctxt);
         for ( let [ keyword ] of request.url.toLowerCase().matchAll(reTokens) ) {
             const token = keyword.slice(0, 7);
             if ( r === 0 ) {

@@ -484,7 +484,7 @@
     "description": "Filter lists section name"
   },
   "3pGroupSocial": {
-    "message": "Sosyal gereçler",
+    "message": "Sosyal medya tuşları",
     "description": "Filter lists section name"
   },
   "3pGroupCookies": {
@@ -548,11 +548,11 @@
     "description": "Label for the checkbox use to trust the content of 'My filters' list"
   },
   "1pImport": {
-    "message": "İçe aktar ve ekle",
+    "message": "İçe aktar ve ekle…",
     "description": "Button in the 'My filters' pane"
   },
   "1pExport": {
-    "message": "Dışa aktar",
+    "message": "Dışa aktar…",
     "description": "Button in the 'My filters' pane"
   },
   "1pExportFilename": {
@@ -632,11 +632,11 @@
     "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
-    "message": "İçe aktar ve ekle",
+    "message": "İçe aktar ve ekle…",
     "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExport": {
-    "message": "Dışa aktar",
+    "message": "Dışa aktar…",
     "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExportFilename": {
@@ -900,11 +900,11 @@
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportReportSpecificButton": {
-    "message": "Yeni rapor oluştur",
+    "message": "GitHub üzerinde yeni rapor oluştur",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportFindSpecificButton": {
-    "message": "Benzer raporları bul",
+    "message": "Benzer raporlar bul",
     "description": "A clickable link in the filter issue reporter section"
   },
   "supportS1H": {
@@ -1009,6 +1009,10 @@
   },
   "supportS6Select1Option6": {
     "message": "İstenmeyen sekme veya pencereler açıyor",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Kötü niyetli yazılıma yönlendiriyor, oltalama",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1187,6 +1191,10 @@
     "message": "Devam et",
     "description": "Button text to navigate to the blocked page"
   },
+  "docblockedRedirectPrompt": {
+    "message": "Engellenen sayfa sizi başka bir siteye yönlendirmek istiyor. Devam etmek isterseniz doğrudan şuraya yönlendirileceksiniz: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
   "cloudPush": {
     "message": "Bulut depolamaya aktar",
     "description": "tooltip"
@@ -1264,7 +1272,7 @@
     "description": "Label for keyboard shortcut used to toggle cosmetic filtering"
   },
   "toggleJavascript": {
-    "message": "JavaScript'i Aç/Kapa",
+    "message": "JavaScript'i Aç/Kapat",
     "description": "Label for keyboard shortcut used to toggle no-scripting switch"
   },
   "relaxBlockingMode": {

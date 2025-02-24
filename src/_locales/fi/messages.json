@@ -540,11 +540,11 @@
     "description": "Warning against copy-pasting filters from random sources"
   },
   "1pEnableMyFiltersLabel": {
-    "message": "Ota omat suodattimet käyttöön",
+    "message": "Käytä omia suodattimia",
     "description": "Label for the checkbox use to enable/disable 'My filters' list"
   },
   "1pTrustMyFiltersLabel": {
-    "message": "Allow custom filters requiring trust",
+    "message": "Salli luottamusta edellyttävät omat suodattimet",
     "description": "Label for the checkbox use to trust the content of 'My filters' list"
   },
   "1pImport": {
@@ -900,11 +900,11 @@
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportReportSpecificButton": {
-    "message": "Luo uusi ilmoitus",
+    "message": "Luo GitHubiin uusi ilmoitus",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportFindSpecificButton": {
-    "message": "Etsi samankaltaisia ilmoituksia",
+    "message": "Etsi GitHubista vastaavia ilmoituksia",
     "description": "A clickable link in the filter issue reporter section"
   },
   "supportS1H": {
@@ -928,7 +928,7 @@
     "description": "Header of 'Filter issues' section in Support pane"
   },
   "supportS3P1": {
-    "message": "Ilmoita ongelmista suodatuksessa tietyillä sivustoilla <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code>-ongelmaseurannassa</span>. <u>Vaatii GitHub-tilin</u>.",
+    "message": "Ilmoita sivustokohtaisista suodatinongelmista <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> -ongelmaseurantaan</span>. <u>Vaatii GitHub-tilin</u>.",
     "description": "First paragraph of 'Filter issues' section in Support pane"
   },
   "supportS3P2": {
@@ -964,7 +964,7 @@
     "description": "Header of 'Report a filter issue' section in Support pane"
   },
   "supportS6P1S1": {
-    "message": "Välttääksesi vapaaehtoisten kuormittamisen ylimääräisillä ilmoituksilla, tarkista ensin onko ongelmasta jo ilmoitettu.",
+    "message": "Välttääksesi vapaaehtoisten kuormittamisen ylimääräisillä ilmoituksilla, tarkasta ensin onko ongelmasta jo ilmoitettu. <b>Huomioi:</b> painikkeen painalluksen seurauksena sivun osoite lähetetään GitHubiin.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6P2S1": {
@@ -1004,11 +1004,15 @@
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option5": {
-    "message": "Hajoaa, kun uBlock Origin on käytössä",
+    "message": "Ei toimi oikein uBlock Originin ollessa käytössä",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Select1Option6": {
     "message": "Avaa ei-toivottuja välilehtiä tai ikkunoita",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Johtaa badwareen ja tietojenkalasteluun",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Jatka",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Estetty sivu ohjautuu eri sivustolle. Jos jatkat, siirryt suoraan osoitteeseen {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Vie pilvitallennustilaan",

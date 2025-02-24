@@ -3,9 +3,9 @@
   "d007daabc19e2750dcf2f2d57363ee66c15e9a25": {
    "updates": [
     {
-     "version": "1.58.1.5",
+     "version": "1.62.1.4",
      "browser_specific_settings": { "gecko": { "strict_min_version": "78.0" } },
-     "update_link": "https://github.com/TimTheBig/uBlock-plus-plus/releases/download/1.58.1b5/firefox-1.58.1b5.xpi"
+     "update_link": "https://github.com/TimTheBig/uBlock-plus-plus/releases/download/1.62.1b4/firefox-1.62.1b4.xpi"
     }
    ]
   }

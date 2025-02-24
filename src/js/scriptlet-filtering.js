@@ -61,6 +61,7 @@ const contentScriptRegisterer = new (class {
             runAt: 'document_start',
         }).then(handle => {
             this.hostnameToDetails.set(hostname, { handle, code });
+            return handle;
         }).catch(( ) => {
             this.hostnameToDetails.delete(hostname);
         });
@@ -94,7 +95,9 @@ const contentScriptRegisterer = new (class {
     }
     unregisterHandle(handle) {
         if ( handle instanceof Promise ) {
-            handle.then(handle => { handle.unregister(); });
+            handle.then(handle => {
+                if ( handle ) { handle.unregister(); }
+            });
         } else {
             handle.unregister();
         }
@@ -102,36 +105,6 @@ const contentScriptRegisterer = new (class {
 })();
 
 /******************************************************************************/
-
-const mainWorldInjector = (( ) => {
-    const parts = [
-        '(',
-        function(injector, details) {
-            if ( typeof self.uBO_scriptletsInjected === 'string' ) { return; }
-            const doc = document;
-            if ( doc.location === null ) { return; }
-            const hostname = doc.location.hostname;
-            if ( hostname !== '' && details.hostname !== hostname ) { return; }
-            injector(doc, details);
-            return 0;
-        }.toString(),
-        ')(',
-            vAPI.scriptletsInjector, ', ',
-            'json-slot',
-        ');',
-    ];
-    const jsonSlot = parts.indexOf('json-slot');
-    return {
-        assemble: function(hostname, details) {
-            parts[jsonSlot] = JSON.stringify({
-                hostname,
-                scriptlets: details.mainWorld,
-                filters: details.filters,
-            });
-            return parts.join('');
-        },
-    };
-})();
 
 const isolatedWorldInjector = (( ) => {
     const parts = [
@@ -173,25 +146,28 @@ const onScriptletMessageInjector = (( ) => {
         '(',
         function(name) {
             if ( self.uBO_bcSecret ) { return; }
-            const bcSecret = new self.BroadcastChannel(name);
-            bcSecret.onmessage = ev => {
-                const msg = ev.data;
-                switch ( typeof msg ) {
-                case 'string':
-                    if ( msg !== 'areyouready?' ) { break; }
-                    bcSecret.postMessage('iamready!');
-                    break;
-                case 'object':
-                    if ( self.vAPI && self.vAPI.messaging ) {
-                        self.vAPI.messaging.send('contentscript', msg);
-                    } else {
-                        console.log(`[uBO][${msg.type}]${msg.text}`);
+            try {
+                const bcSecret = new self.BroadcastChannel(name);
+                bcSecret.onmessage = ev => {
+                    const msg = ev.data;
+                    switch ( typeof msg ) {
+                    case 'string':
+                        if ( msg !== 'areyouready?' ) { break; }
+                        bcSecret.postMessage('iamready!');
+                        break;
+                    case 'object':
+                        if ( self.vAPI && self.vAPI.messaging ) {
+                            self.vAPI.messaging.send('contentscript', msg);
+                        } else {
+                            console.log(`[uBO][${msg.type}]${msg.text}`);
+                        }
+                        break;
                     }
-                    break;
-                }
-            };
-            bcSecret.postMessage('iamready!');
-            self.uBO_bcSecret = bcSecret;
+                };
+                bcSecret.postMessage('iamready!');
+                self.uBO_bcSecret = bcSecret;
+            } catch {
+            }
         }.toString(),
         ')(',
             'bcSecret-slot',
@@ -328,7 +304,7 @@ export class ScriptletFilteringEngineEx extends ScriptletFilteringEngine {
 
         const contentScript = [];
         if ( scriptletDetails.mainWorld ) {
-            contentScript.push(mainWorldInjector.assemble(hostname, scriptletDetails));
+            contentScript.push(vAPI.scriptletsInjector(hostname, scriptletDetails));
         }
         if ( scriptletDetails.isolatedWorld ) {
             contentScript.push(isolatedWorldInjector.assemble(hostname, scriptletDetails));

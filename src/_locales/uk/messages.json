@@ -108,7 +108,7 @@
     "description": "For the new mobile-friendly popup design"
   },
   "popupDomainsConnected_v2": {
-    "message": "Доменів під'єднано",
+    "message": "Підключені домени",
     "description": "For the new mobile-friendly popup design"
   },
   "popupTipDashboard": {
@@ -336,7 +336,7 @@
     "description": "English: Color-blind friendly"
   },
   "settingsAppearance": {
-    "message": "Вигляд",
+    "message": "Зовнішній вигляд",
     "description": "Section for controlling user interface appearance"
   },
   "settingsThemeLabel": {
@@ -344,7 +344,7 @@
     "description": "Label for checkbox to enable a custom dark theme"
   },
   "settingsThemeAccent0Label": {
-    "message": "Акцент кольору користувача",
+    "message": "Індивідуальний колір акценту",
     "description": "Label for checkbox to pick an accent color"
   },
   "settingsCloudStorageEnabledPrompt": {
@@ -1011,6 +1011,10 @@
     "message": "Відкриває небажані вкладки або вікна",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Веде до шкідливого ПЗ, фішингу",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Позначити цю сторінку «NSFW» (<a href=\"https://uk.wikipedia.org/wiki/NSFW\">«Небезпечно для роботи»</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Продовжити",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Заблокована сторінка хоче переадресувати на інший сайт. Якщо ви вирішите продовжити, ви перейдете безпосередньо на: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Експортувати до хмарного сховища",

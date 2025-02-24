@@ -1011,6 +1011,10 @@
     "message": "Iepenet net-winske ljepblêden of finsters",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Liedt ta badware, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "De webside labelje as ‘NSFW’ (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">‘Not Safe For Work’</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Trochgean",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "De blokkearre side wol nei in oare website trochferwize. As jo fierder gean, wurdt de folgjende side oproppen: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Eksportearje nei cloudûnthâld",

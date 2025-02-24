@@ -31,6 +31,10 @@
     "message": "suodatustila",
     "description": "Label in the popup panel for the current filtering mode"
   },
+  "popupTipReport": {
+    "message": "Ilmoita ongelmasta tällä verkkosivustolla",
+    "description": "Tooltip used for the 'chat' icon in the panel"
+  },
   "popupTipDashboard": {
     "message": "Avaa hallintapaneeli",
     "description": "English: Click to open the dashboard"
@@ -99,6 +103,70 @@
     "message": "Ulkopuoliset riippuvuudet (GPLv3-yhteensopiva):",
     "description": "Shown in the About pane"
   },
+  "supportS6H": {
+    "message": "Ilmoita suodatinongelmasta",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Ilmoita sivustokohtaisista suodatinongelmista <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> -ongelmaseurantaan</span>. <u>Vaatii GitHub-tilin.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Välttääksesi vapaaehtoisten kuormittamisen ylimääräisillä ilmoituksilla, tarkasta ensin onko ongelmasta jo ilmoitettu. <b>Huomioi:</b> painikkeen painalluksen seurauksena sivun osoite lähetetään GitHubiin.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "Etsi GitHubista vastaavia ilmoituksia",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Verkkosivun osoite:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Verkkosivu…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Valitse aihe --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Näyttää mainoksia tai niiden jäänteitä",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Sisältää peiteruutuja tai muita ärsykkeitä",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Tunnistaa uBO Liten",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Sisältää tietosuojaan liittyviä ongelmia",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Ei toimi oikein uBO Liten ollessa käytössä",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Avaa ei-toivottuja välilehtiä tai ikkunoita",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Johtaa badwareen ja tietojenkalasteluun",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Luokittele verkkosivu \"NSFW\"-tyyppiseksi (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">\"Not Safe For Work\", eli ns. työpaikalle sopimattomaksi</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "Luo GitHubiin uusi ilmoitus",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
   "firstRunSectionLabel": {
     "message": "Tervetuloa",
     "description": "The header text for the welcome message section"
@@ -147,6 +215,10 @@
     "message": "Listaus osotteista, joita ei suodateta.",
     "description": "A short description for the editable field which lists trusted sites"
   },
+  "noFilteringModePlaceholder": {
+    "message": "[vain isäntänimiä]\nesimerkki.fi\npelit.esimerkki\n...",
+    "description": "Default text for in edit field"
+  },
   "behaviorSectionLabel": {
     "message": "Toiminta",
     "description": "The header text for the 'Behavior' section"
@@ -158,5 +230,53 @@
   "showBlockedCountLabel": {
     "message": "Näytä estettyjen pyyntöjen määrä työkalupalkin kuvakkeessa",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "Käytä tiukkaa estoa",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "Potentiaalisesti ei-toivottujen sivustojen avaaminen estetään mahdollisuudella jatkaa.",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "Etsi listoja",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "Sivu estettiin",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "uBO Lite on estänyt seuraavan sivun latauksen:",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "Sivu estettiin listalla {{listname}} olevan sännön perusteella.",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "Estetty sivu ohjautuu eri sivustolle. Jos jatkat, siirryt suoraan osoitteeseen {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "parametritön",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "Palaa takaisin",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "Sulje tämä ikkuna",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "Älä varoita minua tästä sivustosta uudelleen",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "Jatka",
+    "description": "A button to navigate to the blocked page"
   }
 }

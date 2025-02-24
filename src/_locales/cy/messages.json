@@ -4,15 +4,15 @@
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "O'r diwedd, rhwystrydd effeithlon. Ysgafn ar y CPU a'r cof.",
+    "message": "O'r diwedd, rhwystrydd effeithlon sy'n gwell ar y CPU a'r cof.",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
-    "message": "uBlock₀ — Dashfwrdd",
+    "message": "uBlock₀ — Dangosfwrdd",
     "description": "English: uBlock₀ — Dashboard"
   },
   "dashboardUnsavedWarning": {
-    "message": "Rhybudd! Mae yna newidiadau heb eu cadw",
+    "message": "Rhybudd! Mae gennych newidiadau heb eu cadw",
     "description": "A warning in the dashboard when navigating away from unsaved changes"
   },
   "dashboardUnsavedWarningStay": {
@@ -116,11 +116,11 @@
     "description": "English: Click to open the dashboard"
   },
   "popupTipZapper": {
-    "message": "Modd saethu elfen",
+    "message": "Galluogi modd saethu elfen",
     "description": "Tooltip for the element-zapper icon in the popup panel"
   },
   "popupTipPicker": {
-    "message": "Modd dewis elfen",
+    "message": "Galluogi modd dewis elfen",
     "description": "English: Enter element picker mode"
   },
   "popupTipLog": {
@@ -208,7 +208,7 @@
     "description": "Caption for the no-scripting per-site switch"
   },
   "popupMoreButton_v2": {
-    "message": "Mwy",
+    "message": "Rhagor",
     "description": "Label to be used to show popup panel sections"
   },
   "popupLessButton_v2": {
@@ -236,15 +236,15 @@
     "description": ""
   },
   "popupImageRulePrompt": {
-    "message": "images",
+    "message": "delweddau",
     "description": ""
   },
   "popup3pAnyRulePrompt": {
-    "message": "3rd-party",
+    "message": "3ydd-parti",
     "description": ""
   },
   "popup3pPassiveRulePrompt": {
-    "message": "3rd-party CSS/images",
+    "message": "CSS/delweddau 3ydd-parti",
     "description": ""
   },
   "popupInlineScriptRulePrompt": {
@@ -312,7 +312,7 @@
     "description": "English: Click, Ctrl-click"
   },
   "pickerContextMenuEntry": {
-    "message": "Block element…",
+    "message": "Blocio elfen…",
     "description": "An entry in the browser's contextual menu"
   },
   "settingsCollapseBlockedPrompt": {
@@ -336,7 +336,7 @@
     "description": "English: Color-blind friendly"
   },
   "settingsAppearance": {
-    "message": "Golwg",
+    "message": "Gwedd",
     "description": "Section for controlling user interface appearance"
   },
   "settingsThemeLabel": {
@@ -464,11 +464,11 @@
     "description": "English: Lists of blocked hosts"
   },
   "3pApplyChanges": {
-    "message": "Apply changes",
+    "message": "Rhoi newidiadau ar waith",
     "description": "English: Apply changes"
   },
   "3pGroupDefault": {
-    "message": "Built-in",
+    "message": "Mewnol",
     "description": "Filter lists section name"
   },
   "3pGroupAds": {
@@ -488,7 +488,7 @@
     "description": "Filter lists section name"
   },
   "3pGroupCookies": {
-    "message": "Cookie notices",
+    "message": "Hysbysiadau cwci",
     "description": "Filter lists section name"
   },
   "3pGroupAnnoyances": {
@@ -520,7 +520,7 @@
     "description": "used as a tooltip for the out-of-date icon beside a list"
   },
   "3pViewContent": {
-    "message": "gweld y cynnwys",
+    "message": "gweld cynnwys",
     "description": "used as a tooltip for eye icon beside a list"
   },
   "3pLastUpdate": {
@@ -528,7 +528,7 @@
     "description": "used as a tooltip for the clock icon beside a list"
   },
   "3pUpdating": {
-    "message": "Updating…",
+    "message": "Wrthi'n diweddaru…",
     "description": "used as a tooltip for the spinner icon beside a list"
   },
   "3pNetworkError": {
@@ -940,7 +940,7 @@
     "description": "Third paragraph of 'Filter issues' section in Support pane"
   },
   "supportS4H": {
-    "message": "Bug report",
+    "message": "Adroddiad nam",
     "description": "Header of 'Bug report' section in Support pane"
   },
   "supportS4P1": {
@@ -964,7 +964,7 @@
     "description": "Header of 'Report a filter issue' section in Support pane"
   },
   "supportS6P1S1": {
-    "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported.",
+    "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported. <b>Note:</b> clicking the button will cause the page's origin to be sent to GitHub.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6P2S1": {
@@ -1011,6 +1011,10 @@
     "message": "Opens unwanted tabs or windows",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Leads to badware, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Label the web page as “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1028,7 +1032,7 @@
     "description": "Link to privacy policy on GitHub (English)"
   },
   "aboutChangelog": {
-    "message": "Changelog",
+    "message": "Cofnod newidiadau",
     "description": ""
   },
   "aboutCode": {
@@ -1136,7 +1140,7 @@
     "description": "Firefox/Fennec-specific: Show Logger"
   },
   "fennecMenuItemBlockingOff": {
-    "message": "off",
+    "message": "na",
     "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
   },
   "docblockedTitle": {
@@ -1187,6 +1191,10 @@
     "message": "Parhau",
     "description": "Button text to navigate to the blocked page"
   },
+  "docblockedRedirectPrompt": {
+    "message": "The blocked page wants to redirect to another site. If you choose to proceed, you will navigate directly to: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
   "cloudPush": {
     "message": "Export to cloud storage",
     "description": "tooltip"
@@ -1216,15 +1224,15 @@
     "description": "for generic 'Submit' buttons"
   },
   "genericApplyChanges": {
-    "message": "Apply changes",
+    "message": "Rhoi newidiadau ar waith",
     "description": "for generic 'Apply changes' buttons"
   },
   "genericRevert": {
-    "message": "Revert",
+    "message": "Gwrthdroi",
     "description": "for generic 'Revert' buttons"
   },
   "genericBytes": {
-    "message": "bytes",
+    "message": "beit",
     "description": ""
   },
   "contextMenuBlockElementInFrame": {

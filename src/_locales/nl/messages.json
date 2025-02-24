@@ -1011,6 +1011,10 @@
     "message": "Opent ongewenste tabbladen of vensters",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Leidt tot badware, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "De webpagina labelen als ‘NSFW’ (<a href=\"https://nl.wikipedia.org/wiki/NSFW\">‘Not Safe For Work’</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Doorgaan",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "De geblokkeerde pagina wil u omleiden naar een andere website. Als u doorgaat, navigeert u rechtstreeks naar: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Exporteren naar cloudopslag",

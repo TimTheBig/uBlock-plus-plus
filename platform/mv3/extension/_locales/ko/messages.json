@@ -31,6 +31,10 @@
     "message": "필터링 모드",
     "description": "Label in the popup panel for the current filtering mode"
   },
+  "popupTipReport": {
+    "message": "이 사이트의 이슈를 신고하기",
+    "description": "Tooltip used for the 'chat' icon in the panel"
+  },
   "popupTipDashboard": {
     "message": "대시보드 열기",
     "description": "English: Click to open the dashboard"
@@ -92,12 +96,76 @@
     "description": "Link text to translations repo"
   },
   "aboutFilterLists": {
-    "message": "필터 리스트",
+    "message": "필터 목록",
     "description": "Link text to uBO's own filter lists repo"
   },
   "aboutDependencies": {
     "message": "외부 의존성 (GPLv3 호환):",
     "description": "Shown in the About pane"
+  },
+  "supportS6H": {
+    "message": "필터 이슈 신고",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "특정 웹사이트에서 발생하는 필터 이슈를 <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> 이슈 트래커</span>에 신고할 수 있습니다. <u>GitHub 계정이 필요합니다.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "봉사자들이 중복 신고로 인해 부담을 겪지 않도록, 해당 이슈가 이미 신고되지는 않았는지 확인해주시기 바랍니다.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "유사한 신고 탐색",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "웹페이지 주소:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "웹페이지가…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- 주제 선택 --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "광고나 광고 흔적을 보여줍니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "오버레이나 기타 성가신 요소를 보여줍니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "uBO Lite 사용을 감지합니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "개인정보 보호 관련 이슈가 있습니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "uBO Lite를 켜면 깨집니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "원치 않는 탭이나 창을 엽니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "악성코드, 피싱으로 유도합니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "웹페이지를 \"NSFW\" (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)로 분류",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "새 신고 생성",
+    "description": "Text for button which open an external webpage in Support pane"
   },
   "firstRunSectionLabel": {
     "message": "환영합니다",
@@ -147,6 +215,10 @@
     "message": "필터링을 비활성화할 호스트 이름 목록",
     "description": "A short description for the editable field which lists trusted sites"
   },
+  "noFilteringModePlaceholder": {
+    "message": "[호스트 이름만 작성]\nexample.com\ngames.example\n...",
+    "description": "Default text for in edit field"
+  },
   "behaviorSectionLabel": {
     "message": "동작",
     "description": "The header text for the 'Behavior' section"
@@ -158,5 +230,53 @@
   "showBlockedCountLabel": {
     "message": "차단된 요청 개수를 도구 모음 아이콘에 표시",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "엄격한 차단 켜기",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "잠재적으로 좋지 않은 사이트로의 접속을 차단하고, 사용자가 진행할지 선택하도록 합니다.",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "목록 찾기",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "페이지 차단됨",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "uBO Lite가 다음 페이지를 불러오지 못하게 했습니다.",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "이 페이지가 {{listname}} 내 필터링 항목에 해당하여 차단되었습니다.",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "차단된 페이지에서 다른 사이트로 이동하려 합니다. 계속하시면, {{url}} 주소로 바로 이동합니다.",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "매개변수 없음",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "뒤로",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "창 닫기",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "다시는 이 사이트에 대해 경고하지 않기",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "계속",
+    "description": "A button to navigate to the blocked page"
   }
 }

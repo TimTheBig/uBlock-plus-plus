@@ -128,7 +128,7 @@
     "description": "Tooltip used for the logger icon in the panel"
   },
   "popupTipReport": {
-    "message": "التقرير عن مُشكلة في الموقع",
+    "message": "الإبلاغ عن مشكلة في هذا الموقع",
     "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
@@ -188,7 +188,7 @@
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupNoPopups_v2": {
-    "message": "الإطارات المنبثقة",
+    "message": "نوافذ منبثقة",
     "description": "Caption for the no-popups per-site switch"
   },
   "popupNoLargeMedia_v2": {
@@ -196,7 +196,7 @@
     "description": "Caption for the no-large-media per-site switch"
   },
   "popupNoCosmeticFiltering_v2": {
-    "message": "إعادات الفلاتر التجميلية العمومية",
+    "message": "المرشحات التجميلية",
     "description": "Caption for the no-cosmetic-filtering per-site switch"
   },
   "popupNoRemoteFonts_v2": {
@@ -272,11 +272,11 @@
     "description": "appears in popup"
   },
   "popupVersion": {
-    "message": "نسخة",
+    "message": "الإصدار",
     "description": "Example of use: Version 1.26.4"
   },
   "popup3pScriptFilter": {
-    "message": "سكربت",
+    "message": "برنامَج نصي",
     "description": "Appears as an option to filter out firewall rows"
   },
   "popup3pFrameFilter": {
@@ -312,7 +312,7 @@
     "description": "English: Click, Ctrl-click"
   },
   "pickerContextMenuEntry": {
-    "message": "إحجب العنصر...",
+    "message": "حجب العنصر...",
     "description": "An entry in the browser's contextual menu"
   },
   "settingsCollapseBlockedPrompt": {
@@ -340,7 +340,7 @@
     "description": "Section for controlling user interface appearance"
   },
   "settingsThemeLabel": {
-    "message": "المظاهر",
+    "message": "السمة",
     "description": "Label for checkbox to enable a custom dark theme"
   },
   "settingsThemeAccent0Label": {
@@ -1011,6 +1011,10 @@
     "message": "افتح التبويبات أو النوافذ التي ليس مرغوبًا بها",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "يؤدي إلى البرامج الضارة والإحتيال",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "تسمية صفحة الويب باسم \"NSFW\" (<a href=\"https://ar.wikipedia.org/wiki/%D8%BA%D9%8A%D8%B1_%D9%85%D9%86%D8%A7%D8%B3%D8%A8_%D9%84%D9%84%D8%B9%D9%85%D9%84\">\"ليس آمن للعمل\"\n",
     "description": "A checkbox to use for NSFW sites"
@@ -1187,6 +1191,10 @@
     "message": "تقدّم",
     "description": "Button text to navigate to the blocked page"
   },
+  "docblockedRedirectPrompt": {
+    "message": "الصفحة المحظورة تريد إعادة توجيهك إلى موقع آخر. إذا اخترت المتابعة، فسوف تنتقل مباشرة إلى: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
   "cloudPush": {
     "message": "التصدير إلى سحابة التخزين",
     "description": "tooltip"
@@ -1244,7 +1252,7 @@
     "description": "A context menu entry, to view the source code of the target resource"
   },
   "shortcutCapturePlaceholder": {
-    "message": "ادخل اختصار",
+    "message": "أدخِل اختصار",
     "description": "Placeholder string for input field used to capture a keyboard shortcut"
   },
   "genericMergeViewScrollLock": {

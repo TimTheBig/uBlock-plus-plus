@@ -340,11 +340,11 @@
     "description": "Section for controlling user interface appearance"
   },
   "settingsThemeLabel": {
-    "message": "Téma",
+    "message": "Motív",
     "description": "Label for checkbox to enable a custom dark theme"
   },
   "settingsThemeAccent0Label": {
-    "message": "Vlastná farba témy",
+    "message": "Vlastná farba motívu",
     "description": "Label for checkbox to pick an accent color"
   },
   "settingsCloudStorageEnabledPrompt": {
@@ -372,7 +372,7 @@
     "description": ""
   },
   "settingPerSiteSwitchGroupSynopsis": {
-    "message": "Tieto predvolené správania môžu byť prepísané u jednotlivých stránkach",
+    "message": "Tieto predvolené správania môžu byť prepísané na jednotlivých stránkach",
     "description": ""
   },
   "settingsNoCosmeticFilteringPrompt": {
@@ -1011,6 +1011,10 @@
     "message": "Otvára nechcené karty alebo okná",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Smeruje k badvéru a phishingu",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Označiť webstránku ako &ldquo;NSFW&rdquo; (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">Nie je bezpečné pre prácu&rdquo;)",
     "description": "A checkbox to use for NSFW sites"
@@ -1186,6 +1190,10 @@
   "docblockedDisable": {
     "message": "Pokračovať",
     "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "Zablokovaná stránka chce presmerovať na inú stránku. Ak sa rozhodnete pokračovať, prejdete priamo na: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Exportovať do cloudového úložiska",

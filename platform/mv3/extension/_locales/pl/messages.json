@@ -31,6 +31,10 @@
     "message": "Tryb filtrowania",
     "description": "Label in the popup panel for the current filtering mode"
   },
+  "popupTipReport": {
+    "message": "Zgłoś problem z tą stroną",
+    "description": "Tooltip used for the 'chat' icon in the panel"
+  },
   "popupTipDashboard": {
     "message": "Otwórz panel sterowania",
     "description": "English: Click to open the dashboard"
@@ -99,6 +103,70 @@
     "message": "Zewnętrzne zależności (kompatybilne z GPLv3):",
     "description": "Shown in the About pane"
   },
+  "supportS6H": {
+    "message": "Zgłoś problem z filtrem",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Zgłoś problemy z filtrami dotyczące konkretnych witryn internetowych do systemu śledzenia problemów <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code></span>. <u>Wymagane jest konto GitHub.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Sprawdź, czy problem nie został już zgłoszony, aby uniknąć obciążania wolontariuszy duplikatami raportów. <b>Uwaga:</b> kliknięcie przycisku spowoduje wysłanie źródła strony do serwisu GitHub.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "Znajdź podobne raporty",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Adres strony internetowej:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Strona internetowa…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "— Wybierz pozycję —",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Wyświetla reklamy lub ich pozostałości",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Ma nakładki lub inne niedogodności",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Wykrywa uBO Lite",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Ma problemy związane z prywatnością",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Nieprawidłowe działanie po włączeniu uBO Lite",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Otwiera niepożądane karty lub okna",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Prowadzi do szkodliwego oprogramowania, phishingu",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Oznacz stronę internetową jako „NSFW” (<a href=\"https://pl.wikipedia.org/wiki/NSFW\">„Not Safe For Work”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "Utwórz nowy raport",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
   "firstRunSectionLabel": {
     "message": "Witaj",
     "description": "The header text for the welcome message section"
@@ -147,6 +215,10 @@
     "message": "Lista nazw hostów, dla których nie będzie stosowane żadne filtrowanie",
     "description": "A short description for the editable field which lists trusted sites"
   },
+  "noFilteringModePlaceholder": {
+    "message": "[tylko nazwy hostów]\nexample.com\ngry.przykład\n...",
+    "description": "Default text for in edit field"
+  },
   "behaviorSectionLabel": {
     "message": "Zachowanie",
     "description": "The header text for the 'Behavior' section"
@@ -158,5 +230,53 @@
   "showBlockedCountLabel": {
     "message": "Wyświetlaj liczbę zablokowanych żądań na ikonie paska narzędzi",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "Włącz ścisłe blokowanie",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "Nawigacja do potencjalnie niepożądanych witryn zostanie zablokowana i pojawi się opcja kontynuowania.",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "Znajdź listy",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "Strona zablokowana",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "uBO Lite nie pozwolił załadować się następującej stronie:",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "Strona została zablokowana z powodu pasującego filtra na liście {{listname}}.",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "Zablokowana strona chce przekierować na inną witrynę. Jeśli zdecydujesz się kontynuować, przejdziesz bezpośrednio do: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "bez parametrów",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "Wstecz",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "Zamknij to okno",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "Nie ostrzegaj mnie ponownie o tej witrynie",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "Kontynuuj",
+    "description": "A button to navigate to the blocked page"
   }
 }

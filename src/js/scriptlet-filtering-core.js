@@ -19,12 +19,8 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-'use strict';
-
-/******************************************************************************/
-
-import { redirectEngine as reng } from './redirect-engine.js';
 import { StaticExtFilteringHostnameDB } from './static-ext-filtering-db.js';
+import { redirectEngine as reng } from './redirect-engine.js';
 
 /******************************************************************************/
 
@@ -99,7 +95,7 @@ const patchScriptlet = (content, arglist) => {
 };
 
 const requote = s => {
-    if ( /^(["'`]).+\1$|,/.test(s) === false ) { return s; }
+    if ( /^(["'`]).*\1$|,|^$/.test(s) === false ) { return s; }
     if ( s.includes("'") === false ) { return `'${s}'`; }
     if ( s.includes('"') === false ) { return `"${s}"`; }
     if ( s.includes('`') === false ) { return `\`${s}\``; }

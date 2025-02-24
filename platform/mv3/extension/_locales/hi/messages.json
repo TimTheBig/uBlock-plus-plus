@@ -31,6 +31,10 @@
     "message": "फ़िल्टरिंग मोड",
     "description": "Label in the popup panel for the current filtering mode"
   },
+  "popupTipReport": {
+    "message": "इस वेबसाइट पर किसी समस्या को रिपोर्ट करें",
+    "description": "Tooltip used for the 'chat' icon in the panel"
+  },
   "popupTipDashboard": {
     "message": "डैशबोर्ड खोलें",
     "description": "English: Click to open the dashboard"
@@ -99,6 +103,70 @@
     "message": "बाहरी निर्भरता (GPLv3-compatible):",
     "description": "Shown in the About pane"
   },
+  "supportS6H": {
+    "message": "Report a filter issue",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Report filter issues with specific websites to the <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> issue tracker</span>. <u>Requires a GitHub account.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported. <b>Note:</b> clicking the button will cause the page's origin to be sent to GitHub.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "Find similar reports on GitHub",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Address of the webpage:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "The webpage…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Pick an entry --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Shows ads or ad leftovers",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Has overlays or other nuisances",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Detects uBO Lite",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Has privacy-related issues",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Malfunctions when uBO Lite is enabled",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Opens unwanted tabs or windows",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Leads to badware, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Label the webpage as “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "Create new report on GitHub",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
   "firstRunSectionLabel": {
     "message": "स्वागत",
     "description": "The header text for the welcome message section"
@@ -147,6 +215,10 @@
     "message": "होस्टनामों की सूची जिनके लिए कोई फ़िल्टरिंग नहीं होगी",
     "description": "A short description for the editable field which lists trusted sites"
   },
+  "noFilteringModePlaceholder": {
+    "message": "[केवल होस्ट का नाम]\nexample.com\ngames.example\n...",
+    "description": "Default text for in edit field"
+  },
   "behaviorSectionLabel": {
     "message": "व्यवहार",
     "description": "The header text for the 'Behavior' section"
@@ -158,5 +230,53 @@
   "showBlockedCountLabel": {
     "message": "टूलबार आइकन पर अवरुद्ध अनुरोधों की संख्या दिखाएं",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "Enable strict blocking",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "Navigation to potentially undesirable sites will be blocked, and you will be offered the option to proceed.",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "Find lists",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "Page blocked",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "uBO Lite has prevented the following page from loading:",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "पृष्ठ को {{listname}} में मेल खाते फ़िल्टर के कारण अवरुद्ध किया गया था.",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "ब्लॉक किया गया पेज किसी दूसरी साइट पर रीडायरेक्ट करना चाहता है. अगर आप आगे बढ़ना चुनते हैं, तो आप सीधे इस पर नेविगेट करें: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "without parameters",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "Go back",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "Close this window",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "Don't warn me again about this site",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "Proceed",
+    "description": "A button to navigate to the blocked page"
   }
 }

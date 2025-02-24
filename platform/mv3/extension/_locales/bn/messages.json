@@ -31,6 +31,10 @@
     "message": "ফিল্টারিং মোড",
     "description": "Label in the popup panel for the current filtering mode"
   },
+  "popupTipReport": {
+    "message": "এই ওয়েবসাইট নিয়ে সমস্যা জানাও",
+    "description": "Tooltip used for the 'chat' icon in the panel"
+  },
   "popupTipDashboard": {
     "message": "ড্যাশবোর্ড খুলুন",
     "description": "English: Click to open the dashboard"
@@ -99,6 +103,70 @@
     "message": "বাহ্যিক নির্ভরতা (GPLv3-সামঞ্জস্যপূর্ণ):",
     "description": "Shown in the About pane"
   },
+  "supportS6H": {
+    "message": "ছাঁকনি নিয়ে সমস্যা জানাও",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "নির্দিষ্ট ছাঁকনি বিষয়ক সমস্যা এখানে জানাও <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> সমস্যা ট্র্যাকার</span>. <u>গিটহাব অ্যাকাউন্ট প্রয়োজন।</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "একই প্রতিবেদন দুইবার এড়াতে ও স্বেচ্ছাসেবকদের বোঝা কমাতে, অনুগ্রহ করে যাচাই করো যে সমস্যাটি ইতিমধ্যে জানানো হয়নি।",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportFindSpecificButton": {
+    "message": "একই রকম অভিযোগ দেখ",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "ওয়েবপৃষ্ঠার ঠিকানা:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "ওয়েবপৃষ্ঠা…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- একটি ভুক্তি নির্বাচন করো --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "বিজ্ঞাপন বা বিজ্ঞাপনের অবশিষ্টাংশ দেখায়",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "ওভারলে বা অন্যান্য উপদ্রব আছে",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "ইউবিও লাইট শনাক্ত করে",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "গোপনীয়তা-সম্পর্কিত সমস্যা আছে",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "ইউবিও লাইট চালু করলে সমস্যা হয়",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "অবাঞ্ছিত ট্যাব বা জানালা খুলে",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "ব্যাডওয়্যার, প্রতারণমূলক জায়গায় নেয়",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "ওয়েব পৃষ্ঠাটিকে “NSFW” হিসাবে চিহ্নিত করুন (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportReportSpecificButton": {
+    "message": "নতুন অভিযোগ",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
   "firstRunSectionLabel": {
     "message": "স্বাগতম",
     "description": "The header text for the welcome message section"
@@ -147,6 +215,10 @@
     "message": "হোস্টনেমের তালিকা যেগুলোর কোনো ফিল্টারিং হবে না",
     "description": "A short description for the editable field which lists trusted sites"
   },
+  "noFilteringModePlaceholder": {
+    "message": "[hostnames only]\nexample.com\ngames.example\n...",
+    "description": "Default text for in edit field"
+  },
   "behaviorSectionLabel": {
     "message": "আচরণ",
     "description": "The header text for the 'Behavior' section"
@@ -156,7 +228,55 @@
     "description": "Label for a checkbox in the options page"
   },
   "showBlockedCountLabel": {
-    "message": "কতগুলো অনুরোধ ব্লক করা হয়েছে তা টুলবার আইকনে দেখাও",
+    "message": "কতগুলো অনুরোধ অবরুদ্ধ করা হয়েছে তা টুলবার আইকনে দেখাও",
     "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLabel": {
+    "message": "কঠোর অবরোধ চালু করো",
+    "description": "Label for a checkbox in the options page"
+  },
+  "enableStrictBlockLegend": {
+    "message": "সম্ভাব্য অযাচিত ওয়েবসাইট অবরুদ্ধ করা হবে, আর সেখানে আগানোর উপায় দেওয়া থাকবে।",
+    "description": "Label for a checkbox in the options page"
+  },
+  "findListsPlaceholder": {
+    "message": "তালিকা খুঁজো",
+    "description": "Placeholder for the input field used to find lists"
+  },
+  "strictblockTitle": {
+    "message": "পাতা অবরুদ্ধ",
+    "description": "Webpage title for the strict-blocked page"
+  },
+  "strictblockSentence1": {
+    "message": "ইউবিও লাইট এই পাতা লোড হওয়া আটকিয়েছে:",
+    "description": "Sentence used in the strict-blocked page"
+  },
+  "strictblockReasonSentence1": {
+    "message": "{{listname}} এর একটি ছাঁকনির জন্য এই পাতাটি অবরুদ্ধ করা হয়েছে।",
+    "description": "Text informing about what is causing the page to be blocked"
+  },
+  "strictblockRedirectSentence1": {
+    "message": "এই অবরুদ্ধ পাতাটি আরেকটি ওয়েবসাইটে নেয়। এগিয়ে যেতে চাইলে, সরাসরি এই জায়গায় যাবে: {{url}}",
+    "description": "Text warning about an incoming redirect"
+  },
+  "strictblockNoParamsPrompt": {
+    "message": "প্যারামিটার নেই",
+    "description": "Label to be used for the parameter-less URL"
+  },
+  "strictblockBack": {
+    "message": "ফিরে যাও",
+    "description": "A button to go back to the previous webpage"
+  },
+  "strictblockClose": {
+    "message": "জানালা বন্ধ করো",
+    "description": "A button to close the current tab"
+  },
+  "strictblockDontWarn": {
+    "message": "এই সাইট নিয়ে পুনরায় সতর্ক করবে না",
+    "description": "Label for checkbox in document-blocked page"
+  },
+  "strictblockProceed": {
+    "message": "এগিয়ে যাও",
+    "description": "A button to navigate to the blocked page"
   }
 }
